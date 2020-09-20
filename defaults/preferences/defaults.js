@@ -2,7 +2,7 @@
 pref("extensions.{d166ee2a-36bb-4f33-aff7-e85f912df509}.description", "chrome://liveclick/locale/liveclick.properties");
 
 // Last Version
-pref("extensions.liveclick.lastVersion", "1.2.0");
+pref("extensions.liveclick.lastVersion", "1.4.0");
 
 // Checker
 pref("extensions.liveclick.checkOnDemand", true);

@@ -16,7 +16,7 @@ if (typeof(LiveClick) == "undefined")
 	{
 		extGUID : "{d166ee2a-36bb-4f33-aff7-e85f912df509}",
 		extVersion : "unknown",
-		buildDate : "20160215",
+		buildDate : "20160921",
 
 		_isInitialized : false,
 		_isDisabling : false,

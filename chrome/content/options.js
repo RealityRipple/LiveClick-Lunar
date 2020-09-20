@@ -608,7 +608,8 @@ function makeXMLMonitors ()
 		let li = feedBox.getItemAtIndex(i);
 		let bMonitored = li.getAttribute("checked") == "true";
 		let iLivemarkId = parseInt(li.getAttribute("value"));
-		let sSite = LiveClickPlaces.getPlace(iLivemarkId).getToken("siteURI", "");
+		let sFeed = li.getAttribute("tooltiptext");
+		let sSite = LiveClickPlaces.getPlace(iLivemarkId).getToken("custom_site", "");
 		let iInterval = LiveClickPlaces.getPlace(iLivemarkId).getToken("custom_interval", -1);
 		let iAction = LiveClickPlaces.getPlace(iLivemarkId).getToken("custom_monitor", 0);
 		let iMax = LiveClickPlaces.getPlace(iLivemarkId).getToken("custom_max", -1);
@@ -622,7 +623,7 @@ function makeXMLMonitors ()
 			continue;
 
 		var sNode = '<monitor>\n';
-		sNode += '<feed><![CDATA[' + li.getAttribute("tooltiptext") + ']]></feed>\n';
+		sNode += '<feed><![CDATA[' + sFeed + ']]></feed>\n';
 		if (sSite != "") sNode += '<site><![CDATA[' + sSite + ']]></site>\n';
 		if (iInterval > -1) sNode += '<interval>' + iInterval + '</interval>\n';
 		sNode += '<action>' + iAction + '</action>\n';

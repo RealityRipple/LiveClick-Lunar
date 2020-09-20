@@ -25,7 +25,7 @@
 /* about:livemark-loading */
 .bookmark-item[lmStatus="bookmarksLivemarkLoading"]
 {
-	list-style-image: url("chrome://global/skin/icons/loading_16.png") !important;
+	list-style-image: url("chrome://liveclick/content/icons/tbb-throb_16.png") !important;
 }
 
 /* about:livemark-failed */

@@ -701,11 +701,23 @@ Place.prototype =
 			/* http://mxr.mozilla.org/mozilla-central/source/toolkit/components/places/nsLivemarkService.js#529 */
 			let loadgroup = Cc["@mozilla.org/network/load-group;1"]
 								.createInstance(Ci.nsILoadGroup);
-			let channel = NetUtil.newChannel({
-				uri: this.feedURI.spec,
-				loadingPrincipal: Services.scriptSecurityManager.createCodebasePrincipal(this.feedURI, {}),
-				contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_XMLHTTPREQUEST
-			}).QueryInterface(Ci.nsIHttpChannel);
+
+			let channel;
+			if ("createCodebasePrincipal" in Services.scriptSecurityManager)
+			{
+				channel = NetUtil.newChannel({
+					uri: this.feedURI,
+					loadingPrincipal: Services.scriptSecurityManager.createCodebasePrincipal(this.feedURI, {}),
+					securityFlags: Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+					contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_XMLHTTPREQUEST
+				}).QueryInterface(Ci.nsIHttpChannel);
+			}
+			// Fx38.0
+			else
+			{
+				channel = NetUtil.newChannel(this.feedURI.spec)
+								.QueryInterface(Ci.nsIHttpChannel);
+			}
 			channel.loadGroup = loadgroup;
 			channel.loadFlags |= Ci.nsIRequest.LOAD_BACKGROUND | Ci.nsIRequest.LOAD_BYPASS_CACHE;
 			channel.requestMethod = "GET";
@@ -722,6 +734,7 @@ Place.prototype =
 		}
 		catch (e)
 		{
+			logMessage(e);
 			this.finishJob(false);
 		}
 	},
@@ -922,13 +935,34 @@ CheckListener.prototype =
 			throw Components.results.NS_ERROR_FAILURE;
 		}
 
-		let feedPrincipal = Services.scriptSecurityManager
+		let feedPrincipal;
+		if ("createCodebasePrincipal" in Services.scriptSecurityManager)
+		{
+			feedPrincipal = Services.scriptSecurityManager
+							.createCodebasePrincipal(place.feedURI, {});
+		}
+		// Fx38.0
+		else
+		{
+			feedPrincipal = Services.scriptSecurityManager
 							.getSimpleCodebasePrincipal(place.feedURI);
+		}
+
 		let feedData = aResult.doc.QueryInterface(Ci.nsIFeed);
 
-		// Update site location only if feed link found and current site not set
-		if (feedData.link && !place.siteURI)
-			place.setToken("custom_site", feedData.link.spec);
+		// Update site location if feed has channel <link> and:
+		//	1) Current site location not set, or:
+		//	2) Current site location equals current feed location, but differs from channel <link>
+		if (feedData.link)
+		{
+			if (!place.siteURI
+				|| (place.siteURI.equals(place.feedURI)
+					&& !place.siteURI.equals(feedData.link)))
+			{
+				place.setToken("custom_site", feedData.link.spec);
+				logMessage(".. Site location updated");
+			}
+		}
 
 		LiveClickRemote.getChildren(iLivemarkId,
 			function (aChildren)
@@ -1285,7 +1319,7 @@ var UberObserver =
 		PlacesUtils.livemarks.getLivemark({ id: id })
 			.then(aLivemark => {
 				LiveClickPlaces.initLivemark(id);
-			}, Components.utils.reportError);
+			}, () => undefined);
 	},
 
 	// Update parent counts on livemark move

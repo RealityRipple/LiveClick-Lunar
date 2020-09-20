@@ -19,7 +19,6 @@
 		image="chrome://liveclick/content/icons/ops-config.png">
 
 		<preferences>
-			<preference id="checkOnDemand" name="extensions.liveclick.checkOnDemand" type="bool" />
 			<preference id="checkOnStart" name="extensions.liveclick.checkOnStart" type="bool" />
 			<preference id="checkAutomatic" name="extensions.liveclick.checkAutomatic" type="bool" />
 			<preference id="defaultInterval" name="extensions.liveclick.defaultInterval" type="int" />
@@ -29,6 +28,7 @@
 			<preference id="browserClear" name="extensions.liveclick.browserClear" type="bool" />
 
 			<!-- List hidden preferences here for import/export purposes -->
+			<preference id="checkOnDemand" name="extensions.liveclick.checkOnDemand" type="bool" />
 			<preference id="checkWhenIdle" name="extensions.liveclick.checkWhenIdle" type="bool" />
 			<preference id="alertForeground" name="extensions.liveclick.alertForeground" type="bool" />
 			<preference id="debug" name="extensions.liveclick.debug" type="bool" />
