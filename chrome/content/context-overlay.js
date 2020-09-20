@@ -127,22 +127,25 @@ LiveClickChrome.ContextMenu =
 		// Livemark item context menu commands
 		if (nItem.pageId)
 		{
-			let iPageId = nItem.pageId;
-			let sState = LiveClickPlaces.getPageState(iPageId);
-
 			let nOpen = popup.getElementsByAttribute("id", "liveclick-pcm-openItem")[0];
 			nOpen.setAttribute("uri", nItem.uri);
 
 			let nOpenTab = popup.getElementsByAttribute("id", "liveclick-pcm-openItemTab")[0];
 			nOpenTab.setAttribute("uri", nItem.uri);
 
-			let nRead = popup.getElementsByAttribute("id", "liveclick-pcm-markRead")[0];
-			nRead.setAttribute("pageId", iPageId);
-			nRead.setAttribute("disabled", sState == "read" ? "true" : "false");
+			let iPageId = nItem.pageId;
+			LiveClickPlaces.getPageState(iPageId,
+				(function (sState)
+				{
+					let nRead = popup.getElementsByAttribute("id", "liveclick-pcm-markRead")[0];
+					nRead.setAttribute("pageId", iPageId);
+					nRead.setAttribute("disabled", sState == "read" ? "true" : "false");
 
-			let nUnread = popup.getElementsByAttribute("id", "liveclick-pcm-markUnread")[0];
-			nUnread.setAttribute("pageId", iPageId);
-			nUnread.setAttribute("disabled", sState == "unread" ? "true" : "false");
+					let nUnread = popup.getElementsByAttribute("id", "liveclick-pcm-markUnread")[0];
+					nUnread.setAttribute("pageId", iPageId);
+					nUnread.setAttribute("disabled", sState == "unread" ? "true" : "false");
+				})
+			);
 		}
 	}
 }

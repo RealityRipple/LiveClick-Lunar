@@ -16,10 +16,10 @@ if (typeof(LiveClickPrefs) == "undefined")
 		{
 			this._types =
 			{
-				"lastVersion" : "string",
 				"checkOnDemand" : "bool",
 				"checkOnStart" : "bool",
 				"checkAutomatic" : "bool",
+				"checkWhenIdle" : "bool",
 				"defaultInterval" : "int",
 				"showCount" : "int",
 				"showFavIcons" : "bool",

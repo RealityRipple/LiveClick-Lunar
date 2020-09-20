@@ -28,11 +28,10 @@ LiveClickChrome.Props =
 		let bMonitored = false, iMonitor = 0;
 		let bMonitorAll = false;
 		let iMonitorDefault = 0;
-
 		let dialogInfo = window.arguments[0];
 		if (dialogInfo.action == "edit")
 		{
-			itemId = dialogInfo.itemId;
+			itemId = gEditItemOverlay.itemId;
 			if (LiveClickPlaces.getType(itemId) != 1) return;
 			bMonitored = LiveClickPlaces.getPlace(itemId).getToken("monitored", 0) > 0;
 			bMonitorAll = LiveClickPrefs.getValue("monitorAll");
@@ -141,8 +140,7 @@ LiveClickChrome.Props =
 
 	accept : function ()
 	{
-		// Use BookmarkPropertiesPanel because it also picks up the id of new items
-		let itemId = BookmarkPropertiesPanel._itemId ? BookmarkPropertiesPanel._itemId : -1;
+		let itemId = gEditItemOverlay.itemId;
 		if (itemId == -1) return;
 
 		// Check against init values to see if saving is even necessary
@@ -300,6 +298,13 @@ LiveClickChrome.Props =
 		if (aResize)
 			window.resizeTo(window.outerWidth, window.outerHeight + iHeight);
 	}
+}
+
+function logMessage (aMessage)
+{
+	Cc["@mozilla.org/observer-service;1"]
+		.getService(Ci.nsIObserverService)
+		.notifyObservers(null, "liveclick-logging", aMessage);
 }
 
 window.addEventListener("load", function() { LiveClickChrome.Props.init(); }, false);

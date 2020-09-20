@@ -68,26 +68,31 @@ LiveClickChrome.Tooltips =
 		if (!LiveClickPrefs.getValue("showItemTooltips"))
 			return true;
 
-		let sPreview = LiveClickRemote.getPagePreview(this._requestId);
-		// Stop here if preview blank or same as title
-		if (sPreview == "" || sPreview == sTitle)
-			return true;
+		LiveClickRemote.getPageProperty(this._requestId, "preview",
+			(function (sPreview)
+			{
+				// Stop here if preview blank or same as title
+				if (sPreview == "" || sPreview == sTitle)
+					return;
 
-		// Use child text node so preview can wrap if too long
-		let textPreview = document.getElementById("liveclick-lit-preview");
-		if (textPreview.hasChildNodes())
-			textPreview.removeChild(textPreview.firstChild);
-		textPreview.appendChild(document.createTextNode(sPreview));
+				// Use child text node so preview can wrap if too long
+				let textPreview = document.getElementById("liveclick-lit-preview");
+				if (textPreview.hasChildNodes())
+					textPreview.removeChild(textPreview.firstChild);
+				textPreview.appendChild(document.createTextNode(sPreview));
 
-		// Show parent icon if available, otherwise use default icon
-		let imageFavicon = document.getElementById("liveclick-lit-favicon");
-		let sIconURL = "chrome://liveclick/skin/item-normal.png";
-		let sIconData = LiveClickPlaces.getPlace(aNode.parentId).icondata;
-		if (sIconData) sIconURL = sIconData;
-		imageFavicon.setAttribute("src", sIconURL);
+				// Show parent icon if available, otherwise use default icon
+				let imageFavicon = document.getElementById("liveclick-lit-favicon");
+				let sIconURL = "chrome://liveclick/skin/item-normal.png";
+				let sIconData = LiveClickPlaces.getPlace(aNode.parentId).icondata;
+				if (sIconData) sIconURL = sIconData;
+				imageFavicon.setAttribute("src", sIconURL);
 
-		// Show tooltip
-		document.getElementById("liveclick-lit-expanded").setAttribute("collapsed", "false");
+				// Show tooltip
+				document.getElementById("liveclick-lit-expanded").setAttribute("collapsed", "false");
+			})
+		);
+
 		return true;
 	},
 
@@ -117,16 +122,21 @@ LiveClickChrome.Tooltips =
 		let iOnPreview = LiveClickPrefs.getValue("itemPreview");
 		if (iOnPreview == 0) return;
 
-		let sOld = LiveClickPlaces.getPageState(this._requestId);
-		let sNew = sOld;
+		let iPageId = this._requestId;
+		LiveClickPlaces.getPageState(iPageId,
+			(function (sOld)
+			{
+				let sNew = sOld;
 
-		// Mark item as unread if fresh
-		if (iOnPreview == 1 && (sOld == "fresh" || sOld == "new"))
-			sNew = "unread";
-		// Mark item as read
-		else if (iOnPreview == 2)
-			sNew = "read";
+				// Mark item as unread if fresh
+				if (iOnPreview == 1 && (sOld == "fresh" || sOld == "new"))
+					sNew = "unread";
+				// Mark item as read
+				else if (iOnPreview == 2)
+					sNew = "read";
 
-		if (sNew != sOld) LiveClickPlaces.markPage(this._requestId, sNew);
+				if (sNew != sOld) LiveClickPlaces.markPage(iPageId, sNew);
+			})
+		);
 	}
 }

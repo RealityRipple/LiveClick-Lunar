@@ -15,8 +15,6 @@ LiveClickChrome.Utils =
 			openUILink(aURL, aEvent);
 		else
 			openUILinkIn(aURL, aWhereToOpen);
-
-		if (content) content.focus();
 	},
 
 	// Open feed link
@@ -24,10 +22,13 @@ LiveClickChrome.Utils =
 	{
 		if (aURL == "") return;
 
-		// Temporarily override default feed handling to allow feed view
+		// TODO: Temporarily override default feed handling to allow feed page view
+		//	Commented code throws an uncatchable exception
+		/*
 		let feedService = Cc["@mozilla.org/browser/feeds/result-service;1"]
 							.getService(Ci.nsIFeedResultService);
 		feedService.forcePreviewPage = true;
+		*/
 
 		this.openURL(aURL, aEvent, aWhereToOpen);
 	},
@@ -45,7 +46,12 @@ LiveClickChrome.Utils =
 			// Mark live bookmark item as read
 			//	Do now, because history may not catch visit, e.g. FeedBurner
 			LiveClickPlaces.markPage(aPages[i], "read");
-			this.openURL(LiveClickPlaces.getPageURL(aPages[i]), null, "tabshifted");
+			LiveClickPlaces.getPageURL(aPages[i],
+				(function (sURL)
+				{
+					this.openURL(sURL, null, "tabshifted");
+				}).bind(this)
+			);
 		}
 	},
 
@@ -67,7 +73,7 @@ LiveClickChrome.Utils =
 		for (let i = 0; i < livemarks.length; i++)
 		{
 			LiveClickPlaces.getItems(livemarks[i],
-				(function (aStatus, aItems)
+				(function (aItems)
 				{
 					for (let i = 0; i < aItems.length; i++)
 					{
@@ -91,7 +97,7 @@ LiveClickChrome.Utils =
 	openGroup : function (aLivemarkId, aState)
 	{
 		LiveClickPlaces.getItems(aLivemarkId,
-			(function (aStatus, aItems)
+			(function (aItems)
 			{
 				let pages = [];
 				for (let i = 0; i < aItems.length; i++)

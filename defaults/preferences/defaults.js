@@ -1,14 +1,12 @@
 // Localized description
 pref("extensions.{7A86970F-5198-5370-9FCB-0EE0150876F7}.description", "chrome://liveclick/locale/liveclick.properties");
 
-// Last Version
-pref("extensions.liveclick.lastVersion", "1.0.1");
-
 // Checker
 pref("extensions.liveclick.checkOnDemand", true);
 pref("extensions.liveclick.checkOnStart", true);
 pref("extensions.liveclick.checkAutomatic", true);
 pref("extensions.liveclick.defaultInterval", 3600);
+pref("extensions.liveclick.checkWhenIdle", false);
 
 // Counters
 pref("extensions.liveclick.showCount", 1);

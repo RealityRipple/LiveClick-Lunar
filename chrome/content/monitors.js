@@ -30,7 +30,7 @@ LiveClickChrome.Monitors =
 		let iRepeat = LiveClickPrefs.getValue("alertRepeat");
 
 		LiveClickPlaces.getItems(aLivemarkId,
-			function (aStatus, aItems)
+			function (aItems)
 			{
 				let items = [];
 				for (let i = 0; i < aItems.length; i++)
