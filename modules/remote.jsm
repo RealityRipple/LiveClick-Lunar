@@ -23,10 +23,10 @@ const LC_TTL = 604800000;
 var LiveClickRemote =
 {
 	// Private Variables
-	_tokenIds : { expiration: null, custom_interval: null,
-					monitored: null, custom_monitor: null,
-					custom_feed: null, custom_site: null,
-					custom_max: null, loading: null, loadfailed: null },
+	_tokenIds : { expiration: -1, custom_interval: -1,
+					monitored: -1, custom_monitor: -1,
+					custom_feed: -1, custom_site: -1,
+					custom_max: -1, loading: -1, loadfailed: -1 },
 
 	init : function ()
 	{
@@ -55,6 +55,8 @@ var LiveClickRemote =
 		createTable("pages");
 		createTable("proxies");
 		createTable("favicons");
+
+		this._initTokenIds();
 	},
 
 	_getLiveClickDB : function ()
@@ -85,7 +87,6 @@ var LiveClickRemote =
 
 	getChildren : function (aParentId, aCallback)
 	{
-		let status = 0;
 		let children = [];
 
 		let db = this._getLiveClickDB();
@@ -98,7 +99,6 @@ var LiveClickRemote =
 		statement.executeAsync({
 			handleResult : function (aResultSet)
 			{
-				status = 1;
 				for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow())
 				{
 					let item = {};
@@ -111,15 +111,13 @@ var LiveClickRemote =
 					children.push(item);
 				}
 			},
-
 			handleError : function (aError)
 			{
 				logMessage(aError.message);
 			},
-
 			handleCompletion : function (aReason)
 			{
-				aCallback(status, children);
+				aCallback(children);
 			}
 		});
 		statement.finalize();
@@ -149,10 +147,13 @@ var LiveClickRemote =
 		statement.bindParameters(params);
 		statement.executeAsync({
 			handleResult : function (aResultSet) {},
-			handleError : function (aError) { logMessage(aError.message); },
+			handleError : function (aError)
+			{
+				logMessage(aError.message);
+			},
 			handleCompletion : function (aReason)
 			{
-				if (aCallback) aCallback(aReason, aItems.length);
+				if (aCallback) aCallback(aItems.length);
 			}
 		});
 		statement.finalize();
@@ -180,10 +181,13 @@ var LiveClickRemote =
 		statement.bindParameters(params);
 		statement.executeAsync({
 			handleResult : function (aResultSet) {},
-			handleError : function (aError) { logMessage(aError.message); },
+			handleError : function (aError)
+			{
+				logMessage(aError.message);
+			},
 			handleCompletion : function (aReason)
 			{
-				if (aCallback) aCallback(aReason, aItems.length);
+				if (aCallback) aCallback(aItems.length);
 			}
 		});
 		statement.finalize();
@@ -231,115 +235,82 @@ var LiveClickRemote =
 		statement.finalize();
 	},
 
-	getPageState : function (aPageId)
+	getPageProperty : function (aPageId, aName, aCallback)
 	{
-		let db = this._getLiveClickDB();
-		let q = "SELECT state FROM liveclick_pages WHERE id = :id";
-		let statement = db.createStatement(q);
-		statement.params.id = aPageId;
+		let property;
+		if (aName == "parent")
+			property = -1;
+		else
+			property = "";
 
-		let sState = "unknown";
-		try
+		let db = this._getLiveClickDB();
+		let q = "";
+		switch (aName)
 		{
-			if (statement.executeStep())
-				sState = statement.getString(0);
+			case "state":
+				q = "SELECT state FROM liveclick_pages WHERE id = :id";
+				break;
+			case "parent":
+				q = "SELECT parent FROM liveclick_pages WHERE id = :id";
+				break;
+			case "preview":
+				q = "SELECT preview FROM liveclick_pages WHERE id = :id";
+				break;
+			case "url":
+				q = "SELECT url FROM liveclick_pages WHERE id = :id";
+				break;
 		}
-		finally
-		{
-			statement.reset();
-			statement.finalize();
-		}
-		return sState;
+
+		let statement = db.createAsyncStatement(q);
+		statement.params.id = aPageId;
+		statement.executeAsync({
+			handleResult : function (aResultSet)
+			{
+				let row = aResultSet.getNextRow();
+				if (row) property = row.getResultByName(aName);
+			},
+			handleError : function (aError)
+			{
+				logMessage(aError.message);
+			},
+			handleCompletion : function (aReason)
+			{
+				aCallback(property);
+			}
+		});
+		statement.finalize();
 	},
 
-	getPageStateByURL : function (aURL)
+	getPageStateByURL : function (aURL, aCallback)
 	{
+		let sState = "unknown";
 		let db = this._getLiveClickDB();
 		let q = "SELECT state FROM liveclick_pages" +
 				" LEFT JOIN liveclick_proxies ON liveclick_proxies.id = liveclick_pages.proxy_id" +
 				" WHERE url = :url OR proxy = :url";
-		let statement = db.createStatement(q);
+		let statement = db.createAsyncStatement(q);
 		statement.params.url = aURL;
-
-		let sState = "unknown";
-		try
-		{
-			if (statement.executeStep())
-				sState = statement.getString(0);
-		}
-		finally
-		{
-			statement.reset();
-			statement.finalize();
-		}
-		return sState;
-	},
-
-	getPageParent : function (aPageId)
-	{
-		let db = this._getLiveClickDB();
-		let q = "SELECT parent FROM liveclick_pages WHERE id = :id";
-		let statement = db.createStatement(q);
-		statement.params.id = aPageId;
-
-		let iParent = -1;
-		try
-		{
-			if (statement.executeStep())
-				iParent = statement.getInt64(0);
-		}
-		finally
-		{
-			statement.reset();
-			statement.finalize();
-		}
-		return iParent;
-	},
-
-	getPagePreview : function (aPageId)
-	{
-		let db = this._getLiveClickDB();
-		let q = "SELECT preview FROM liveclick_pages WHERE id = :id";
-		let statement = db.createStatement(q);
-		statement.params.id = aPageId;
-
-		let sPreview = "";
-		try
-		{
-			if (statement.executeStep())
-				sPreview = statement.getString(0);
-		}
-		finally
-		{
-			statement.reset();
-			statement.finalize();
-		}
-		return sPreview;
-	},
-
-	getPageURL : function (aPageId)
-	{
-		let db = this._getLiveClickDB();
-		let q = "SELECT url FROM liveclick_pages WHERE id = :id";
-		let statement = db.createStatement(q);
-		statement.params.id = aPageId;
-
-		let sURL = "";
-		try
-		{
-			if (statement.executeStep())
-				sURL = statement.getString(0);
-		}
-		finally
-		{
-			statement.reset();
-			statement.finalize();
-		}
-		return sURL;
+		statement.executeAsync({
+			handleResult : function (aResultSet)
+			{
+				let row = aResultSet.getNextRow();
+				if (row) sState = row.getResultByName("state");
+			},
+			handleError : function (aError)
+			{
+				logMessage(aError.message);
+			},
+			handleCompletion : function (aReason)
+			{
+				aCallback(sState);
+			}
+		});
+		statement.finalize();
 	},
 
 	getPagesByURL : function (aURL, aCallback)
 	{
+		let pages = [];
 		let db = this._getLiveClickDB();
 		let q = "SELECT liveclick_pages.id FROM liveclick_pages" +
 				" LEFT JOIN liveclick_proxies ON liveclick_proxies.id = liveclick_pages.proxy_id" +
@@ -349,13 +320,17 @@ var LiveClickRemote =
 		statement.executeAsync({
 			handleResult : function (aResultSet)
 			{
-				let pages = [];
 				for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow())
 					pages.push(row.getResultByName("id"));
-				aCallback(pages);
 			},
-			handleError : function () {},
-			handleCompletion : function () {}
+			handleError : function (aError)
+			{
+				logMessage(aError.message);
+			},
+			handleCompletion : function (aReason)
+			{
+				aCallback(pages);
+			}
 		});
 		statement.finalize();
 	},
@@ -425,11 +400,29 @@ var LiveClickRemote =
 	//	aPageIds = [] ? Delete all pages
 	clearPages : function (aPageIds)
 	{
-		let sIds = aPageIds.join(",");
 		let db = this._getLiveClickDB();
-		let q = "DELETE FROM liveclick_pages" +
-				" WHERE '" + sIds + "' = '' OR id IN (" + sIds + ")";
-		let statement = db.createAsyncStatement(q);
+
+		let q = "";
+		let statement;
+		if (aPageIds.length > 0)
+		{
+			q = "DELETE FROM liveclick_pages" +
+				" WHERE id = :id";
+			statement = db.createAsyncStatement(q);
+			let params = statement.newBindingParamsArray();
+			for (let i = 0; i < aPageIds.length; i++)
+			{
+				let bp = params.newBindingParams();
+				bp.bindByName("id", aPageIds[i]);
+				params.addParams(bp);
+			}
+			statement.bindParameters(params);
+		}
+		else
+		{
+			q = "DELETE FROM liveclick_pages";
+			statement = db.createAsyncStatement(q);
+		}
 		statement.executeAsync();
 		statement.finalize();
 	},
@@ -455,84 +448,89 @@ var LiveClickRemote =
 					.getService(Ci.nsPIPlacesDatabase).DBConnection;
 	},
 
+	_initTokenIds : function ()
+	{
+		let db = this._getPlacesDB();
+		let q = "INSERT OR IGNORE INTO moz_anno_attributes (name)" +
+				" VALUES (:token)";
+		let statement = db.createAsyncStatement(q);
+		let params = statement.newBindingParamsArray();
+		for (let sToken in this._tokenIds)
+		{
+			let bp = params.newBindingParams();
+			bp.bindByName("token", "liveclick/"+sToken);
+			params.addParams(bp);
+		}
+		statement.bindParameters(params);
+		statement.executeAsync({
+			handleResult : function (aResultSet) {},
+			handleError : function (aError)
+			{
+				logMessage(aError.message);
+			},
+			handleCompletion : function (aReason)
+			{
+				LiveClickRemote._updateTokenIds();
+			}
+		});
+		statement.finalize();
+	},
+
+	_updateTokenIds : function ()
+	{
+		let db = this._getPlacesDB();
+		let q = "SELECT id, name FROM moz_anno_attributes" +
+				" WHERE name LIKE 'liveclick/%'";
+		let statement = db.createAsyncStatement(q);
+		statement.executeAsync({
+			handleResult : function (aResultSet)
+			{
+				for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow())
+				{
+					let sToken = row.getResultByName("name").replace(/^.+\//, "");
+					let iTokenId = row.getResultByName("id");
+					LiveClickRemote._tokenIds[sToken] = iTokenId;
+				}
+			},
+			handleError : function (aError)
+			{
+				logMessage(aError.message);
+			},
+			handleCompletion : function (aReason) {}
+		});
+		statement.finalize();
+	},
+
 	_getTokenId : function (aToken)
 	{
-		let iTokenId = null;
-
-		if (!this._tokenIds[aToken])
-		{
-			let sName = "liveclick/" + aToken;
-			let db = this._getPlacesDB();
-			let q, statement;
-
-			q = "SELECT id FROM moz_anno_attributes WHERE name = ?1"
-			statement = db.createStatement(q);
-			try
-			{
-				statement.bindUTF8StringParameter(0, sName);
-				if (statement.executeStep())
-					iTokenId = statement.getInt64(0);
-			}
-			catch (e)
-			{
-				throw("Error retrieving tokenId.");
-			}
-			finally
-			{
-				statement.reset();
-				statement.finalize();
-			}
-
-			if (!iTokenId)
-			{
-				q = "INSERT INTO moz_anno_attributes (name) VALUES (?1)";
-				statement = db.createStatement(q);
-				try
-				{
-					statement.bindUTF8StringParameter(0, sName);
-					statement.execute();
-
-					iTokenId = db.lastInsertRowID;
-				}
-				catch (e)
-				{
-					throw("Error setting tokenId.");
-				}
-				finally
-				{
-					statement.reset();
-					statement.finalize();
-				}
-			}
-
-			if (iTokenId) this._tokenIds[aToken] = iTokenId;
-		}
-
 		return this._tokenIds[aToken];
 	},
 
-	getNextExpire : function ()
+	getNextExpire : function (aCallback)
 	{
 		let dtExpire = Date.now();
 		let db = this._getPlacesDB();
 		let q = "SELECT content FROM moz_items_annos" +
-					" WHERE anno_attribute_id = ?1" +
+					" WHERE anno_attribute_id = :expires" +
 					" ORDER BY content ASC"
-		let statement = db.createStatement(q);
-		try
-		{
-			statement.bindInt64Parameter(0, this._getTokenId("expiration"));
-			if (statement.executeStep())
-				dtExpire = parseInt(statement.getString(0));
-		}
-		catch (e) { }
-		finally
-		{
-			statement.reset();
-			statement.finalize();
-		}
-
-		return dtExpire;
+		let statement = db.createAsyncStatement(q);
+		statement.params.expires = this._getTokenId("expiration");
+		statement.executeAsync({
+			handleResult : function (aResultSet)
+			{
+				let row = aResultSet.getNextRow();
+				dtExpire = row.getResultByName("content");
+			},
+			handleError : function (aError)
+			{
+				logMessage(aError.message);
+			},
+			handleCompletion : function (aReason)
+			{
+				aCallback(dtExpire);
+			}
+		});
+		statement.finalize();
 	},
 
 	setFeedToken : function (aLivemarkId, aToken, aValue)
@@ -599,24 +597,31 @@ var LiveClickRemote =
 	setFeedsAnno : function (aLivemarkIds, aToken, aContent)
 	{
 		if (aLivemarkIds.length == 0) return;
-		let sIds = aLivemarkIds.join(",");
 
 		let iTokenId = this._getTokenId(aToken);
 		let dtNow = new Date();
 		let db = this._getPlacesDB();
 		let q = "INSERT OR REPLACE INTO moz_items_annos " +
 			"(item_id, anno_attribute_id, content, expiration, type, dateAdded, lastModified) " +
-			"SELECT moz_bookmarks.id, ?1, ?2, ?3, 3, COALESCE(moz_items_annos.dateAdded, ?4), " +
-				"CASE WHEN moz_items_annos.dateAdded ISNULL THEN 0 ELSE ?4 END " +
+			"SELECT moz_bookmarks.id, :token, :content, :expires, 3, COALESCE(moz_items_annos.dateAdded, :dateNow), " +
+				"CASE WHEN moz_items_annos.dateAdded ISNULL THEN 0 ELSE :dateNow END " +
 			"FROM moz_bookmarks " +
 			"LEFT JOIN moz_items_annos ON moz_items_annos.item_id = moz_bookmarks.id " +
-				"AND moz_items_annos.anno_attribute_id = ?1 " +
-			"WHERE moz_bookmarks.id IN (" + sIds + ")";
+				"AND moz_items_annos.anno_attribute_id = :token " +
+			"WHERE moz_bookmarks.id = :id";
 		let statement = db.createAsyncStatement(q);
-		statement.bindInt64Parameter(0, iTokenId);
-		statement.bindUTF8StringParameter(1, aContent);
-		statement.bindInt32Parameter(2, LC_EXPIRE_NEVER);
-		statement.bindInt64Parameter(3, dtNow.getTime() * 1000);
+		let params = statement.newBindingParamsArray();
+		for (let i = 0; i < aLivemarkIds.length; i++)
+		{
+			let bp = params.newBindingParams();
+			bp.bindByName("token", iTokenId);
+			bp.bindByName("content", aContent ? aContent : "");
+			bp.bindByName("expires", LC_EXPIRE_NEVER);
+			bp.bindByName("dateNow", dtNow.getTime() * 1000);
+			bp.bindByName("id", aLivemarkIds[i]);
+			params.addParams(bp);
+		}
+		statement.bindParameters(params);
 		statement.executeAsync();
 		statement.finalize();
 	},
@@ -625,14 +630,34 @@ var LiveClickRemote =
 	//	aLivemarkIds = [] ? Delete anno from all feeds
 	clearFeedsAnno : function (aLivemarkIds, aToken)
 	{
-		let sIds = aLivemarkIds.join(",");
 		let iTokenId = this._getTokenId(aToken);
 		let db = this._getPlacesDB();
-		let q = "DELETE FROM moz_items_annos" +
-				" WHERE anno_attribute_id = ?1" +
-					" AND ('" + sIds + "' = '' OR item_id IN (" + sIds + "))";
-		let statement = db.createAsyncStatement(q);
-		statement.bindInt64Parameter(0, iTokenId);
+
+		let q = "";
+		let statement;
+		if (aLivemarkIds.length > 0)
+		{
+			q = "DELETE FROM moz_items_annos" +
+				" WHERE anno_attribute_id = :token" +
+					" AND item_id = :id";
+			statement = db.createAsyncStatement(q);
+			let params = statement.newBindingParamsArray();
+			for (let i = 0; i < aLivemarkIds.length; i++)
+			{
+				let bp = params.newBindingParams();
+				bp.bindByName("token", iTokenId);
+				bp.bindByName("id", aLivemarkIds[i]);
+				params.addParams(bp);
+			}
+			statement.bindParameters(params);
+		}
+		else
+		{
+			q = "DELETE FROM moz_items_annos" +
+				" WHERE anno_attribute_id = :token";
+			statement = db.createAsyncStatement(q);
+			statement.params.token = iTokenId;
+		}
 		statement.executeAsync();
 		statement.finalize();
 	},
@@ -672,7 +697,6 @@ var LiveClickRemote =
 
 	getIconDataURL : function (aLivemarkId, aCallback)
 	{
-		let status = 0;
 		let icondata = "";
 
 		let db = this._getLiveClickDB();
@@ -683,7 +707,6 @@ var LiveClickRemote =
 		statement.executeAsync({
 			handleResult : function (aResultSet)
 			{
-				status = 1;
 				for (let row = aResultSet.getNextRow(); row; row = aResultSet.getNextRow())
 					icondata = row.getResultByName("icondata");
 			},
@@ -695,7 +718,7 @@ var LiveClickRemote =
 
 			handleCompletion : function (aReason)
 			{
-				aCallback(status, icondata);
+				aCallback(icondata);
 			}
 		});
 		statement.finalize();

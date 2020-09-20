@@ -1,18 +1,24 @@
  /* ============================= */
 /* === Toolbar Button styles === */
-#liveclick-tbb
+#liveclick-tbb,
+#liveclick-bookmarks-menu,
+#liveclick-bookmarks-menu-button
 {
 	list-style-image: url("chrome://liveclick/content/icons/tbb_16.png");
 	-moz-image-region: rect(0px, 16px, 16px, 0px);
 }
 
-#liveclick-tbb[suspend]
+#liveclick-tbb[suspend],
+#liveclick-bookmarks-menu[suspend],
+#liveclick-bookmarks-menu-button[suspend]
 {
 	list-style-image: url("chrome://liveclick/content/icons/tbb_16.png");
 	-moz-image-region: rect(0px, 32px, 16px, 16px);
 }
 
-#liveclick-tbb[throbbing]
+#liveclick-tbb[throbbing],
+#liveclick-bookmarks-menu[throbbing],
+#liveclick-bookmarks-menu-button[throbbing]
 {
 	list-style-image: url("chrome://liveclick/content/icons/tbb-throb_16.png");
 	-moz-image-region: rect(0px, 16px, 16px, 0px);

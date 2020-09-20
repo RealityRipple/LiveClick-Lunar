@@ -34,7 +34,7 @@ LiveClickChrome.Browser =
 		PlacesUtils.annotations.addObserver(this, false);
 
 		// Hook onto bookmarks menu popups
-		//	http://mxr.mozilla.org/mozilla-central/source/browser/components/places/content/browserPlacesViews.js#760
+		//	http://mxr.mozilla.org/mozilla-central/source/browser/components/places/content/browserPlacesViews.js#782
 		let oriMayAddCommands = PlacesViewBase.prototype._mayAddCommandsItems;
 		PlacesViewBase.prototype._mayAddCommandsItems = function (aPopup)
 		{
@@ -44,7 +44,7 @@ LiveClickChrome.Browser =
 		}
 
 		// Hook icons, observers onto livemarks in bookmarks menus
-		//	http://mxr.mozilla.org/mozilla-central/source/browser/components/places/content/browserPlacesViews.js#355
+		//	http://mxr.mozilla.org/mozilla-central/source/browser/components/places/content/browserPlacesViews.js#401
 		let oriInsertToPopup = PlacesViewBase.prototype._insertNewItemToPopup;
 		PlacesViewBase.prototype._insertNewItemToPopup = function (aNewChild, aPopup, aBefore)
 		{
@@ -62,7 +62,11 @@ LiveClickChrome.Browser =
 					if (!Components.isSuccessCode(aStatus)) return;
 
 					this._domNodes.delete(aNewChild);
-					let livemark = LiveClickChrome.Browser.createLivemarkMenu(aNewChild);
+
+					// Copy native menu classes to LiveClick livemark
+					let sClassName = element.className;
+
+					let livemark = LiveClickChrome.Browser.createLivemarkMenu(aNewChild, sClassName);
 					if (!this._domNodes.has(aNewChild))
 						this._domNodes.set(aNewChild, livemark);
 					aPopup.replaceChild(livemark, element);
@@ -79,7 +83,7 @@ LiveClickChrome.Browser =
 		}
 
 		// Hook icons, observers onto livemarks on bookmarks toolbar
-		//	http://mxr.mozilla.org/mozilla-central/source/browser/components/places/content/browserPlacesViews.js#969
+		//	http://mxr.mozilla.org/mozilla-central/source/browser/components/places/content/browserPlacesViews.js#1044
 		let oriInsertNew = PlacesToolbar.prototype._insertNewItem;
 		PlacesToolbar.prototype._insertNewItem = function (aChild, aBefore)
 		{
@@ -103,15 +107,11 @@ LiveClickChrome.Browser =
 					this._rootElt.replaceChild(livemark, button);
 				}).bind(this)
 			);
-			let lastPromise = newPromise.then(null, Components.utils.reportError);
+			let lastPromise = newPromise.then(null, function onReject() {/* Not a livemark */});
 		}
 
-		let tbb = document.getElementById("liveclick-tbb");
-		if (tbb)
-		{
-			if (!LiveClickPrefs.getValue("checkAutomatic"))
-				tbb.setAttribute("suspend", true);
-		}
+		if (!LiveClickPrefs.getValue("checkAutomatic"))
+			LiveClickChrome.MainMenu.setStatus("suspend", true);
 
 		// Remove listeners/observers on window unload
 		window.addEventListener("unload", function() { LiveClickChrome.Browser.onUnload(); }, false);
@@ -129,10 +129,10 @@ LiveClickChrome.Browser =
 		PlacesUtils.annotations.removeObserver(this);
 	},
 
-	createLivemarkMenu : function (aChild)
+	createLivemarkMenu : function (aChild, aClassName)
 	{
 		let menu = document.createElement("menu");
-		menu.className = "menu-iconic bookmark-item";
+		menu.className = aClassName;
 		menu.setAttribute("label", PlacesUIUtils.getBestTitle(aChild));
 		menu.setAttribute("container", "true");
 		menu.setAttribute("livemark", "true");
@@ -277,7 +277,7 @@ LiveClickChrome.Browser =
 
 		// If limit set, calculate counter by states of visible items
 		LiveClickPlaces.getItems(iPlaceId,
-			function (aStatus, aItems)
+			function (aItems)
 			{
 				iCounter = 0;
 				for (let i = 0; i < iLimit; i++)
@@ -496,27 +496,17 @@ LiveClickChrome.Browser =
 		}
 		else if (aTopic == "liveclick-checking")
 		{
-			let tbb = document.getElementById("liveclick-tbb");
-			if (!tbb) return;
 			if (aData == "true")
-			{
-				tbb.setAttribute("throbbing", true);
-				tbb.setAttribute("tooltiptext", tbb.getAttribute("textalt"));
-			}
+				LiveClickChrome.MainMenu.setStatus("throbbing", true);
 			else
-			{
-				tbb.removeAttribute("throbbing");
-				tbb.setAttribute("tooltiptext", tbb.getAttribute("textdefault"));
-			}
+				LiveClickChrome.MainMenu.removeStatus("throbbing");
 		}
 		else if (aTopic == "liveclick-suspend")
 		{
-			let tbb = document.getElementById("liveclick-tbb");
-			if (!tbb) return;
 			if (aData == "true")
-				tbb.setAttribute("suspend", true);
+				LiveClickChrome.MainMenu.setStatus("suspend", true);
 			else
-				tbb.removeAttribute("suspend");
+				LiveClickChrome.MainMenu.removeStatus("suspend");
 		}
 	}
 }
@@ -581,7 +571,7 @@ LiveClickChrome.LivemarkMenu =
 
 		let iLivemarkId = aPopup._livemarkId;
 		LiveClickPlaces.getItems(iLivemarkId,
-			function (aStatus, aItems)
+			function (aItems)
 			{
 				let livemark = LiveClickPlaces.getPlace(iLivemarkId);
 				let dtPopulated = aPopup.getAttribute("populated");
@@ -1051,6 +1041,36 @@ LiveClickChrome.MainMenu =
 		}
 
 		return aElement;
+	},
+
+	setStatus : function (aStatus, aValue)
+	{
+		let bm = document.getElementById("liveclick-bookmarks-menu");
+		if (bm) bm.setAttribute(aStatus, aValue);
+		let bmb = document.getElementById("liveclick-bookmarks-menu-button");
+		if (bmb) bmb.setAttribute(aStatus, aValue);
+		let tbb = document.getElementById("liveclick-tbb");
+		if (tbb)
+		{
+			tbb.setAttribute(aStatus, aValue);
+			if (aStatus == "throbbing")
+				tbb.setAttribute("tooltiptext", tbb.getAttribute("textalt"));
+		}
+	},
+
+	removeStatus : function (aStatus)
+	{
+		let bm = document.getElementById("liveclick-bookmarks-menu");
+		if (bm) bm.removeAttribute(aStatus);
+		let bmb = document.getElementById("liveclick-bookmarks-menu-button");
+		if (bmb) bmb.removeAttribute(aStatus);
+		let tbb = document.getElementById("liveclick-tbb");
+		if (tbb)
+		{
+			tbb.removeAttribute(aStatus);
+			if (aStatus == "throbbing")
+				tbb.setAttribute("tooltiptext", tbb.getAttribute("textdefault"));
+		}
 	}
 }
 

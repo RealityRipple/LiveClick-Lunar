@@ -29,6 +29,7 @@
 			<preference id="browserClear" name="extensions.liveclick.browserClear" type="bool" />
 
 			<!-- List hidden preferences here for import/export purposes -->
+			<preference id="checkWhenIdle" name="extensions.liveclick.checkWhenIdle" type="bool" />
 			<preference id="alertForeground" name="extensions.liveclick.alertForeground" type="bool" />
 			<preference id="debug" name="extensions.liveclick.debug" type="bool" />
 			<preference id="debugLog" name="extensions.liveclick.debugLog" type="bool" />

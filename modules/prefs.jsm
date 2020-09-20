@@ -20,6 +20,7 @@ if (typeof(LiveClickPrefs) == "undefined")
 				"checkOnDemand" : "bool",
 				"checkOnStart" : "bool",
 				"checkAutomatic" : "bool",
+				"checkWhenIdle" : "bool",
 				"defaultInterval" : "int",
 				"showCount" : "int",
 				"showFavIcons" : "bool",

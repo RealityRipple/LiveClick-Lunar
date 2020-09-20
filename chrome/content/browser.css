@@ -12,9 +12,11 @@
 	line-height: 1.3em;
 }
 
-#liveclick-lit image
+/* Prevent livemark favicons from being larger than 16x16 pixels */
+#liveclick-lit-favicon
 {
-	-moz-image-region: rect(0px,16px,16px,0px) !important;
+	max-height: 16px !important;
+	max-width: 16px !important;
 }
 
  /* =============================== */
@@ -53,12 +55,12 @@
 }
 
 /* Hide empty counters on toolbar livemarks */
-.bookmark-item[livemark][counter] .liveclick-counter
+.bookmark-item[livemark][counter] .toolbarbutton-text.liveclick-counter
 {
 	display: block !important;
 }
 
-.bookmark-item[livemark]:not([counter]) .liveclick-counter
+.bookmark-item[livemark]:not([counter]) .toolbarbutton-text.liveclick-counter
 {
 	display: none !important;
 }

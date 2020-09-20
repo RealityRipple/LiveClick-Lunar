@@ -3,20 +3,11 @@ var EXPORTED_SYMBOLS = [ "LiveClickPlaces" ];
 const { classes: Cc, interfaces: Ci, utils: Cu } = Components;
 
 // Import Firefox modules
-Cu.import("resource://gre/modules/NetUtil.jsm");
-Cu.import("resource://gre/modules/PlacesUtils.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
-
-try
-{
-	// Compatibility check: Fx21 and later
-	Cu.import("resource:///modules/PlacesUIUtils.jsm");
-}
-catch (e)
-{
-	// Compatibility check: Fx20 and earlier
-	Cu.import("resource://gre/modules/PlacesUIUtils.jsm");
-}
+Cu.import("resource://gre/modules/Services.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "PlacesUtils", "resource://gre/modules/PlacesUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "NetUtil", "resource://gre/modules/NetUtil.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "PlacesUIUtils", "resource:///modules/PlacesUIUtils.jsm");
 
 Cu.import("resource://liveclick/prefs.jsm");
 Cu.import("resource://liveclick/remote.jsm");
@@ -38,10 +29,6 @@ if (typeof(LiveClickPlaces) == "undefined")
 		init : function ()
 		{
 			LiveClickRemote.init();
-
-			// Restore native livemark annotations (upgrade from 0.5.0.0b4)
-			//	Must do as quickly as possible
-			LiveClickPlaces.Migrate.restore();
 
 			// Observe bookmarks changes to update counts when livemarks created, moved, or deleted
 			PlacesUtils.bookmarks.addObserver(UberObserver, false);
@@ -135,7 +122,7 @@ if (typeof(LiveClickPlaces) == "undefined")
 			if (LiveClickPlaces.places["id:"+aLivemarkId]) return;
 
 			LiveClickPlaces.getItems(aLivemarkId,
-				(function (aStatus, aItems)
+				(function (aItems)
 				{
 					let livemark = new Place(aLivemarkId, 1);
 					let counts = new Counts();
@@ -193,19 +180,19 @@ if (typeof(LiveClickPlaces) == "undefined")
 			LiveClickRemote.getChildren(aLivemarkId, aCallback);
 		},
 
-		getPageParent : function (aPageId)
+		getPageParent : function (aPageId, aCallback)
 		{
-			return LiveClickRemote.getPageParent(aPageId);
+			return LiveClickRemote.getPageProperty(aPageId, "parent", aCallback);
 		},
 
-		getPageState : function (aPageId)
+		getPageState : function (aPageId, aCallback)
 		{
-			return LiveClickRemote.getPageState(aPageId);
+			return LiveClickRemote.getPageProperty(aPageId, "state", aCallback);
 		},
 
-		getPageURL : function (aPageId)
+		getPageURL : function (aPageId, aCallback)
 		{
-			return LiveClickRemote.getPageURL(aPageId);
+			return LiveClickRemote.getPageProperty(aPageId, "url", aCallback);
 		},
 
 		markAll : function (aState)
@@ -255,31 +242,44 @@ if (typeof(LiveClickPlaces) == "undefined")
 		// Mark single page as read/unread
 		markPage : function (aPageId, aState)
 		{
-			let iLivemarkId = LiveClickPlaces.getPageParent(aPageId);
-			if (LiveClickPlaces.getType(iLivemarkId) != 1) return;
+			LiveClickPlaces.getPageParent(aPageId,
+				(function (iLivemarkId)
+				{
+					if (LiveClickPlaces.getType(iLivemarkId) != 1) return;
 
-			let sOld = LiveClickPlaces.getPageState(aPageId);
-			if (sOld == aState) return;
+					LiveClickPlaces.getPageState(aPageId,
+						(function (sOld)
+						{
+							if (sOld == aState) return;
 
-			LiveClickRemote.setPageState(aPageId, aState);
+							LiveClickRemote.setPageState(aPageId, aState);
 
-			// Remove LiveTag, if necessary
-			if (aState == "read" && LiveClickPrefs.getValue("monitorAction") == 3
-					&& LiveClickPrefs.getValue("liveTagOnRead"))
-			{
-				let sTag = LiveClickPrefs.getValue("liveTagLabel");
-				let uri = PlacesUIUtils.createFixedURI(LiveClickPlaces.getPageURL(aPageId));
-				PlacesUtils.tagging.untagURI(uri, [sTag]);
-			}
+							// Remove LiveTag, if necessary
+							if (aState == "read" && LiveClickPrefs.getValue("monitorAction") == 3
+									&& LiveClickPrefs.getValue("liveTagOnRead"))
+							{
+								let sTag = LiveClickPrefs.getValue("liveTagLabel");
+								LiveClickPlaces.getPageURL(aPageId,
+									(function (sURL)
+									{
+										let uri = PlacesUIUtils.createFixedURI(sURL);
+										PlacesUtils.tagging.untagURI(uri, [sTag]);
+									})
+								);
+							}
 
-			// Update parent folder counts on feed state change
-			if (LiveClickPlaces.getPlace(iLivemarkId).counts.shiftOne(sOld, aState))
-			{
-				let iParentId = LiveClickPlaces.getPlace(iLivemarkId).parentId;
-				LiveClickPlaces.getPlace(iParentId).counts.shiftOne(sOld, aState);
-			}
+							// Update parent folder counts on feed state change
+							if (LiveClickPlaces.getPlace(iLivemarkId).counts.shiftOne(sOld, aState))
+							{
+								let iParentId = LiveClickPlaces.getPlace(iLivemarkId).parentId;
+								LiveClickPlaces.getPlace(iParentId).counts.shiftOne(sOld, aState);
+							}
 
-			LiveClickPlaces.getPlace(iLivemarkId).broadcast();
+							LiveClickPlaces.getPlace(iLivemarkId).broadcast();
+						})
+					);
+				})
+			);
 		},
 
 		toggleMonitor : function (aLivemarkId)
@@ -288,9 +288,9 @@ if (typeof(LiveClickPlaces) == "undefined")
 			LiveClickPlaces.getPlace(aLivemarkId).setToken("monitored", (iMonitor+1)%2);
 		},
 
-		getNextExpire : function ()
+		getNextExpire : function (aCallback)
 		{
-			return LiveClickRemote.getNextExpire();
+			return LiveClickRemote.getNextExpire(aCallback);
 		},
 
 		clearHistory : function (aBroadcast)
@@ -377,21 +377,6 @@ if (typeof(LiveClickPlaces) == "undefined")
 			// Test if a check is already active
 			//	No need to set new timer as active check will set one when done
 			if (LiveClickPlaces.isChecking) return;
-
-			// Test for user idleness (half an hour)
-			let idleTime = 0;
-			try
-			{
-				idleTime = Cc["@mozilla.org/widget/idleservice;1"]
-							.getService(Ci.nsIIdleService).idleTime;
-			}
-			catch (e) {}
-			if (idleTime > 1800000)
-			{
-				// Check again in 5 minutes
-				LiveClickPlaces.setNextCheck(300000);
-				return;
-			}
 
 			// Check any livemarks that expire within 90s of now
 			//	Treat livemarks with bad expires (>24hrs) as if they expire now
@@ -564,39 +549,6 @@ if (typeof(LiveClickPlaces) == "undefined")
 	}
 }
 
-LiveClickPlaces.Migrate =
-{
-	// Restore native livemark annotations (upgrade from 0.5.0.0b4)
-	restore : function ()
-	{
-		let livemarks = PlacesUtils.annotations
-							.getItemsWithAnnotation("liveclick/feedURI", {});
-		if (livemarks.length == 0) return;
-
-		let feeds = [], sites = [];
-		for (let i = 0; i < livemarks.length; i++)
-		{
-			let sFeedURI = PlacesUtils.annotations.getItemAnnotation(livemarks[i], "liveclick/feedURI");
-			PlacesUtils.annotations.setItemAnnotation
-				(livemarks[i], "livemark/feedURI", sFeedURI, 0, LC_EXPIRE_NEVER);
-
-			try
-			{
-				let sSiteActual = PlacesUtils.annotations.getItemAnnotation(livemarks[i], "livemark/siteURI");
-				let sSiteCustom = PlacesUtils.annotations.getItemAnnotation(livemarks[i], "liveclick/siteURI");
-				if (sSiteCustom && sSiteCustom != sSiteActual)
-					LiveClickRemote.setFeedToken(livemarks[i], "custom_site", sSiteCustom);
-			}
-			catch (e) {}
-
-			PlacesUtils.annotations.removeItemAnnotation(livemarks[i], "liveclick/feedURI");
-			PlacesUtils.annotations.removeItemAnnotation(livemarks[i], "liveclick/siteURI");
-		}
-
-		logMessage(feeds.length + " native livemark annotations restored.");
-	}
-}
-
 function Place (aPlaceId, aPlaceType)
 {
 	this.id = aPlaceId;
@@ -688,7 +640,7 @@ Place.prototype =
 		}
 
 		LiveClickRemote.getIconDataURL(this.id,
-			(function (aStatus, aIconDataURL)
+			(function (aIconDataURL)
 			{
 				if (aIconDataURL)
 				{
@@ -746,31 +698,32 @@ Place.prototype =
 
 		try
 		{
-			// Create a load group for the request so we can cancel if needed
-			let loadgroup = Cc["@mozilla.org/network/load-group;1"].createInstance(Ci.nsILoadGroup);
-			let channel = NetUtil.newChannel(this.feedURI.spec)
-							.QueryInterface(Ci.nsIHttpChannel);
+			/* http://mxr.mozilla.org/mozilla-central/source/toolkit/components/places/nsLivemarkService.js#529 */
+			let loadgroup = Cc["@mozilla.org/network/load-group;1"]
+								.createInstance(Ci.nsILoadGroup);
+			let channel = NetUtil.newChannel({
+				uri: this.feedURI.spec,
+				loadingPrincipal: Services.scriptSecurityManager.createCodebasePrincipal(this.feedURI, {}),
+				contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_XMLHTTPREQUEST
+			}).QueryInterface(Ci.nsIHttpChannel);
 			channel.loadGroup = loadgroup;
-			channel.loadFlags |= Ci.nsIRequest.LOAD_BACKGROUND | Ci.nsIRequest.VALIDATE_ALWAYS;
+			channel.loadFlags |= Ci.nsIRequest.LOAD_BACKGROUND | Ci.nsIRequest.LOAD_BYPASS_CACHE;
 			channel.requestMethod = "GET";
 			channel.setRequestHeader("X-Moz", "livebookmarks", false);
 
 			// Stream the result to the feed parser with this listener
-			this.job.loadgroup = loadgroup;
 			let listener = new CheckListener(this);
-
 			channel.notificationCallbacks = listener;
 			channel.asyncOpen(listener, null);
+
+			this.job.loadgroup = loadgroup;
 
 			LiveClickPlaces.loading.push(this.id);
 		}
 		catch (e)
 		{
 			this.finishJob(false);
-			return;
 		}
-
-		return;
 	},
 
 	finishJob : function (aSuccess)
@@ -870,19 +823,19 @@ CheckListener.prototype =
 	{
 		let channel = aRequest.QueryInterface(Ci.nsIChannel);
 
-		// Parse feed data as it comes in
-		this._job.processor = Cc["@mozilla.org/feed-processor;1"].createInstance(Ci.nsIFeedProcessor);
-		this._job.processor.listener = this;
-		this._job.processor.parseAsync(null, channel.URI);
-
 		try
 		{
+			// Parse feed data as it comes in
+			this._job.processor = Cc["@mozilla.org/feed-processor;1"]
+									.createInstance(Ci.nsIFeedProcessor);
+			this._job.processor.listener = this;
+			this._job.processor.parseAsync(null, channel.URI);
 			this._job.processor.onStartRequest(aRequest, aContext);
 		}
 		catch (e)
 		{
-			this._place.finishJob(false);
 			Cu.reportError("Livemark Service: feed processor received an invalid channel for " + channel.URI.spec);
+			this._place.finishJob(false);
 		}
 	},
 
@@ -916,16 +869,41 @@ CheckListener.prototype =
 			let iExistingId = -1;
 			let bUpdated = false;
 			let sState = "unknown";
+
+			let iMatches = 0;
 			for (let i = 0; i < aCurrent.length; i++)
 			{
 				if (aCurrent[i].url != aURL) continue;
-				iExistingId = aCurrent[i].id;
-				sState = aCurrent[i].state;
-				if (aCurrent[i].position != aPosition
-					|| aCurrent[i].title != aTitle
-					|| aCurrent[i].preview != aPreview)
-					bUpdated = true;
-				break;
+
+				iMatches++;
+
+				// Exact match
+				if (aCurrent[i].position == aPosition
+					&& aCurrent[i].title == aTitle
+					&& aCurrent[i].preview == aPreview)
+				{
+						bUpdated = false;
+						iExistingId = aCurrent[i].id;
+						sState = aCurrent[i].state;
+						break;
+				}
+
+				// Otherwise treat as updated
+				bUpdated = true;
+
+				// Multiple existing matches of URL, match by position
+				if (iMatches > 1 && aCurrent[i].position == aPosition)
+				{
+					iExistingId = aCurrent[i].id;
+					sState = aCurrent[i].state;
+					break;
+				}
+				// Otherwise use first match
+				else if (iMatches == 1)
+				{
+					iExistingId = aCurrent[i].id;
+					sState = aCurrent[i].state;
+				}
 			}
 			return { id: iExistingId, updated: bUpdated, state: sState };
 		}
@@ -944,6 +922,8 @@ CheckListener.prototype =
 			throw Components.results.NS_ERROR_FAILURE;
 		}
 
+		let feedPrincipal = Services.scriptSecurityManager
+							.getSimpleCodebasePrincipal(place.feedURI);
 		let feedData = aResult.doc.QueryInterface(Ci.nsIFeed);
 
 		// Update site location only if feed link found and current site not set
@@ -951,7 +931,7 @@ CheckListener.prototype =
 			place.setToken("custom_site", feedData.link.spec);
 
 		LiveClickRemote.getChildren(iLivemarkId,
-			function (aStatus, aChildren)
+			function (aChildren)
 			{
 				logMessage(".. Current count: " + aChildren.length);
 				logMessage(".. Items discovered: " + feedData.items.length);
@@ -962,26 +942,28 @@ CheckListener.prototype =
 				let bUpdated = false;
 				let pagesInsert = [], pagesExisting = [], proxies = [];
 				let iInserts = 0, iExisting = 0;
-				let bAllItemsFound = false, iUnknownsFound = 0, iUnknownsTested = 0;
+				let bAllItemsFound = false;
+				let iItemsFound = feedData.items.length, iItemsTested = 0;
 
-				let secMan = Cc["@mozilla.org/scriptsecuritymanager;1"]
-								.getService(Ci.nsIScriptSecurityManager);
-				let feedPrincipal = secMan.getSimpleCodebasePrincipal(place.feedURI);
-
-				for (let i = 0; i < feedData.items.length; i++)
+				for (let i = 0; i < iItemsFound; i++)
 				{
 					let entry = feedData.items.queryElementAt(i, Ci.nsIFeedEntry);
-					if (!entry.link) continue;
+					if (!entry.link)
+					{
+						iItemsTested++;
+						continue;
+					}
 
 					// Make sure item link is safe
 					try
 					{
-						// False positive: already using checkWithPrincipal
-						secMan.checkLoadURIWithPrincipal(feedPrincipal, entry.link,
-							Ci.nsIScriptSecurityManager.DISALLOW_INHERIT_PRINCIPAL);
+						Services.scriptSecurityManager
+							.checkLoadURIWithPrincipal(feedPrincipal, entry.link,
+								Ci.nsIScriptSecurityManager.DISALLOW_INHERIT_PRINCIPAL);
 					}
 					catch (e)
 					{
+						iItemsTested++;
 						continue;
 					}
 
@@ -1003,13 +985,12 @@ CheckListener.prototype =
 						countsOld[existing.state]++;
 						pagesExisting.push({ id: existing.id, position: ++iExisting, title: sTitle, preview: sPreview });
 						if (existing.updated) bUpdated = true;
+						iItemsTested++;
 						continue;
 					}
 
 					// New item is discovered
 					bUpdated = true;
-
-					let sState = LiveClickRemote.getPageStateByURL(sURL);
 
 					// GUIDs more accurately identify initial states for proxied links
 					let sProxy = "";
@@ -1018,56 +999,62 @@ CheckListener.prototype =
 						// Make sure guid link is safe
 						try
 						{
-							// False positive: already using checkWithPrincipal
-							secMan.checkLoadURIStrWithPrincipal(feedPrincipal, entry.id,
-								Ci.nsIScriptSecurityManager.DISALLOW_INHERIT_PRINCIPAL);
+							Services.scriptSecurityManager
+								.checkLoadURIWithPrincipal(feedPrincipal, entry.id,
+									Ci.nsIScriptSecurityManager.DISALLOW_INHERIT_PRINCIPAL);
 							sProxy = entry.id;
 							proxies.push({ url: sURL, proxy: sProxy });
 						}
 						catch (e) {}
 					}
-					if (sProxy != "")
-						sState = LiveClickRemote.getPageStateByURL(sProxy);
 
-					let iPosition = ++iInserts;
+					let sURLtoTest = sProxy != "" ? sProxy : sURL;
+					LiveClickRemote.getPageStateByURL(sURLtoTest,
+						(function (sState)
+						{
+							let iPosition = ++iInserts;
 
-					// Link has no state history
-					//	Check if link was manually visited prior to item discovery
-					if (sState == "unknown")
-					{
-						iUnknownsFound++;
-						let linkToTest = sProxy != "" ? PlacesUIUtils.createFixedURI(sProxy) : entry.link;
-						PlacesUtils.asyncHistory.isURIVisited(linkToTest,
-							function (aURI, aIsVisited)
+							// Link has no state history
+							//	Check if link was manually visited prior to item discovery
+							if (sState == "unknown")
 							{
-								if (aIsVisited) sState = "read";
+								let linkToTest = sProxy != "" ? PlacesUIUtils.createFixedURI(sProxy) : entry.link;
+								PlacesUtils.asyncHistory.isURIVisited(linkToTest,
+									function (aURI, aIsVisited)
+									{
+										if (aIsVisited) sState = "read";
 
-								if (sState != "unknown")
-									countsOld[sState]++;
-								else
-									sState = "new";
+										if (sState != "unknown")
+											countsOld[sState]++;
+										else
+											sState = "new";
 
+										countsNew[sState]++;
+										pagesInsert.push({ url: sURL, position: iPosition, title: sTitle, preview: sPreview, state: sState });
+
+										iItemsTested++;
+										if (bAllItemsFound && iItemsFound == iItemsTested)
+											readyToUpdate();
+									}
+								);
+							}
+							// Link has previous state history
+							else
+							{
 								countsNew[sState]++;
 								pagesInsert.push({ url: sURL, position: iPosition, title: sTitle, preview: sPreview, state: sState });
-
-								iUnknownsTested++;
-								if (bAllItemsFound && iUnknownsFound == iUnknownsTested)
+								iItemsTested++;
+								if (bAllItemsFound && iItemsFound == iItemsTested)
 									readyToUpdate();
 							}
-						);
-					}
-					// Link has previous state history
-					else
-					{
-						countsNew[sState]++;
-						pagesInsert.push({ url: sURL, position: iPosition, title: sTitle, preview: sPreview, state: sState });
-					}
+						})
+					);
 				}
 
 				delete job.processor;
 
 				bAllItemsFound = true;
-				if (iUnknownsFound == 0) readyToUpdate();
+				if (iItemsFound == iItemsTested) readyToUpdate();
 
 				function readyToUpdate ()
 				{
@@ -1094,7 +1081,7 @@ CheckListener.prototype =
 					// Finish job only after remote insert and updates complete
 					//	Otherwise getChildren may be inaccurate
 					let iReady = 0;
-					function readyToNotify (aStatus, aCount)
+					function readyToNotify (aCount)
 					{
 						iReady = iReady + aCount;
 						if (iReady == pagesInsert.length + pagesExisting.length)
@@ -1125,16 +1112,6 @@ CheckListener.prototype =
 		);
 	},
 
-	notifyCertProblem : function (aSocketInfo, aStatus, aTargetSite)
-	{
-		return true;
-	},
-
-	notifySSLError : function (aSocketInfo, aError, aTargetSite)
-	{
-		return true;
-	},
-
 	getInterface : function (aIID)
 	{
 		return this.QueryInterface(aIID);
@@ -1144,11 +1121,7 @@ CheckListener.prototype =
 		Ci.nsIFeedResultListener,
 		Ci.nsIStreamListener,
 		Ci.nsIRequestObserver,
-		Ci.nsINavHistoryBatchCallback,
-		Ci.nsIBadCertListener2,
-		Ci.nsISSLErrorListener,
-		Ci.nsIInterfaceRequestor,
-		Ci.nsISupports
+		Ci.nsIInterfaceRequestor
 	])
 }
 
@@ -1305,20 +1278,14 @@ var UberObserver =
 	onPageExpired : function () {},
 
 	// nsINavBookmarksService
-	onItemAdded : function (aItemId, aFolder, aIndex, aItemType, aURI)
+	// Catch new livemarks when livemark/feedURI anno set
+	onItemChanged : function (id, property, isAnno, value, lastModified, itemType, parentId, guid, parentGuid)
 	{
-		if (aItemType != 2) return;
-
-		// Check for new livemarks
-		let promise = PlacesUtils.livemarks.getLivemark({ id: aItemId });
-		let newPromise = promise.then(
-			(function onFulfill(aStatus, aLivemark)
-			{
-				if (Components.isSuccessCode(aStatus))
-					LiveClickPlaces.initLivemark(aItemId);
-			}).bind(this)
-		);
-		let lastPromise = newPromise.then(null, Components.utils.reportError);
+		if (property != "livemark/feedURI") return;
+		PlacesUtils.livemarks.getLivemark({ id: id })
+			.then(aLivemark => {
+				LiveClickPlaces.initLivemark(id);
+			}, Components.utils.reportError);
 	},
 
 	// Update parent counts on livemark move
@@ -1364,7 +1331,7 @@ var UberObserver =
 
 	onBeginUpdateBatch : function () {},
 	onEndUpdateBatch : function () {},
-	onItemChanged : function () {},
+	onItemAdded : function () {},
 	onItemVisited : function () {}
 }
 

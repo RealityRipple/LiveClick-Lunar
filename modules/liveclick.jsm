@@ -16,7 +16,7 @@ if (typeof(LiveClick) == "undefined")
 	{
 		extGUID : "{d166ee2a-36bb-4f33-aff7-e85f912df509}",
 		extVersion : "unknown",
-		buildDate : "20141204",
+		buildDate : "20160215",
 
 		_isInitialized : false,
 		_isDisabling : false,
@@ -53,6 +53,11 @@ if (typeof(LiveClick) == "undefined")
 			// Observe places init/shutdown
 			observers.addObserver(LC_Observer, "places-shutdown", false);
 
+			// Observe idle service (after 300s idle)
+			let idleService = Cc["@mozilla.org/widget/idleservice;1"]
+								.getService(Ci.nsIIdleService);
+			idleService.addIdleObserver(LC_Observer, 300);
+
 			// Observe annotation changes to reset check timers
 			PlacesUtils.annotations.addObserver(LC_Observer, false);
 
@@ -81,6 +86,10 @@ if (typeof(LiveClick) == "undefined")
 			observers.removeObserver(LC_Observer, "liveclick-logging");
 			observers.removeObserver(LC_Observer, "places-shutdown");
 
+			let idleService = Cc["@mozilla.org/widget/idleservice;1"]
+								.getService(Ci.nsIIdleService);
+			idleService.removeIdleObserver(LC_Observer, 300);
+
 			PlacesUtils.annotations.removeObserver(LC_Observer);
 
 			LiveClickPrefs.stopObserving();
@@ -99,29 +108,27 @@ if (typeof(LiveClick) == "undefined")
 			if (this.autoTimer || this.isSuspended || LiveClickPlaces.isChecking)
 				return;
 
-			let iDelay = 0;
-
 			// Wait 15s before starting first check
 			//	TODO: Allow custom delay from undocumented preference
 			if (LiveClickPrefs.getValue("checkOnStart"))
-				iDelay = 15000;
+				LiveClick.setCheckTimer(15000);
 			// Wait until next expire (must be at least 5 minutes from now)
 			else if (LiveClickPrefs.getValue("checkAutomatic"))
-				iDelay = Math.max(LiveClickPlaces.getNextExpire() - Date.now(), 300000);
-
-			if (iDelay == 0) return;
-
-			let timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
-			timer.initWithCallback(LiveClickPlaces.checkExpired, iDelay, Ci.nsITimer.TYPE_ONE_SHOT);
-			this.autoTimer = timer;
-			this.autoTime = Date.now()+iDelay;
-
-			let sDelay = iDelay <= 60000 ? Math.ceil(iDelay/1000)+" seconds."
-											: Math.ceil(iDelay/60000)+" minutes.";
-			LiveClick.debug("First check in "+sDelay);
+			{
+				LiveClickPlaces.getNextExpire(
+					(function (aExpire)
+					{
+						if (aExpire)
+						{
+							let iDelay = Math.max(aExpire - Date.now(), 300000);
+							LiveClick.setCheckTimer(iDelay);
+						}
+					})
+				);
+			}
 		},
 
-		setNextCheck : function (aDelay)
+		setNextCheck : function ()
 		{
 			// Do nothing if already firing
 			//	New timer will be set after current check, if needed
@@ -133,20 +140,39 @@ if (typeof(LiveClick) == "undefined")
 			if (!LiveClickPrefs.getValue("checkAutomatic") || this.isSuspended)
 				return;
 
-			let iDelay = aDelay ? aDelay : 0;
-			if (isNaN(iDelay) || iDelay == 0)
-			{
-				// Calculate timer based on next expire
-				// 	Automatic checks shouldn't happen more than once per minute
-				iDelay = Math.max(LiveClickPlaces.getNextExpire() - Date.now(), 60000);
-			}
+			// Don't set a new timer if idle (i.e. no activity in the last 300s)
+			//	Hidden preference permits checking when idle
+			let idleTime = Cc["@mozilla.org/widget/idleservice;1"]
+							.getService(Ci.nsIIdleService).idleTime;
+			if (idleTime > 300000 && !LiveClickPrefs.getValue("checkWhenIdle"))
+				return;
+
+			// Calculate timer based on next expire
+			// 	Automatic checks shouldn't happen more than once per minute
+			LiveClickPlaces.getNextExpire(
+				(function (aExpire)
+				{
+					if (aExpire)
+					{
+						let iDelay = Math.max(aExpire - Date.now(), 60000);
+						LiveClick.setCheckTimer(iDelay);
+					}
+				})
+			);
+		},
+
+		setCheckTimer : function (iDelay)
+		{
+			if (iDelay == 0) return;
 
 			let timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
 			timer.initWithCallback(LiveClickPlaces.checkExpired, iDelay, Ci.nsITimer.TYPE_ONE_SHOT);
 			this.autoTimer = timer;
 			this.autoTime = Date.now()+iDelay;
 
-			LiveClick.debug("Next check in "+Math.ceil(iDelay/60000)+" minutes.");
+			let sDelay = iDelay <= 60000 ? Math.ceil(iDelay/1000)+" seconds."
+											: Math.ceil(iDelay/60000)+" minutes.";
+			LiveClick.debug("Next check in "+sDelay);
 		},
 
 		// Cancel automatic timer
@@ -172,7 +198,7 @@ if (typeof(LiveClick) == "undefined")
 				if (LiveClickPlaces.isChecking || this.autoTimer)
 				{
 					LiveClickPlaces.stopCheck();
-					LiveClick.debug("Manually aborted check/timer");
+					LiveClick.debug("Automatic checking interrupted by manual request to suspend.");
 				}
 			}
 			// Start autochecks immediately on resume
@@ -265,6 +291,20 @@ var LC_Observer =
 		{
 			case "places-shutdown":
 				LiveClick.shutdown();
+				break;
+			case "idle":
+				if (LiveClickPrefs.getValue("checkAutomatic") && !LiveClickPrefs.getValue("checkWhenIdle"))
+				{
+					LiveClick.debug("Idle detected. Automatic checking will be suspended.");
+					LiveClick.setNextCheck();
+				}
+				break;
+			case "active":
+				if (LiveClickPrefs.getValue("checkAutomatic") && !LiveClickPrefs.getValue("checkWhenIdle"))
+				{
+					LiveClick.debug("User activity detected. Automatic checking will resume.");
+					LiveClick.setFirstCheck();
+				}
 				break;
 			case "liveclick-init-complete":
 				LiveClick.setFirstCheck();

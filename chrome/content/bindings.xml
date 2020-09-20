@@ -24,7 +24,7 @@
     </content>
   </binding>
 
-  /* cf http://mxr.mozilla.org/mozilla-central/source/toolkit/content/widgets/menu.xml#241 */
+  /* cf http://mxr.mozilla.org/mozilla-central/source/toolkit/content/widgets/menu.xml#258 */
   <binding id="liveclick-livemark-menu"
            extends="chrome://global/content/bindings/menu.xml#menu-base">
     <content>

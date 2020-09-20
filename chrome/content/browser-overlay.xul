@@ -49,10 +49,8 @@
 			<vbox id="liveclick-lit-expanded">
 				<separator class="thin" />
 				<hbox align="start">
-					<image id="liveclick-lit-favicon" />
-					<vbox>
-						<description id="liveclick-lit-preview"></description>
-					</vbox>
+					<vbox><image id="liveclick-lit-favicon" /></vbox>
+					<vbox><description id="liveclick-lit-preview"></description></vbox>
 				</hbox>
 			</vbox>
 		</tooltip>
@@ -102,6 +100,7 @@
 	<menupopup id="bookmarksMenuPopup">
 		<menu id="liveclick-bookmarks-menu"
 			label="&bmmenu-submenu.label;"
+			class="menu-iconic"
 			insertafter="subscribeToPageMenupopup">
 			<menupopup onpopupshowing="LiveClickChrome.MainMenu.popup(event);" />
 		</menu>
@@ -111,16 +110,8 @@
 	<menupopup id="BMB_bookmarksPopup">
 		<menu id="liveclick-bookmarks-menu-button"
 			label="&bmmenu-submenu.label;"
+			class="menu-iconic subviewbutton"
 			insertafter="BMB_subscribeToPageMenupopup">
-			<menupopup onpopupshowing="LiveClickChrome.MainMenu.popup(event);" />
-		</menu>
-	</menupopup>
-
-	<!-- Add Live Bookmarks submenu to App Bookmarks Menu -->
-	<menupopup id="appmenu_bookmarksPopup">
-		<menu id="liveclick-app-bookmarks-menu"
-			label="&bmmenu-submenu.label;"
-			insertafter="appmenu_subscribeToPageMenu">
 			<menupopup onpopupshowing="LiveClickChrome.MainMenu.popup(event);" />
 		</menu>
 	</menupopup>
