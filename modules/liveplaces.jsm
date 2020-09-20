@@ -726,7 +726,7 @@ Place.prototype =
 		}
 		catch (e)
 		{
-   logMessage(e);
+			logMessage(e);
 			this.finishJob(false);
 		}
 	},
@@ -933,9 +933,19 @@ CheckListener.prototype =
 		let feedPrincipal = secMan.createCodebasePrincipal(place.feedURI, {});
 		let feedData = aResult.doc.QueryInterface(Ci.nsIFeed);
 
-		// Update site location only if feed link found and current site not set
-		if (feedData.link && !place.siteURI)
-			place.setToken("custom_site", feedData.link.spec);
+		// Update site location if feed has channel <link> and:
+		//	1) Current site location not set, or:
+		//	2) Current site location equals current feed location, but differs from channel <link>
+		if (feedData.link)
+		{
+			if (!place.siteURI
+				|| (place.siteURI.equals(place.feedURI)
+					&& !place.siteURI.equals(feedData.link)))
+			{
+				place.setToken("custom_site", feedData.link.spec);
+				logMessage(".. Site location updated");
+			}
+		}
 
 		LiveClickRemote.getChildren(iLivemarkId,
 			function (aChildren)
@@ -1292,7 +1302,7 @@ var UberObserver =
 		PlacesUtils.livemarks.getLivemark({ id: id })
 			.then(aLivemark => {
 				LiveClickPlaces.initLivemark(id);
-			}, Components.utils.reportError);
+			}, () => undefined);
 	},
 
 	// Update parent counts on livemark move

@@ -15,7 +15,7 @@ if (typeof(LiveClick) == "undefined")
 	var LiveClick =
 	{
 		extGUID : "{7A86970F-5198-5370-9FCB-0EE0150876F7}",
-		extVersion : "1.1",
+		extVersion : "2.1",
 		buildDate : "20200920",
 
 		_isInitialized : false,

@@ -51,33 +51,32 @@ LiveClickChrome.Browser =
 			let element = oriInsertToPopup.apply(this, arguments);
 			if (!PlacesUtils.nodeIsFolder(aNewChild)) return element;
 
-			// Apply state observers to new folder
+			// Apply state observers to folder being inserted
 			LiveClickChrome.Browser.folderBeforeInsert(element, aNewChild.itemId);
 
 			// Replace native menu with LiveClick livemark, if applicable
-			let promise = PlacesUtils.livemarks.getLivemark({ id: aNewChild.itemId });
-			let newPromise = promise.then(
-				(function onFulfill(aStatus, aLivemark)
-				{
-					if (!Components.isSuccessCode(aStatus)) return;
+			PlacesUtils.livemarks.getLivemark({ id: aNewChild.itemId })
+				.then(
+					(aLivemark =>
+					{
+						this._domNodes.delete(aNewChild);
 
-					this._domNodes.delete(aNewChild);
+						// Copy native menu classes to LiveClick livemark
+						let sClassName = element.className;
 
-					// Copy native menu classes to LiveClick livemark
-					let sClassName = element.className;
+						let livemark = LiveClickChrome.Browser.createLivemarkMenu(aNewChild, sClassName);
+						if (!this._domNodes.has(aNewChild))
+							this._domNodes.set(aNewChild, livemark);
+						aPopup.replaceChild(livemark, element);
 
-					let livemark = LiveClickChrome.Browser.createLivemarkMenu(aNewChild, sClassName);
-					if (!this._domNodes.has(aNewChild))
-						this._domNodes.set(aNewChild, livemark);
-					aPopup.replaceChild(livemark, element);
-
-					// Hide livemark in chevron if necessary
-					if (document.defaultView.getComputedStyle(element, null)
-							.getPropertyValue("display") == "none")
-						livemark.hidden = "true";
-				}).bind(this)
-			);
-			let lastPromise = newPromise.then(null, Components.utils.reportError);
+						// Hide livemark in chevron if necessary
+						if (document.defaultView.getComputedStyle(element, null)
+								.getPropertyValue("display") == "none")
+							livemark.hidden = "true";
+					}
+					).bind(this),
+					() => undefined
+				);
 
 			return element;
 		}
@@ -90,24 +89,35 @@ LiveClickChrome.Browser =
 			oriInsertNew.apply(this, arguments);
 			if (!PlacesUtils.nodeIsFolder(aChild)) return;
 
-			// Apply state observers to new folder
+			// Apply state observers to folder being inserted
 			let button = aBefore ? aBefore.previousElementSibling : this._rootElt.lastElementChild;
 			LiveClickChrome.Browser.folderBeforeInsert(button, aChild.itemId);
 
-			// Replace native button with LiveClick livemark, if applicable
-			let promise = PlacesUtils.livemarks.getLivemark({ id: aChild.itemId });
-			let newPromise = promise.then(
-				(function onFulfill(aStatus, aLivemark)
+			let bookmarksToolbar = this;
+			let testForLivemark =
+			{
+				notify : function (timer)
 				{
-					if (!Components.isSuccessCode(aStatus)) return;
-					this._domNodes.delete(aChild);
-					let livemark = LiveClickChrome.Browser.createLivemarkButton(aChild);
-					if (!this._domNodes.has(aChild))
-						this._domNodes.set(aChild, livemark);
-					this._rootElt.replaceChild(livemark, button);
-				}).bind(this)
-			);
-			let lastPromise = newPromise.then(null, function onReject() {/* Not a livemark */});
+					// Replace native button with LiveClick livemark, if applicable
+					PlacesUtils.livemarks.getLivemark( {id: aChild.itemId })
+						.then(
+							aLivemark =>
+							{
+								bookmarksToolbar._domNodes.delete(aChild);
+								let livemark = LiveClickChrome.Browser.createLivemarkButton(aChild);
+								if (!bookmarksToolbar._domNodes.has(aChild))
+									bookmarksToolbar._domNodes.set(aChild, livemark);
+								bookmarksToolbar._rootElt.replaceChild(livemark, button);
+							},
+							() => undefined
+						);
+				}
+			}
+
+			// Wait 500ms for livemark/feedURI anno to be set on newly created live bookmark
+			//	Only then can we test if inserted folder is a live bookmark
+			Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer)
+				.initWithCallback(testForLivemark, 500, Ci.nsITimer.TYPE_ONE_SHOT);
 		}
 
 		if (!LiveClickPrefs.getValue("checkAutomatic"))

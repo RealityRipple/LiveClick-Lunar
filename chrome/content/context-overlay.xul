@@ -16,14 +16,14 @@
 		<!-- Livemark context menu -->
 		<menuitem id="liveclick-pcm-open"
 			oncommand="LiveClickChrome.Utils.openURL(event.originalTarget.getAttribute('siteURI'), event, '');"
-			onclick="checkForMiddleClick(this, event); closeMenus(document.popupNode);"
+			onclick="checkForMiddleClick(this, event); closeMenus(event.target);"
 			label="&pcm-open.label;"
 			insertbefore="placesContext_openContainer:tabs"
 			selection="livemark/siteURI"
 			selectiontype="single" />
 		<menuitem id="liveclick-pcm-feed"
 			oncommand="LiveClickChrome.Utils.openFeed(event.originalTarget.getAttribute('feedURI'), event, '');"
-			onclick="checkForMiddleClick(this, event); closeMenus(document.popupNode);"
+			onclick="checkForMiddleClick(this, event); closeMenus(event.target);"
 			label="&pcm-feed.label;"
 			insertbefore="placesContext_openContainer:tabs"
 			selection="livemark/feedURI"
