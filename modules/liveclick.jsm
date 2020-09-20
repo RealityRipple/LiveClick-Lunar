@@ -14,9 +14,9 @@ if (typeof(LiveClick) == "undefined")
 {
 	var LiveClick =
 	{
-		extGUID : "{d166ee2a-36bb-4f33-aff7-e85f912df509}",
-		extVersion : "unknown",
-		buildDate : "20141204",
+		extGUID : "{7A86970F-5198-5370-9FCB-0EE0150876F7}",
+		extVersion : "1.1",
+		buildDate : "20200919",
 
 		_isInitialized : false,
 		_isDisabling : false,
@@ -33,7 +33,7 @@ if (typeof(LiveClick) == "undefined")
 			// Only initialize everything else once
 			if (this._isInitialized) return;
 
-			LiveClick.debug("LiveClick initializing...");
+			LiveClick.debug("LiveClick Lunar initializing...");
 
 			// Initialize livemarks
 			LiveClickPlaces.init();

@@ -108,11 +108,15 @@ LiveClickChrome.Alerter =
 
 		let sAlert = livemark.title != "" ? livemark.title + " " : "";
 		sAlert = sAlert + "(" + items.length.toString() + ")";
+  
+		let sIcon = "chrome://liveclick/skin/icon.png";
+		if (LiveClickPrefs.getValue("showFavIcons") && livemark.icondata)
+			sIcon = livemark.icondata;
 
 		Cc["@mozilla.org/alerts-service;1"]
 			.getService(Ci.nsIAlertsService)
 			.showAlertNotification(
-				"chrome://liveclick/content/icons/alert.png",
+				sIcon,
 				LiveClickChrome.Monitors.getString("alertNewItems"),
 				sAlert, true, "", this, "");
 

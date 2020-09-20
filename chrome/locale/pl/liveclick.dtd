@@ -1,5 +1,5 @@
 <!--  Common  -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "Ustaw jako domyślną przeglądarkę">
 <!ENTITY command-open.label "Otwórz lokalizację">
 <!ENTITY command-opentab.label "Otwórz lokalizację w nowej karcie">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "Resetuj licznik nowych">
 <!ENTITY bmmenu-markread.label "Oznacz wszystkie dynamiczne zakładki jako przeczytane">
 <!ENTITY bmmenu-clear.label "Wyczyść historię dynamicznych zakładek">
-<!ENTITY bmmenu-options.label "Ustawienia LiveClick…">
+<!ENTITY bmmenu-options.label "Ustawienia LiveClick Lunar…">
 <!--  Bookmarks Tooltips  -->
 <!ENTITY bmprops-monitorcheckbox.label "Monitoruj tę dynamiczną zakładkę">
 <!ENTITY bmprops-expander-down.label "Dostosuj tę dynamiczną zakładkę">
@@ -66,7 +66,7 @@
 <!--  LiveClick Options dialog  -->
 <!ENTITY lit-loading.label "Wczytywanie podglądu…">
 <!--  Generic About dialog  -->
-<!ENTITY options-title "LiveClick - ustawienia">
+<!ENTITY options-title "LiveClick Lunar - ustawienia">
 <!ENTITY options-note-restart.label "Informacja: Aby zmiany zostały zastosowane, może wystąpić konieczność ponownego uruchomienia">
 <!ENTITY options-generalpane.label "Ogólne">
 <!ENTITY options-update.caption "Aktualizowanie dynamicznych zakładek">
@@ -155,7 +155,7 @@
 <!ENTITY options-settings-import.label "Importuj ustawienia">
 <!ENTITY options-settings-export.label "Eksportuj ustawienia">
 <!-- Generic About dialog -->
-<!ENTITY about-dialog.label "LiveClick - informacje">
+<!ENTITY about-dialog.label "LiveClick Lunar - informacje">
 <!ENTITY about-createdby.label "Autor:">
 <!ENTITY about-visithome.label "Strona domowa">
 <!ENTITY about-visitfaq.label "FAQ">

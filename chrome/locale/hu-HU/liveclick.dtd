@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "Böngésző alapértelmezés">
 <!ENTITY command-open.label "Hely megnyitása">
 <!ENTITY command-opentab.label "Hely megnyitása új lapon">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "Új elem számlálók nullázása">
 <!ENTITY bmmenu-markread.label "Az összes élő könyvjelző megjelölése olvasottként">
 <!ENTITY bmmenu-clear.label "Élő könyvjelzők előzményeinek törlése">
-<!ENTITY bmmenu-options.label "LiveClick beállítások...">
+<!ENTITY bmmenu-options.label "LiveClick Lunar beállítások...">
 <!-- Bookmarks Properties dialog -->
 <!ENTITY bmprops-monitorcheckbox.label "Új elemek figyelése ebben az élő könyvjelzőben">
 <!ENTITY bmprops-expander-down.label "Élő könyvjelző testreszabása">
@@ -66,7 +66,7 @@
 <!-- Bookmarks Tooltips -->
 <!ENTITY lit-loading.label "Előnézet betöltése...">
 <!-- LiveClick Options dialog -->
-<!ENTITY options-title "LiveClick beállítások">
+<!ENTITY options-title "LiveClick Lunar beállítások">
 <!ENTITY options-note-restart.label "Megjegyzés: A változások érvénybelépéséhez lehet, hogy újraindítás szükséges.">
 <!ENTITY options-generalpane.label "Általános">
 <!ENTITY options-update.caption "Élő könyvjelzők frissítése">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<title>LiveClick Status</title>
+	<title>LiveClick Lunar Status</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" href="chrome://global/skin/aboutSupport.css" type="text/css" />
 
@@ -42,7 +42,7 @@
 		AddonManager.getAddonByID(LiveClick.extGUID,
 			function(addon)
 			{
-				setValue("extension", "LiveClick "+addon.version+" ("+LiveClick.buildDate+")");
+				setValue("extension", "LiveClick Lunar "+addon.version+" ("+LiveClick.buildDate+")");
 			}
 		);
 
@@ -92,7 +92,7 @@
 
 	function copyToClipboard ()
 	{
-		let sBuffer = "LIVECLICK STATUS\n";
+		let sBuffer = "LIVECLICK LUNAR STATUS\n";
 		sBuffer += " Generated: "+(new Date)+"\n";
 		sBuffer += " Extension: "+LiveClick.extVersion+" ("+LiveClick.buildDate+")"+"\n";
 		sBuffer += " User Agent: "+navigator.userAgent+"\n";
@@ -113,7 +113,7 @@
 
 <body onload="initializePage();">
 
-	<h1>LiveClick Status</h1>
+	<h1>LiveClick Lunar Status</h1>
 
 	<!--//
 	<div class="page-subtitle">
@@ -204,7 +204,7 @@
 		</tbody>
 	</table>
 
-	<h2 class="major-section">LiveClick Preferences</h2>
+	<h2 class="major-section">LiveClick Lunar Preferences</h2>
 	<table class="prefs-table">
 		<thead>
 			<th class="name">Name</th>

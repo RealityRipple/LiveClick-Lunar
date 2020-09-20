@@ -16,7 +16,7 @@
 
 	<prefpane id="liveclick-options-general"
 		label="&options-generalpane.label;"
-		image="chrome://liveclick/content/icons/ops-config.png">
+		image="chrome://liveclick/skin/ops-config.png">
 
 		<preferences>
 			<preference id="checkOnDemand" name="extensions.liveclick.checkOnDemand" type="bool" />
@@ -94,7 +94,7 @@
 
 	<prefpane id="liveclick-options-appearance"
 		label="&options-appearancepane.label;"
-		image="chrome://liveclick/content/icons/ops-reading.png">
+		image="chrome://liveclick/skin/ops-reading.png">
 
 		<preferences>
 			<preference id="showCount" name="extensions.liveclick.showCount" type="int" />
@@ -314,7 +314,7 @@
 
 	<prefpane id="liveclick-options-menus"
 		label="&options-menuspane.label;"
-		image="chrome://liveclick/content/icons/ops-menus.png">
+		image="chrome://liveclick/skin/ops-menus.png">
 
 		<preferences>
 			<preference id="clickLeft" name="extensions.liveclick.clickLeft" type="int" />
@@ -447,7 +447,7 @@
 
 	<prefpane id="liveclick-options-monitors"
 		label="&options-monitorspane.label;"
-		image="chrome://liveclick/content/icons/ops-monitors.png">
+		image="chrome://liveclick/skin/ops-monitors.png">
 
 		<preferences>
 			<preference id="monitorAction" name="extensions.liveclick.monitorAction" type="int" />

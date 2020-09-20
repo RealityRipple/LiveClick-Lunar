@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "瀏覽器預設動作">
 <!ENTITY command-open.label "開啟位址">
 <!ENTITY command-opentab.label "用新分頁開啟位址">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "重設新計數">
 <!ENTITY bmmenu-markread.label "標記所有即時書籤為已讀">
 <!ENTITY bmmenu-clear.label "清除即時書籤記錄">
-<!ENTITY bmmenu-options.label "LiveClick 選項...">
+<!ENTITY bmmenu-options.label "LiveClick Lunar 選項...">
 <!-- Bookmarks Properties dialog -->
 <!ENTITY bmprops-monitorcheckbox.label "監視此即時書籤有無新項目">
 <!ENTITY bmprops-expander-down.label "自訂此即時書籤">
@@ -66,7 +66,7 @@
 <!-- Bookmarks Tooltips -->
 <!ENTITY lit-loading.label "預覽載入中...">
 <!-- LiveClick Options dialog -->
-<!ENTITY options-title "LiveClick 選項">
+<!ENTITY options-title "LiveClick Lunar 選項">
 <!ENTITY options-note-restart.label "備註：你需要重新啟動瀏覽器變更才會生效。">
 <!ENTITY options-generalpane.label "一般">
 <!ENTITY options-update.caption "更新即時書籤">

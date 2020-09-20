@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 
 <!ENTITY command-default.label "Do browser default">
 <!ENTITY command-open.label "Open location">
@@ -59,7 +59,7 @@
 <!ENTITY bmmenu-resetnewcount.label "Reset New Count">
 <!ENTITY bmmenu-markread.label "Mark All Live Bookmarks as Read">
 <!ENTITY bmmenu-clear.label "Clear Live Bookmarks History">
-<!ENTITY bmmenu-options.label "LiveClick Options...">
+<!ENTITY bmmenu-options.label "LiveClick Lunar Options...">
 
 
 <!-- Bookmarks Properties dialog -->
@@ -83,7 +83,7 @@
 
 
 <!-- LiveClick Options dialog -->
-<!ENTITY options-title "LiveClick Options">
+<!ENTITY options-title "LiveClick Lunar Options">
 
 <!ENTITY options-note-restart.label "Note: You may need to restart before changes take effect.">
 

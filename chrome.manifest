@@ -1,26 +1,22 @@
-content	liveclick chrome/content/
-resource liveclick modules/
-
-overlay chrome://browser/content/browser.xul chrome://liveclick/content/browser-overlay.xul
-overlay chrome://browser/content/places/bookmarkProperties.xul chrome://liveclick/content/properties-overlay.xul
+content liveclick       chrome/content/
+locale  liveclick en-US chrome/locale/en-US/
+locale  liveclick de-DE chrome/locale/de/
+locale  liveclick fr-FR chrome/locale/fr/
+locale  liveclick hu-HU chrome/locale/hu-HU/
+locale  liveclick it-IT chrome/locale/it-IT/
+locale  liveclick ko-KR chrome/locale/ko-KR/
+locale  liveclick lv-LV chrome/locale/lv-LV/
+locale  liveclick nl-NL chrome/locale/nl/
+locale  liveclick pl-PL chrome/locale/pl/
+locale  liveclick zh-TW chrome/locale/zh-TW/
+skin    liveclick skin  chrome/skin/
+skin    liveclick oskin chrome/skin/linux/ os=Linux
+skin    liveclick oskin chrome/skin/osx/   os=Darwin
+skin    liveclick oskin chrome/skin/wina/  os=WINNT  osversion>=6
+overlay chrome://browser/content/browser.xul                    chrome://liveclick/content/browser-overlay.xul
+overlay chrome://browser/content/places/bookmarkProperties.xul  chrome://liveclick/content/properties-overlay.xul
 overlay chrome://browser/content/places/bookmarkProperties2.xul chrome://liveclick/content/properties-overlay.xul
-
-skin liveclick classic/1.0 chrome/skin/classic/
-skin liveclick classic/1.0 chrome/skin/classic/linux/ os=Linux
-skin liveclick classic/1.0 chrome/skin/classic/osx/ os=Darwin
-skin liveclick classic/1.0 chrome/skin/classic/win/ os=WINNT osversion>=6
-
-style chrome://browser/content/browser.xul chrome://liveclick/content/bindings.css
-style chrome://browser/content/browser.xul chrome://liveclick/content/button.css
-style chrome://global/content/customizeToolbar.xul chrome://liveclick/content/button.css
-
-locale liveclick en-US chrome/locale/en-US/
-locale liveclick de-DE chrome/locale/de/
-locale liveclick fr-FR chrome/locale/fr/
-locale liveclick hu-HU chrome/locale/hu-HU/
-locale liveclick it-IT chrome/locale/it-IT/
-locale liveclick ko-KR chrome/locale/ko-KR/
-locale liveclick lv-LV chrome/locale/lv-LV/
-locale liveclick nl-NL chrome/locale/nl/
-locale liveclick pl-PL chrome/locale/pl/
-locale liveclick zh-TW chrome/locale/zh-TW/
+style   chrome://browser/content/browser.xul                    chrome://liveclick/content/bindings.css
+style   chrome://browser/content/browser.xul                    chrome://liveclick/content/button.css
+style   chrome://global/content/customizeToolbar.xul            chrome://liveclick/content/button.css
+resource liveclick modules/

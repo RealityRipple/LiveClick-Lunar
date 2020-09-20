@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "Browservoreinstellung">
 <!ENTITY command-open.label "Seite öffnen">
 <!ENTITY command-opentab.label "Seite in neuem Tab öffnen">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "Neue Zählung zurücksetzen">
 <!ENTITY bmmenu-markread.label "Alle dynamischen Lesezeichen als gelesen markieren">
 <!ENTITY bmmenu-clear.label "Dynamische Lesezeichen-Chronik löschen">
-<!ENTITY bmmenu-options.label "LiveClick Optionen…">
+<!ENTITY bmmenu-options.label "LiveClick Lunar Optionen…">
 <!-- Bookmarks Properties dialog -->
 <!ENTITY bmprops-monitorcheckbox.label "Dieses Lesezeichen auf neue Einträge überwachen">
 <!ENTITY bmprops-expander-down.label "Dieses Lesezeichen anpassen">
@@ -66,7 +66,7 @@
 <!-- Bookmarks Tooltips -->
 <!ENTITY lit-loading.label "Lade Vorschau…">
 <!-- LiveClick Options dialog -->
-<!ENTITY options-title "LiveClick-Optionen">
+<!ENTITY options-title "LiveClick Lunar-Optionen">
 <!ENTITY options-note-restart.label "Hinweis: Eventuell ist ein Neustart nötig, bevor die Einstellungen übernommen werden.">
 <!ENTITY options-generalpane.label "Allgemein">
 <!ENTITY options-update.caption "Dynamische Lesezeichen aktualisieren">

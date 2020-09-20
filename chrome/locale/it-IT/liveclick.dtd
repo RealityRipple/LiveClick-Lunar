@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "Effettua l&apos;azione predefinita del browser">
 <!ENTITY command-open.label "Apri l&apos;indirizzo web">
 <!ENTITY command-opentab.label "Apri l&apos;indirizzo web in una nuova scheda">
@@ -40,7 +40,7 @@
 <!ENTITY tbb-checknow.label "Controlla la presenza di nuovi elementi ora">
 <!ENTITY tbb-checking.label "Controllo in corso…">
 <!-- Bookmarks Menu -->
-<!ENTITY bmmenu-submenu.label "Segnalibri Live di LiveClick">
+<!ENTITY bmmenu-submenu.label "Segnalibri Live di LiveClick Lunar">
 <!ENTITY bmmenu-checknow.label "Controlla la presenza di nuovi elementi ora">
 <!ENTITY bmmenu-checknow.accesskey "C">
 <!ENTITY bmmenu-stop.label "Interrompi il controllo">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "Ripristina il conteggio">
 <!ENTITY bmmenu-markread.label "Segna tutti i segnalibri Live come letti">
 <!ENTITY bmmenu-clear.label "Elimina la cronologia dei segnalibri Live">
-<!ENTITY bmmenu-options.label "Impostazioni di LiveClick…">
+<!ENTITY bmmenu-options.label "Impostazioni di LiveClick Lunar…">
 <!-- Bookmarks Properties dialog -->
 <!ENTITY bmprops-monitorcheckbox.label "Monitora questo segnalibro Live">
 <!ENTITY bmprops-expander-down.label "Personalizza il monitoraggio del segnalibro Live per controllare la presenza di nuovi elementi">
@@ -66,7 +66,7 @@
 <!-- Bookmarks Tooltips -->
 <!ENTITY lit-loading.label "Caricamento dell&apos;anteprima in corso…">
 <!-- LiveClick Options dialog -->
-<!ENTITY options-title "Impostazioni di LiveClick">
+<!ENTITY options-title "Impostazioni di LiveClick Lunar">
 <!ENTITY options-note-restart.label "Nota: riavviare il browser per rendere effettive le modifiche">
 <!ENTITY options-generalpane.label "Generali">
 <!ENTITY options-update.caption "Aggiornamento dei segnalibri Live">
@@ -155,7 +155,7 @@
 <!ENTITY options-settings-import.label "Importale da file XML">
 <!ENTITY options-settings-export.label "Esportale in file XML">
 <!-- Generic About dialog -->
-<!ENTITY about-dialog.label "Informazioni su LiveClick">
+<!ENTITY about-dialog.label "Informazioni su LiveClick Lunar">
 <!ENTITY about-createdby.label "Autore">
 <!ENTITY about-visithome.label "Visita il sito web">
 <!ENTITY about-visitfaq.label "Visita la pagina delle FAQ">

@@ -748,8 +748,16 @@ Place.prototype =
 		{
 			// Create a load group for the request so we can cancel if needed
 			let loadgroup = Cc["@mozilla.org/network/load-group;1"].createInstance(Ci.nsILoadGroup);
-			let channel = NetUtil.newChannel(this.feedURI.spec)
-							.QueryInterface(Ci.nsIHttpChannel);
+			let secMan = Cc["@mozilla.org/scriptsecuritymanager;1"]
+				.getService(Ci.nsIScriptSecurityManager);
+			let feedPrincipal = secMan.createCodebasePrincipal(this.feedURI, {});
+			let channel = NetUtil.newChannel(
+				{
+					uri: this.feedURI,
+					loadingPrincipal: feedPrincipal,
+					securityFlags: Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
+					contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_XMLHTTPREQUEST
+				}).QueryInterface(Ci.nsIHttpChannel);
 			channel.loadGroup = loadgroup;
 			channel.loadFlags |= Ci.nsIRequest.LOAD_BACKGROUND | Ci.nsIRequest.VALIDATE_ALWAYS;
 			channel.requestMethod = "GET";
@@ -766,6 +774,7 @@ Place.prototype =
 		}
 		catch (e)
 		{
+   logMessage(e);
 			this.finishJob(false);
 			return;
 		}
@@ -966,7 +975,7 @@ CheckListener.prototype =
 
 				let secMan = Cc["@mozilla.org/scriptsecuritymanager;1"]
 								.getService(Ci.nsIScriptSecurityManager);
-				let feedPrincipal = secMan.getSimpleCodebasePrincipal(place.feedURI);
+				let feedPrincipal = secMan.createCodebasePrincipal(place.feedURI, {});
 
 				for (let i = 0; i < feedData.items.length; i++)
 				{

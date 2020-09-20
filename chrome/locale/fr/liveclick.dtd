@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "Utiliser le navigateur par défaut">
 <!ENTITY command-open.label "Ouvrir l'adresse">
 <!ENTITY command-opentab.label "Ouvrir l'adresse dans un nouvel onglet">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "Réinitialiser le nouveau compte">
 <!ENTITY bmmenu-markread.label "Marquer tous les marque-pages dynamiques comme lus">
 <!ENTITY bmmenu-clear.label "Vider l'historique des marque-pages dynamiques">
-<!ENTITY bmmenu-options.label "Options de LiveClick…">
+<!ENTITY bmmenu-options.label "Options de LiveClick Lunar…">
 <!-- Bookmarks Properties dialog -->
 <!ENTITY bmprops-monitorcheckbox.label "Surveiller les nouveaux éléments pour ce marque-page dynamique">
 <!ENTITY bmprops-expander-down.label "Personnaliser ce marque-page dynamique">
@@ -66,7 +66,7 @@
 <!-- Bookmarks Tooltips -->
 <!ENTITY lit-loading.label "Chargement de l'aperçu…">
 <!-- LiveClick Options dialog -->
-<!ENTITY options-title "Options de LiveClick">
+<!ENTITY options-title "Options de LiveClick Lunar">
 <!ENTITY options-note-restart.label "Note : il vous faudra peut-être redémarrer pour que les modifications prennent effet.">
 <!ENTITY options-generalpane.label "Générales">
 <!ENTITY options-update.caption "Mise à jour des marque-pages dynamiques">

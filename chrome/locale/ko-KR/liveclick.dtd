@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "브라우저 기본 설정으로">
 <!ENTITY command-open.label "주소 열기">
 <!ENTITY command-opentab.label "새 탭에 주소 열기">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "새로운 글 갯수 초기화">
 <!ENTITY bmmenu-markread.label "모든 라이브 북마크를 읽은 것으로 표시">
 <!ENTITY bmmenu-clear.label "라이브 북마크 기록 지우기">
-<!ENTITY bmmenu-options.label "LiveClick 설정...">
+<!ENTITY bmmenu-options.label "LiveClick Lunar 설정...">
 <!-- Bookmarks Tooltips -->
 <!ENTITY bmprops-monitorcheckbox.label "이 피드의 새로운 글을 감시">
 <!ENTITY bmprops-expander-down.label "이 라이브 북마크를 맞춤 설정 하기">

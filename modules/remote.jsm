@@ -61,7 +61,7 @@ var LiveClickRemote =
 	{
 		if (!this._pagesDB)
 		{
-			let file = FileUtils.getFile("ProfD", ["liveclick.sqlite"]);
+			let file = FileUtils.getFile("ProfD", ["liveclick-lunar", "liveclick.sqlite"]);
 			this._pagesDB = Services.storage.openDatabase(file);
 		}
 		return this._pagesDB;
@@ -436,10 +436,10 @@ var LiveClickRemote =
 
 	deletePagesDB : function ()
 	{
-		let file = FileUtils.getFile("ProfD", ["liveclick.sqlite"]);
+		let file = FileUtils.getFile("ProfD", ["liveclick-lunar"]);
 		try
 		{
-			file.remove(false);
+			file.remove(true);
 		}
 		// If file locked, at least clear tables
 		catch (e)

@@ -171,7 +171,10 @@ LiveClickChrome.Utils =
 		else
 		{
 			// Retrieving instantApply preference here, not altering it
-			let bApply = getBoolPref("browser.preferences.instantApply", false);
+			let bApply = Cc["@mozilla.org/preferences-service;1"]
+				.getService(Ci.nsIPrefService)
+				.getBranch("browser.preferences.")
+				.getBoolPref("instantApply", false);
 			let sModal = bApply ? "dialog=no" : "modal";
 
 			let dialogURL = "chrome://liveclick/content/options.xul";

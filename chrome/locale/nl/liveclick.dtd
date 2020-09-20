@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "Browserstandaard uitvoeren">
 <!ENTITY command-open.label "Locatie openen">
 <!ENTITY command-opentab.label "Locatie openen in nieuw tabblad">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "Aantal nieuwe berichten resetten">
 <!ENTITY bmmenu-markread.label "Alle livebladwijzers als gelezen markeren">
 <!ENTITY bmmenu-clear.label "Geschiedenis van livebladwijzers wissen">
-<!ENTITY bmmenu-options.label "LiveClick-opties…">
+<!ENTITY bmmenu-options.label "LiveClick Lunar-opties…">
 <!-- Bookmarks Properties dialog -->
 <!ENTITY bmprops-monitorcheckbox.label "Deze livebladwijzer volgen op nieuwe berichten">
 <!ENTITY bmprops-expander-down.label "Deze livebladwijzer aanpassen">
@@ -66,7 +66,7 @@
 <!-- Bookmarks Tooltips -->
 <!ENTITY lit-loading.label "Laden voorbeeld…">
 <!-- LiveClick Options dialog -->
-<!ENTITY options-title "LiveClick-opties">
+<!ENTITY options-title "LiveClick Lunar-opties">
 <!ENTITY options-note-restart.label "Opmerking: U dient mogelijk te herstarten voordat wijzigingen worden doorgevoerd.">
 <!ENTITY options-generalpane.label "Algemeen">
 <!ENTITY options-update.caption "Livebladwijzers bijwerken">

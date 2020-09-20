@@ -1,5 +1,5 @@
 // Localized description
-pref("extensions.{d166ee2a-36bb-4f33-aff7-e85f912df509}.description", "chrome://liveclick/locale/liveclick.properties");
+pref("extensions.{7A86970F-5198-5370-9FCB-0EE0150876F7}.description", "chrome://liveclick/locale/liveclick.properties");
 
 // Last Version
 pref("extensions.liveclick.lastVersion", "1.0.1");

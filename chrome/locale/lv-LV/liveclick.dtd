@@ -1,5 +1,5 @@
 <!-- Common -->
-<!ENTITY extension.name "LiveClick">
+<!ENTITY extension.name "LiveClick Lunar">
 <!ENTITY command-default.label "Nav pārlūka noklusējums">
 <!ENTITY command-open.label "Atvērt atrašanās vietu">
 <!ENTITY command-opentab.label "Atvērt atrašanās vietu jaunā cilnē">
@@ -48,7 +48,7 @@
 <!ENTITY bmmenu-resetnewcount.label "Atiestatīt jauno skaitu">
 <!ENTITY bmmenu-markread.label "Atzīmēt visas dzīvās grāmatzīmes kā izlasītas">
 <!ENTITY bmmenu-clear.label "Notīrīt dzīvo grāmatzīmju vēsturi">
-<!ENTITY bmmenu-options.label "LiveClick Opcijas...">
+<!ENTITY bmmenu-options.label "LiveClick Lunar Opcijas...">
 <!-- Bookmarks Properties dialog -->
 <!ENTITY bmprops-monitorcheckbox.label "Novērot šo dzīvo grāmatzīmi, gaidot jaunus vienumus">
 <!ENTITY bmprops-expander-down.label "Pielāgot šo dzīvo grāmatzīmi">
@@ -66,7 +66,7 @@
 <!-- Bookmarks Tooltips -->
 <!ENTITY lit-loading.label "Ielādē priekšskatījumu...">
 <!-- LiveClick Options dialog -->
-<!ENTITY options-title "LiveClick Opcijas">
+<!ENTITY options-title "LiveClick Lunar Opcijas">
 <!ENTITY options-note-restart.label "Piezīme: Jums var būt nepieciešams restartēt, pirms izmaiņas stājas spēkā.">
 <!ENTITY options-generalpane.label "Vispārīgi">
 <!ENTITY options-update.caption "Dzīvot grāmatzīmju atjaunināšana">
