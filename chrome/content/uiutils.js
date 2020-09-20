@@ -39,7 +39,12 @@ LiveClickChrome.Utils =
 		let iCount = aPages.length;
 
 		// Prompt before opening too many new tabs
-		if (!PlacesUIUtils._confirmOpenInTabs(iCount)) return;
+		let bCanOpen = true;
+		if ("confirmOpenInTabs" in PlacesUIUtils)
+			bCanOpen = PlacesUIUtils.confirmOpenInTabs(iCount);
+		else if ("_confirmOpenInTabs" in PlacesUIUtils)
+			bCanOpen = PlacesUIUtils._confirmOpenInTabs(iCount);
+		if (!bCanOpen) return;
 
 		for (let i = 0; i < iCount; i++)
 		{
