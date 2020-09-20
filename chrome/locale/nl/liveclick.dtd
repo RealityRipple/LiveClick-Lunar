@@ -1,0 +1,166 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "Browserstandaard uitvoeren">
+<!ENTITY command-open.label "Locatie openen">
+<!ENTITY command-opentab.label "Locatie openen in nieuw tabblad">
+<!ENTITY command-feed.label "Feed openen">
+<!ENTITY command-feedtab.label "Feed openen in nieuw tabblad">
+<!ENTITY command-opennew.label "Nieuwste bericht openen">
+<!ENTITY command-group.label "Alle berichten openen in tabbladen">
+<!ENTITY command-groupunread.label "Ongelezen berichten openen in tabbladen">
+<!ENTITY command-groupnew.label "Nieuwe berichten openen in tabbladen">
+<!ENTITY command-reload.label "Livebladwijzer opnieuw laden">
+<!ENTITY command-markitemread.label "Bericht als gelezen markeren">
+<!ENTITY command-markitemseen.label "Bericht als ongelezen markeren indien nieuw">
+<!ENTITY command-markitemsread.label "Alle berichten als gelezen markeren">
+<!ENTITY command-resetnewcount.label "Aantal nieuwe berichten resetten">
+<!ENTITY command-markfeedsread.label "Alle livebladwijzers als gelezen markeren">
+<!ENTITY command-clearhistory.label "Geschiedenis van livebladwijzers wissen">
+<!ENTITY command-monitordefault.label "Standaardmonitor gebruiken">
+<!ENTITY command-monitoralert.label "Mij waarschuwen">
+<!ENTITY command-monitorautoload.label "Automatisch in tabbladen laden">
+<!ENTITY command-monitortag.label "Nieuwe berichten labellen">
+<!ENTITY command-nothing.label "Niets doen">
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "Locatie openen">
+<!ENTITY pcm-feed.label "Feed openen">
+<!ENTITY pcm-groupunread.label "Ongelezen berichten in tabbladen openen">
+<!ENTITY pcm-groupnew.label "Nieuwe berichten in tabbladen openen">
+<!ENTITY pcm-markfeedread.label "Alle berichten als gelezen markeren">
+<!ENTITY pcm-markfeedunread.label "Alle berichten als ongelezen markeren">
+<!ENTITY pcm-resetnewcount.label "Aantal nieuwe berichten resetten">
+<!ENTITY pcm-togglemonitor.label "Livebladwijzer volgen">
+<!ENTITY pcm-markitemsread.label "Als gelezen markeren">
+<!ENTITY pcm-markitemsunread.label "Als ongelezen markeren">
+<!ENTITY pcm-reloadfolder.label "Livebladwijzers opnieuw laden">
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "Livebladwijzer van deze pagina maken">
+<!ENTITY lbt-link.label "Livebladwijzer van deze feedkoppeling maken">
+<!-- LiveClick toolbar button -->
+<!ENTITY tbb-checknow.label "Nu op nieuwe berichten controleren">
+<!ENTITY tbb-checking.label "Controleren…">
+<!-- Bookmarks Menu -->
+<!ENTITY bmmenu-submenu.label "Livebladwijzers">
+<!ENTITY bmmenu-checknow.label "Nu op nieuwe berichten controleren">
+<!ENTITY bmmenu-checknow.accesskey "N">
+<!ENTITY bmmenu-stop.label "Controle stoppen">
+<!ENTITY bmmenu-suspend.label "Automatische controle uitstellen">
+<!ENTITY bmmenu-resetnewcount.label "Aantal nieuwe berichten resetten">
+<!ENTITY bmmenu-markread.label "Alle livebladwijzers als gelezen markeren">
+<!ENTITY bmmenu-clear.label "Geschiedenis van livebladwijzers wissen">
+<!ENTITY bmmenu-options.label "LiveClick-opties…">
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmprops-monitorcheckbox.label "Deze livebladwijzer volgen op nieuwe berichten">
+<!ENTITY bmprops-expander-down.label "Deze livebladwijzer aanpassen">
+<!ENTITY bmprops-check.label "Controleren op nieuwe berichten:">
+<!ENTITY bmprops-check-every6h.label "Elke 6 uur">
+<!ENTITY bmprops-check-every4h.label "Elke 4 uur">
+<!ENTITY bmprops-check-every2h.label "Elke 2 uur">
+<!ENTITY bmprops-check-every60m.label "Elk uur">
+<!ENTITY bmprops-check-every30m.label "Elk half uur">
+<!ENTITY bmprops-check-every15m.label "Elk kwartier">
+<!ENTITY bmprops-check-every10m.label "Elke 10 minuten">
+<!ENTITY bmprops-check-custom.label "Aangepast…">
+<!ENTITY bmprops-check-timeunit.label "(minuten)">
+<!ENTITY bmprops-monitor.label "Wanneer nieuwe berichten worden gevonden:">
+<!-- Bookmarks Tooltips -->
+<!ENTITY lit-loading.label "Laden voorbeeld…">
+<!-- LiveClick Options dialog -->
+<!ENTITY options-title "LiveClick-opties">
+<!ENTITY options-note-restart.label "Opmerking: U dient mogelijk te herstarten voordat wijzigingen worden doorgevoerd.">
+<!ENTITY options-generalpane.label "Algemeen">
+<!ENTITY options-update.caption "Livebladwijzers bijwerken">
+<!ENTITY options-checkonstart.label "Op nieuwe berichten controleren bij opstarten Firefox">
+<!ENTITY options-check1.label "Interval voor controle op nieuwe feedonderwerpen:">
+<!ENTITY options-check2.label "minu(u)t(en).">
+<!ENTITY options-checkdefault.label "Opmerking: het standaardinterval is 60 minuten.">
+<!ENTITY options-history.caption "Geschiedenis">
+<!ENTITY options-history-onvisit.label "Na bezoeken van de locatie van een livebladwijzer:">
+<!ENTITY options-history-onexit.label "Bij afsluiten van Firefox:">
+<!ENTITY options-history-clearprivate.label "Wissen bij wissen navigatiegeschiedenis">
+<!ENTITY options-history-clearnow.label "Nu wissen">
+<!ENTITY options-appearancepane.label "Weergave">
+<!ENTITY options-reading.caption "Lezen">
+<!ENTITY options-showcount.label "Aantal weergeven:">
+<!ENTITY options-countnew.label "Nieuwe berichten">
+<!ENTITY options-countunread.label "Ongelezen berichten">
+<!ENTITY options-countnone.label "Niets">
+<!ENTITY options-stylefolders.label "Mappen">
+<!ENTITY options-stylelivemarks.label "Livemarks">
+<!ENTITY options-styleitems.label "Berichten">
+<!ENTITY options-stylenew-select.label "Nieuw:">
+<!ENTITY options-stylefresh-select.label "Nieuw:">
+<!ENTITY options-styleunread-select.label "Ongelezen:">
+<!ENTITY options-styleread-select.label "Gelezen:">
+<!ENTITY options-style0.label "Normaal">
+<!ENTITY options-style1.label "Vaag">
+<!ENTITY options-style2.label "Niet weergegeven">
+<!ENTITY options-style5.label "Vetgedrukt">
+<!ENTITY options-style6.label "Oranje">
+<!ENTITY options-stylecustom.label "Aangepast">
+<!ENTITY options-showmax1.label "Niet meer dan">
+<!ENTITY options-showmax2.label "berichten weergeven">
+<!ENTITY options-icons.caption "Pictogrammen">
+<!ENTITY options-showfavicons.label "Favicons in plaats van livebladwijzerpictogram weergeven">
+<!ENTITY options-tooltips.caption "Tooltips">
+<!ENTITY options-showpreviews.label "Voorbeelden weergeven voor livebladwijzerberichten">
+<!ENTITY options-history-onpreview.label "Na weergeven voorbeeld van livebladwijzerbericht:">
+<!ENTITY options-menuspane.label "Menu’s">
+<!ENTITY options-clicks.caption "Klikken op livebladwijzers">
+<!ENTITY options-leftmenu.label "Linkermuisknop:">
+<!ENTITY options-middlemenu.label "Middelste muisknop:">
+<!ENTITY options-accelmenu.label "Ctrl/Cmd klik:">
+<!ENTITY options-feedsmenu.caption "Livemark menuopties">
+<!ENTITY options-keepopen.label "Menu openlaten na middelklikken van berichten">
+<!ENTITY options-keepopenexceptlast.label "Sluiten na middelklik op laatste bericht">
+<!ENTITY options-placemenu.label "Menuonderdelen plaatsen:">
+<!ENTITY options-place-top.label "Bovenaan">
+<!ENTITY options-place-bottom.label "Onderaan">
+<!ENTITY options-showopen.label "‘Adres openen’ weergeven">
+<!ENTITY options-showfeed.label "‘Feed bekijken’ weergeven">
+<!ENTITY options-showtabs.label "‘Ongelezen berichten in tabbladen openen’ weergeven">
+<!ENTITY options-showread.label "‘Alle onderwerpen als gelezen markeren’ weergeven">
+<!ENTITY options-history-onpopup.label "Na bekijken van Livemarkmenu:">
+<!ENTITY options-monitorspane.label "Volgen">
+<!ENTITY options-monitor-select.label "Wanneer een gevolgde livebladwijzer nieuwe berichten heeft:">
+<!ENTITY options-monitor-action-alert.label "Mij waarschuwen">
+<!ENTITY options-monitor-action-autoload.label "Nieuwe berichten automatisch in tabbladen laden">
+<!ENTITY options-monitor-action-livetag.label "Nieuwe berichten labellen (Slimme Bladwijzers)">
+<!ENTITY options-monitor-customize.label "U kunt het hieronder het gedrag van elke volgopdracht aanpassen">
+<!ENTITY options-monitor-tab-feeds.label "Gevolgd">
+<!ENTITY options-monitor-tab-alert.label "Waarschuwing">
+<!ENTITY options-monitor-tab-autoload.label "Automatisch laden">
+<!ENTITY options-monitor-tab-livetag.label "Label">
+<!ENTITY options-monitored-all.label "Alle livebladwijzers volgen">
+<!ENTITY options-monitored-select.label "Selecteer de te volgen livebladwijzers:">
+<!ENTITY options-monitored-count.label "Totaal:">
+<!ENTITY options-monitored-selectall.label "Alles selecteren">
+<!ENTITY options-monitored-selectnone.label "Niets selecteren">
+<!ENTITY options-alert-1item.label "Wanneer de waarschuwing wordt aangeklikt met 1 nieuw bericht:">
+<!ENTITY options-alert-nitem.label "Wanneer de waarschuwing wordt aangeklikt met meerdere nieuwe berichten:">
+<!ENTITY options-alert-repeat.label "Alarmen herhalen:">
+<!ENTITY options-alert-repeat-always.label "Elke keer wanneer een livebladwijzer wordt gecontroleerd">
+<!ENTITY options-alert-repeat-session.label "Eén keer per Firefox-sessie">
+<!ENTITY options-alert-repeat-never.label "Alarmen nooit herhalen">
+<!ENTITY options-autoload-1item.label "Wanneer 1 nieuw bericht automatisch wordt geladen:">
+<!ENTITY options-autoload-nitem.label "Wanneer meerdere nieuwe berichten automatisch worden geladen:">
+<!ENTITY options-autoload-alert.label "Mij waarschuwen na automatisch laden van berichten">
+<!ENTITY options-livetag-label.label "Labellen als:">
+<!ENTITY options-livetag-createfolder.label "Map aanmaken">
+<!ENTITY options-livetag-changenote.label "Opmerking: Indien u labels verandert dient u tevens een nieuwe map voor Slimme Bladwijzers aan te maken.">
+<!ENTITY options-livetag-alert.label "Mij waarschuwen na labellen van berichten">
+<!ENTITY options-livetag-onread.label "Label verwijderen na lezen van bericht">
+<!ENTITY options-settings-button.label "Instellingen">
+<!ENTITY options-settings-restore.label "Standaardinstellingen terugzetten">
+<!ENTITY options-settings-import.label "Instellingen importeren…">
+<!ENTITY options-settings-export.label "Instellingen exporteren…">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "Over">
+<!ENTITY about-createdby.label "Gemaakt door:">
+<!ENTITY about-visithome.label "Startpagina bezoeken">
+<!ENTITY about-visitfaq.label "FAQ bekijken">
+<!ENTITY about-donate.label "Doneren">
+<!ENTITY about-contributors.label "Bijdrages van:">
+<!ENTITY about-translators.label "Vertalers:">
+<!ENTITY about-babelzilla.label "Speciaal dankwoord aan BabelZilla!">
+<!ENTITY about-icons.label "Pictogrammen van het Tango Desktop Project zijn gebruikt met toestemming onder de Creative Commons Attribution Share-Alike licentie.">

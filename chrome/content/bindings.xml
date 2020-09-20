@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE bindings [
+  <!ENTITY % globalDTD SYSTEM "chrome://global/locale/global.dtd">
+  %globalDTD;
+]>
+
+<bindings
+   xmlns="http://www.mozilla.org/xbl"
+   xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+   xmlns:xbl="http://www.mozilla.org/xbl">
+
+  /* cf http://mxr.mozilla.org/mozilla-central/source/toolkit/content/widgets/toolbarbutton.xml#28 */
+  <binding id="liveclick-livemark-toolbarbutton" display="xul:menu"
+           extends="chrome://global/content/bindings/toolbarbutton.xml#toolbarbutton">
+    <content>
+      <children includes="observes|template|menupopup|panel|tooltip"/>
+      <xul:image class="toolbarbutton-icon" xbl:inherits="validate,src=image,label,type,consumeanchor"/>
+      <xul:label class="toolbarbutton-text liveclick-label" crop="right" flex="1"
+                 xbl:inherits="value=label,accesskey,crop,dragover-top,wrap"/>
+      <xul:label class="toolbarbutton-text liveclick-counter" xbl:inherits="value=counter"/>
+      <xul:dropmarker anonid="dropmarker" type="menu"
+	                  class="toolbarbutton-menu-dropmarker" xbl:inherits="disabled,label"/>
+    </content>
+  </binding>
+
+  /* cf http://mxr.mozilla.org/mozilla-central/source/toolkit/content/widgets/menu.xml#241 */
+  <binding id="liveclick-livemark-menu"
+           extends="chrome://global/content/bindings/menu.xml#menu-base">
+    <content>
+      <xul:hbox class="menu-iconic-left" align="center" pack="center">
+        <xul:image class="menu-iconic-icon" xbl:inherits="src=image"/>
+      </xul:hbox>
+      <xul:label class="menu-iconic-text liveclick-label" flex="1" xbl:inherits="value=label,accesskey,crop" crop="right"/>
+      <xul:label class="menu-iconic-text liveclick-counter" xbl:inherits="value=counter"/>
+      <xul:hbox align="center" class="menu-right" xbl:inherits="_moz-menuactive,disabled">
+        <xul:image/>
+      </xul:hbox>
+      <children includes="menupopup|template"/>
+    </content>
+  </binding>
+
+</bindings>

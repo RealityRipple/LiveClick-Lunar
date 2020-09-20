@@ -1,0 +1,166 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "Browservoreinstellung">
+<!ENTITY command-open.label "Seite öffnen">
+<!ENTITY command-opentab.label "Seite in neuem Tab öffnen">
+<!ENTITY command-feed.label "Feed öffnen">
+<!ENTITY command-feedtab.label "Feed in neuem Tab öffnen">
+<!ENTITY command-opennew.label "Neuesten Eintrag öffnen">
+<!ENTITY command-group.label "Alle Einträge in Tabs öffnen">
+<!ENTITY command-groupunread.label "Ungelesene Einträge in Tabs öffnen">
+<!ENTITY command-groupnew.label "Neue Einträge in Tabs öffnen">
+<!ENTITY command-reload.label "Dynamisches Lesezeichen aktualisieren">
+<!ENTITY command-markitemread.label "Eintrag als gelesen markieren">
+<!ENTITY command-markitemseen.label "Falls frisch, Eintrag als ungelesen markieren">
+<!ENTITY command-markitemsread.label "Alle Einträge als gelesen markieren">
+<!ENTITY command-resetnewcount.label "Neue Zählung zurücksetzen">
+<!ENTITY command-markfeedsread.label "Alle dynamischen Lesezeichen als gelesen markieren">
+<!ENTITY command-clearhistory.label "Chronik der dynamischen Lesezeichen löschen">
+<!ENTITY command-monitordefault.label "Standardmonitor verwenden">
+<!ENTITY command-monitoralert.label "Mich benachrichtigen">
+<!ENTITY command-monitorautoload.label "Automatisch in Tabs laden">
+<!ENTITY command-monitortag.label "Neue Einträge taggen">
+<!ENTITY command-nothing.label "Nichts tun">
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "Seite öffnen">
+<!ENTITY pcm-feed.label "Feed öffnen">
+<!ENTITY pcm-groupunread.label "Ungelesene Einträge in Tabs öffnen">
+<!ENTITY pcm-groupnew.label "Neue Einträge in Tabs öffnen">
+<!ENTITY pcm-markfeedread.label "Alle Einträge als gelesen markieren">
+<!ENTITY pcm-markfeedunread.label "Alle Einträge als ungelesen markieren">
+<!ENTITY pcm-resetnewcount.label "Neue Zählung zurücksetzen">
+<!ENTITY pcm-togglemonitor.label "Dynamisches Lesezeichen überwachen">
+<!ENTITY pcm-markitemsread.label "Als gelesen markieren">
+<!ENTITY pcm-markitemsunread.label "Als ungelesen markieren">
+<!ENTITY pcm-reloadfolder.label "Dynamische Lesezeichen aktualisieren">
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "Dynamisches Lesezeichen für diese Seite anlegen…">
+<!ENTITY lbt-link.label "Dynamisches Lesezeichen für diesen Feed anlegen…">
+<!-- LiveClick toolbar button -->
+<!ENTITY tbb-checknow.label "Jetzt auf neue Einträge überprüfen">
+<!ENTITY tbb-checking.label "Überprüft…">
+<!-- Bookmarks Menu -->
+<!ENTITY bmmenu-submenu.label "Dynamische Lesezeichen">
+<!ENTITY bmmenu-checknow.label "Jetzt auf neue Einträge überprüfen">
+<!ENTITY bmmenu-checknow.accesskey "ü">
+<!ENTITY bmmenu-stop.label "Stoppe Überprüfung">
+<!ENTITY bmmenu-suspend.label "Automatische Überprüfung aufheben">
+<!ENTITY bmmenu-resetnewcount.label "Neue Zählung zurücksetzen">
+<!ENTITY bmmenu-markread.label "Alle dynamischen Lesezeichen als gelesen markieren">
+<!ENTITY bmmenu-clear.label "Dynamische Lesezeichen-Chronik löschen">
+<!ENTITY bmmenu-options.label "LiveClick Optionen…">
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmprops-monitorcheckbox.label "Dieses Lesezeichen auf neue Einträge überwachen">
+<!ENTITY bmprops-expander-down.label "Dieses Lesezeichen anpassen">
+<!ENTITY bmprops-check.label "Überprüfe neue Einträge:">
+<!ENTITY bmprops-check-every6h.label "Alle 6 Stunden">
+<!ENTITY bmprops-check-every4h.label "Alle 4 Stunden">
+<!ENTITY bmprops-check-every2h.label "Alle 2 Stunden">
+<!ENTITY bmprops-check-every60m.label "Alle 60 Minuten">
+<!ENTITY bmprops-check-every30m.label "Alle 30 Minuten">
+<!ENTITY bmprops-check-every15m.label "Alle 15 Minuten">
+<!ENTITY bmprops-check-every10m.label "Alle 10 Minuten">
+<!ENTITY bmprops-check-custom.label "Angepasst…">
+<!ENTITY bmprops-check-timeunit.label "(Minuten)">
+<!ENTITY bmprops-monitor.label "Wenn neue Einträge vorhanden sind:">
+<!-- Bookmarks Tooltips -->
+<!ENTITY lit-loading.label "Lade Vorschau…">
+<!-- LiveClick Options dialog -->
+<!ENTITY options-title "LiveClick-Optionen">
+<!ENTITY options-note-restart.label "Hinweis: Eventuell ist ein Neustart nötig, bevor die Einstellungen übernommen werden.">
+<!ENTITY options-generalpane.label "Allgemein">
+<!ENTITY options-update.caption "Dynamische Lesezeichen aktualisieren">
+<!ENTITY options-checkonstart.label "Beim Öffnen von Firefox auf neue Einträge überprüfen">
+<!ENTITY options-check1.label "Alle">
+<!ENTITY options-check2.label "Minuten auf neue Einträge prüfen.">
+<!ENTITY options-checkdefault.label "Das Standardintervall beträgt 60 Minuten.">
+<!ENTITY options-history.caption "Chronik">
+<!ENTITY options-history-onvisit.label "Nachdem die Seite eines dynamischen Lesezeichens besucht wurde:">
+<!ENTITY options-history-onexit.label "Wenn Firefox beendet wird:">
+<!ENTITY options-history-clearprivate.label "Lösche wenn Browserverlauf gelöscht wird">
+<!ENTITY options-history-clearnow.label "Jetzt löschen">
+<!ENTITY options-appearancepane.label "Aussehen">
+<!ENTITY options-reading.caption "Lesen">
+<!ENTITY options-showcount.label "Anzahl anzeigen von…">
+<!ENTITY options-countnew.label "neuen Einträgen">
+<!ENTITY options-countunread.label "ungelesenen Einträgen">
+<!ENTITY options-countnone.label "nichts">
+<!ENTITY options-stylefolders.label "Ordner">
+<!ENTITY options-stylelivemarks.label "Dynamische Lesezeichen">
+<!ENTITY options-styleitems.label "Einträge">
+<!ENTITY options-stylenew-select.label "Neu:">
+<!ENTITY options-stylefresh-select.label "Frisch:">
+<!ENTITY options-styleunread-select.label "Ungelesen:">
+<!ENTITY options-styleread-select.label "Gelesen:">
+<!ENTITY options-style0.label "Normal">
+<!ENTITY options-style1.label "Ausgeblendet">
+<!ENTITY options-style2.label "Nicht angezeigt">
+<!ENTITY options-style5.label "Fettschrift">
+<!ENTITY options-style6.label "Orange">
+<!ENTITY options-stylecustom.label "Eigener Stil">
+<!ENTITY options-showmax1.label "Zeige nicht mehr als">
+<!ENTITY options-showmax2.label "Einträge">
+<!ENTITY options-icons.caption "Symbole">
+<!ENTITY options-showfavicons.label "Favicons statt Standard-Symbol anzeigen">
+<!ENTITY options-tooltips.caption "Tooltips">
+<!ENTITY options-showpreviews.label "Vorschau für Einträge in dynamischen Lesezeichen anzeigen">
+<!ENTITY options-history-onpreview.label "Nach Vorschau eines Eintrags in dynamischen Lesezeichen:">
+<!ENTITY options-menuspane.label "Menüs">
+<!ENTITY options-clicks.caption "Maustaste">
+<!ENTITY options-leftmenu.label "linke Maustaste:">
+<!ENTITY options-middlemenu.label "mittlere Maustaste:">
+<!ENTITY options-accelmenu.label "Strg/⌘-Klick:">
+<!ENTITY options-feedsmenu.caption "Feed Menüoptionen">
+<!ENTITY options-keepopen.label "Menü nach Mausklick mit mittlerer Maustaste offen belassen">
+<!ENTITY options-keepopenexceptlast.label "Schließen nach Mittelklick auf letzten ungelesenen Eintrag">
+<!ENTITY options-placemenu.label "Position des Menüeintrags">
+<!ENTITY options-place-top.label "Oben">
+<!ENTITY options-place-bottom.label "Unten">
+<!ENTITY options-showopen.label "&apos;Ziel öffnen&apos; anzeigen">
+<!ENTITY options-showfeed.label "&apos;Feed anzeigen&apos; anzeigen">
+<!ENTITY options-showtabs.label "&apos;Ungelesene Einträge in Tabs öffnen&apos; anzeigen">
+<!ENTITY options-showread.label "&apos;Alle Einträge als gelesen markieren&apos; anzeigen">
+<!ENTITY options-history-onpopup.label "Nachdem ein dynamisches Lesezeichen aufgeklappt war:">
+<!ENTITY options-monitorspane.label "Überwachung">
+<!ENTITY options-monitor-select.label "Wenn ein überwachter Feed einen neuen Eintrag hat:">
+<!ENTITY options-monitor-action-alert.label "Mich benachrichtigen">
+<!ENTITY options-monitor-action-autoload.label "Neue Einträge automatisch in Tabs laden">
+<!ENTITY options-monitor-action-livetag.label "Neue Einträge mit Tags versehen (Smart Bookmarks)">
+<!ENTITY options-monitor-customize.label "Hier kann das Verhalten jedes überwachten Feeds eingestellt werden.">
+<!ENTITY options-monitor-tab-feeds.label "Überwachte Feeds">
+<!ENTITY options-monitor-tab-alert.label "Benachrichtigung">
+<!ENTITY options-monitor-tab-autoload.label "Aktualisieren">
+<!ENTITY options-monitor-tab-livetag.label "Taggen">
+<!ENTITY options-monitored-all.label "Alle dynamischen Lesezeichen überwachen">
+<!ENTITY options-monitored-select.label "Wählen Sie die dynamischen Lesezeichen aus, die überwacht werden sollen:">
+<!ENTITY options-monitored-count.label "Insgesamt:">
+<!ENTITY options-monitored-selectall.label "Alle auswählen">
+<!ENTITY options-monitored-selectnone.label "Nichts auswählen">
+<!ENTITY options-alert-1item.label "Bei Benachrichtigung mit einem neuen Eintrag:">
+<!ENTITY options-alert-nitem.label "Bei Benachrichtigung mit mehreren neuen Einträgen:">
+<!ENTITY options-alert-repeat.label "Benachrichtigungen wiederholen:">
+<!ENTITY options-alert-repeat-always.label "Bei jedem Überprüfen der dynamischen Lesezeichen">
+<!ENTITY options-alert-repeat-session.label "Einmal pro Firefox-Sitzung">
+<!ENTITY options-alert-repeat-never.label "Benachrichtigungen nie wiederholen">
+<!ENTITY options-autoload-1item.label "Bei automatischer Aktualisierung eines neuen Eintrags:">
+<!ENTITY options-autoload-nitem.label "Bei automatischer Aktualisierung mehrerer neuer Einträge:">
+<!ENTITY options-autoload-alert.label "Mich bei automatisch aktualisierten neuen Einträgen benachrichtigen">
+<!ENTITY options-livetag-label.label "Taggen als:">
+<!ENTITY options-livetag-createfolder.label "Ordner erstellen">
+<!ENTITY options-livetag-changenote.label "Bitte beachten: Wenn Tags geändert werden, muss auch ein neuer Ordner in den Smart Bookmarks erstellt werden.">
+<!ENTITY options-livetag-alert.label "Nach dem Taggen von Einträgen benachrichtigen">
+<!ENTITY options-livetag-onread.label "Tag nach dem Lesen entfernen">
+<!ENTITY options-settings-button.label "Einstellungen">
+<!ENTITY options-settings-restore.label "Standardeinstellungen">
+<!ENTITY options-settings-import.label "Einstellungen importieren">
+<!ENTITY options-settings-export.label "Einstellungen exportieren">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "Über">
+<!ENTITY about-createdby.label "Erstellt von:">
+<!ENTITY about-visithome.label "Homepage">
+<!ENTITY about-visitfaq.label "FAQ">
+<!ENTITY about-donate.label "Spenden">
+<!ENTITY about-contributors.label "Mitwirkende:">
+<!ENTITY about-translators.label "Übersetzer:">
+<!ENTITY about-babelzilla.label "Besonderer Dank an BabelZilla!">
+<!ENTITY about-icons.label "Symbole aus dem Tango Desktop Project, verwendet mit Genehmigung unter der Creative Commons Attribution Share-Alike Lizenz.">

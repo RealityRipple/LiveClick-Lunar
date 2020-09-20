@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE overlay [
+<!ENTITY % liveclickContextDTD SYSTEM "chrome://liveclick/locale/liveclick.dtd"> %liveclickContextDTD;
+<!ENTITY % placesDTD SYSTEM "chrome://browser/locale/places/places.dtd"> %placesDTD;
+<!ENTITY % editMenuOverlayDTD SYSTEM "chrome://global/locale/editMenuOverlay.dtd"> %editMenuOverlayDTD;
+]>
+
+<overlay id="liveclick-places-menu-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- Core JavaScript -->
+	<script type="application/javascript" src="chrome://liveclick/content/context-overlay.js" />
+
+	<popup id="placesContext">
+		<!-- Livemark context menu -->
+		<menuitem id="liveclick-pcm-open"
+			oncommand="LiveClickChrome.Utils.openURL(event.originalTarget.getAttribute('siteURI'), event, '');"
+			onclick="checkForMiddleClick(this, event); closeMenus(document.popupNode);"
+			label="&pcm-open.label;"
+			insertbefore="placesContext_openContainer:tabs"
+			selection="livemark/siteURI"
+			selectiontype="single" />
+		<menuitem id="liveclick-pcm-feed"
+			oncommand="LiveClickChrome.Utils.openFeed(event.originalTarget.getAttribute('feedURI'), event, '');"
+			onclick="checkForMiddleClick(this, event); closeMenus(document.popupNode);"
+			label="&pcm-feed.label;"
+			insertbefore="placesContext_openContainer:tabs"
+			selection="livemark/feedURI"
+			selectiontype="single" />
+		<menuseparator id="liveclick-pcm-open-separator"
+			insertbefore="placesContext_openContainer:tabs" />
+		<menuitem id="liveclick-pcm-groupunread"
+			oncommand="LiveClickChrome.Utils.openGroup(event.originalTarget.getAttribute('livemarkId'), 'unread');"
+			label="&pcm-groupunread.label;"
+			insertbefore="placesContext_openSeparator"
+			selection="livemark/feedURI"
+			selectiontype="single" />
+		<menuitem id="liveclick-pcm-groupnew"
+			oncommand="LiveClickChrome.Utils.openGroup(event.originalTarget.getAttribute('livemarkId'), 'unseen');"
+			label="&pcm-groupnew.label;"
+			insertbefore="placesContext_openSeparator"
+			selection="livemark/feedURI"
+			selectiontype="single" />
+		<menuseparator id="liveclick-pcm-mark-separator"
+			insertbefore="placesContext_openSeparator" />
+		<menuitem id="liveclick-pcm-markFeedRead"
+			oncommand="LiveClickPlaces.markLivemark(event.originalTarget.getAttribute('livemarkId'), 'read');"
+			label="&pcm-markfeedread.label;"
+			insertbefore="placesContext_openSeparator"
+			closemenu="single"
+			selection="livemark/feedURI"
+			selectiontype="single" />
+		<menuitem id="liveclick-pcm-markFeedUnread"
+			oncommand="LiveClickPlaces.markLivemark(event.originalTarget.getAttribute('livemarkId'), 'unread');"
+			label="&pcm-markfeedunread.label;"
+			insertbefore="placesContext_openSeparator"
+			closemenu="single"
+			selection="livemark/feedURI"
+			selectiontype="single" />
+		<menuitem id="liveclick-pcm-resetnewcount"
+			oncommand="LiveClickPlaces.markLivemark(event.originalTarget.getAttribute('livemarkId'), 'seen');"
+			label="&pcm-resetnewcount.label;"
+			insertbefore="placesContext_openSeparator"
+			closemenu="single"
+			selection="livemark/feedURI"
+			selectiontype="single" />
+		<menuitem id="placesContext_reload"
+			command=""
+			oncommand="LiveClickPlaces.checkLivemark(event.originalTarget.getAttribute('livemarkId'));"
+			selection="livemark/feedURI"
+			selectiontype="single" />
+		<menuitem id="liveclick-pcm-toggleMonitor"
+			oncommand="LiveClickPlaces.toggleMonitor(event.originalTarget.getAttribute('livemarkId'));"
+			label="&pcm-togglemonitor.label;"
+			insertbefore="placesContext_show:info"
+			selection="livemark/feedURI"
+			selectiontype="single"
+			type="checkbox" />
+
+		<!-- Livemark item context menu -->
+		<menuitem id="liveclick-pcm-markRead"
+			oncommand="LiveClickPlaces.markPage(event.originalTarget.getAttribute('pageId'), 'read');"
+			label="&pcm-markitemsread.label;"
+			insertbefore="placesContext_openSeparator"
+			closemenu="single"
+			selection="livemarkChild"
+			selectiontype="single" />
+		<menuitem id="liveclick-pcm-markUnread"
+			oncommand="LiveClickPlaces.markPage(event.originalTarget.getAttribute('pageId'), 'unread');"
+			label="&pcm-markitemsunread.label;"
+			insertbefore="placesContext_openSeparator"
+			closemenu="single"
+			selection="livemarkChild"
+			selectiontype="single" />
+
+		<!-- Livemark and livemark item context menu -->
+
+		<menuseparator id="liveclick-pcm-mark-separator"
+			insertbefore="placesContext_cut" />
+
+		<!-- Folder context menu -->
+		<menuitem id="liveclick-pcm-folderUnread"
+			oncommand="LiveClickChrome.Utils.openFolderItems(event.originalTarget.getAttribute('folderId'), 'unread');"
+			label="&pcm-groupunread.label;"
+			insertbefore="placesContext_openSeparator"
+			selection="folder"
+			selectiontype="single"
+			forcehideselection="livemark/feedURI" />
+		<menuitem id="liveclick-pcm-folderFresh"
+			oncommand="LiveClickChrome.Utils.openFolderItems(event.originalTarget.getAttribute('folderId'), 'unseen');"
+			label="&pcm-groupnew.label;"
+			insertbefore="placesContext_openSeparator"
+			selection="folder"
+			selectiontype="single"
+			forcehideselection="livemark/feedURI" />
+		<menuseparator id="liveclick-pcm-reload-separator"
+			insertbefore="placesContext_sortSeparator" />
+		<menuitem id="liveclick-pcm-reload"
+			oncommand="LiveClickPlaces.checkFolder(event.originalTarget.getAttribute('folderId'));"
+			label="&pcm-reloadfolder.label;"
+			insertbefore="placesContext_sortSeparator"
+			closemenu="single"
+			selection="folder"
+			selectiontype="single"
+			forcehideselection="livemark/feedURI" />
+	</popup>
+
+	<popupset id="mainPopupSet">
+		<!-- Livemark item context menu -->
+		<popup id="liveclick-items-menu">
+			<menuitem id="liveclick-pcm-openItem"
+				oncommand="LiveClickChrome.Utils.openURL(event.originalTarget.getAttribute('uri'), event, '');"
+				onclick="checkForMiddleClick(this, event); closeMenus(document.popupNode);"
+				label="&cmd.open.label;"
+				accesskey="&cmd.open.accesskey;"
+				default="true" />
+			<menuitem id="liveclick-pcm-openItemTab"
+				oncommand="LiveClickChrome.Utils.openURL(event.originalTarget.getAttribute('uri'), event, 'tab');"
+				label="&cmd.open_tab.label;"
+				accesskey="&cmd.open_tab.accesskey;" />
+			<menuseparator />
+			<menuitem id="liveclick-pcm-markRead"
+				oncommand="LiveClickPlaces.markPage(event.originalTarget.getAttribute('pageId'), 'read');"
+				label="&pcm-markitemsread.label;"
+				closemenu="single" />
+			<menuitem id="liveclick-pcm-markUnread"
+				oncommand="LiveClickPlaces.markPage(event.originalTarget.getAttribute('pageId'), 'unread');"
+				label="&pcm-markitemsunread.label;"
+				closemenu="single" />
+		</popup>
+	</popupset>
+
+</overlay>

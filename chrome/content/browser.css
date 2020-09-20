@@ -1,0 +1,64 @@
+ /* ====================== */
+/* === Tooltip styles === */
+
+#liveclick-lit-title
+{
+	max-width: 60ex;
+}
+
+#liveclick-lit-preview
+{
+	max-width: 55ex;
+	line-height: 1.3em;
+}
+
+#liveclick-lit image
+{
+	-moz-image-region: rect(0px,16px,16px,0px) !important;
+}
+
+ /* =============================== */
+/* === Livemark "about" styles === */
+
+/* about:livemark-loading */
+.bookmark-item[lmStatus="bookmarksLivemarkLoading"]
+{
+	list-style-image: url("chrome://global/skin/icons/loading_16.png") !important;
+}
+
+/* about:livemark-failed */
+.bookmark-item[lmStatus="bookmarksLivemarkFailed"]
+{
+	list-style-image: url("chrome://global/skin/icons/error-16.png") !important;
+}
+
+ /* ========================= */
+/* === General CSS fixes === */
+
+/* Prevent livemark favicons from being larger than 16x16 pixels */
+.bookmark-item[livemark] > hbox > image
+{
+	max-height: 16px !important;
+	max-width: 16px !important;
+}
+
+/* Adjust margins of livemark counters */
+.bookmark-item[livemark] .toolbarbutton-text.liveclick-counter
+{
+	-moz-margin-start: .3em !important;
+}
+.bookmark-item[livemark] .menu-iconic-text.liveclick-counter
+{
+	-moz-margin-start: .74em !important;
+}
+
+/* Hide empty counters on toolbar livemarks */
+.bookmark-item[livemark][counter] .liveclick-counter
+{
+	display: block !important;
+}
+
+.bookmark-item[livemark]:not([counter]) .liveclick-counter
+{
+	display: none !important;
+}

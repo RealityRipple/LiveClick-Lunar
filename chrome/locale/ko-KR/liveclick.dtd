@@ -1,0 +1,166 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "브라우저 기본 설정으로">
+<!ENTITY command-open.label "주소 열기">
+<!ENTITY command-opentab.label "새 탭에 주소 열기">
+<!ENTITY command-feed.label "피드 열기">
+<!ENTITY command-feedtab.label "새 탭에 피드 열기">
+<!ENTITY command-opennew.label "가장 최근의 글 열기">
+<!ENTITY command-group.label "새 탭에 모든 글 열기">
+<!ENTITY command-groupunread.label "새 탭에 보지 않은 모든 글 열기">
+<!ENTITY command-groupnew.label "새 탭에 새로운 글 열기">
+<!ENTITY command-reload.label "라이브 북마크 갱신">
+<!ENTITY command-markitemread.label "읽은 것으로 표시">
+<!ENTITY command-markitemseen.label "새로운 것을 읽지 않은 것으로 표시">
+<!ENTITY command-markitemsread.label "모두 읽은 것으로 표시">
+<!ENTITY command-resetnewcount.label "새로운 글 갯수 초기화">
+<!ENTITY command-markfeedsread.label "모든 라이브 북마크를 읽은 것으로 표시">
+<!ENTITY command-clearhistory.label "라이브 북마크 기록 지우기">
+<!ENTITY command-monitordefault.label "Use default monitor">
+<!ENTITY command-monitoralert.label "나에게 알림">
+<!ENTITY command-monitorautoload.label "탭에 자동으로 불러오기">
+<!ENTITY command-monitortag.label "새 글을 태그하기">
+<!ENTITY command-nothing.label "아무것도 하지 않음">
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "주소 열기">
+<!ENTITY pcm-feed.label "피드 열기">
+<!ENTITY pcm-groupunread.label "새 탭에 안 읽은 글 열기">
+<!ENTITY pcm-groupnew.label "새 탭에 새로운 글 열기">
+<!ENTITY pcm-markfeedread.label "모두 읽은 것으로 표시">
+<!ENTITY pcm-markfeedunread.label "모두 안 읽은 것으로 표시">
+<!ENTITY pcm-resetnewcount.label "새로운 글 갯수 초기화">
+<!ENTITY pcm-togglemonitor.label "라이브 북마크 감시">
+<!ENTITY pcm-markitemsread.label "읽은 것으로 표시">
+<!ENTITY pcm-markitemsunread.label "안 읽은 것으로 표시">
+<!ENTITY pcm-reloadfolder.label "라이브 북마크 갱신">
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "이 페이지를 라이브 북마크로 등록">
+<!ENTITY lbt-link.label "이 피드 링크를 라이브 북마크로 등록">
+<!-- Bookmarks Menu -->
+<!ENTITY tbb-checknow.label "지금 새로운 글 확인">
+<!ENTITY tbb-checking.label "확인중...">
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmmenu-submenu.label "라이브 북마크">
+<!ENTITY bmmenu-checknow.label "지금 새로운 글 확인">
+<!ENTITY bmmenu-checknow.accesskey "L">
+<!ENTITY bmmenu-stop.label "검사 중단">
+<!ENTITY bmmenu-suspend.label "자동 검사 중단">
+<!ENTITY bmmenu-resetnewcount.label "새로운 글 갯수 초기화">
+<!ENTITY bmmenu-markread.label "모든 라이브 북마크를 읽은 것으로 표시">
+<!ENTITY bmmenu-clear.label "라이브 북마크 기록 지우기">
+<!ENTITY bmmenu-options.label "LiveClick 설정...">
+<!-- Bookmarks Tooltips -->
+<!ENTITY bmprops-monitorcheckbox.label "이 피드의 새로운 글을 감시">
+<!ENTITY bmprops-expander-down.label "이 라이브 북마크를 맞춤 설정 하기">
+<!ENTITY bmprops-check.label "지금 새로운 글 확인">
+<!ENTITY bmprops-check-every6h.label "6시간 마다">
+<!ENTITY bmprops-check-every4h.label "4시간 마다">
+<!ENTITY bmprops-check-every2h.label "2시간 마다">
+<!ENTITY bmprops-check-every60m.label "60분 마다">
+<!ENTITY bmprops-check-every30m.label "30분 마다">
+<!ENTITY bmprops-check-every15m.label "15분 마다">
+<!ENTITY bmprops-check-every10m.label "10분 마다">
+<!ENTITY bmprops-check-custom.label "설정...">
+<!ENTITY bmprops-check-timeunit.label "(분)">
+<!ENTITY bmprops-monitor.label "새로운 글을 발견 했을 때:">
+<!-- LiveClick Options dialog -->
+<!ENTITY lit-loading.label "미리보기 불러오는 중...">
+<!-- Generic About dialog -->
+<!ENTITY options-title "라이브 북마크 설정">
+<!ENTITY options-note-restart.label "알림: 재 시작 후 설정이 적용됩니다.">
+<!ENTITY options-generalpane.label "일반">
+<!ENTITY options-update.caption "라이브 북마크 업데이트">
+<!ENTITY options-checkonstart.label "Firefox 시작시 새 글 확인">
+<!ENTITY options-check1.label "새로운 글을 매">
+<!ENTITY options-check2.label "분마다 확인.">
+<!ENTITY options-checkdefault.label "알림: 기본 갱신 간격은 60분입니다.">
+<!ENTITY options-history.caption "기록">
+<!ENTITY options-history-onvisit.label "라이브 북마크 주소 방문 후:">
+<!ENTITY options-history-onexit.label "파이어 폭스가 작동 중 일 때:">
+<!ENTITY options-history-clearprivate.label "개인 정보 초기화시 기록 제거">
+<!ENTITY options-history-clearnow.label "지금 기록 제거">
+<!ENTITY options-appearancepane.label "외양">
+<!ENTITY options-reading.caption "읽기">
+<!ENTITY options-showcount.label "표시할 갯수:">
+<!ENTITY options-countnew.label "새 글">
+<!ENTITY options-countunread.label "읽지 않은 글">
+<!ENTITY options-countnone.label "세지 않기">
+<!ENTITY options-stylefolders.label "폴더">
+<!ENTITY options-stylelivemarks.label "라이브 북마크">
+<!ENTITY options-styleitems.label "글">
+<!ENTITY options-stylenew-select.label "새로운 글:">
+<!ENTITY options-stylefresh-select.label "갱신:">
+<!ENTITY options-styleunread-select.label "안 읽은 글:">
+<!ENTITY options-styleread-select.label "읽은 글:">
+<!ENTITY options-style0.label "일반">
+<!ENTITY options-style1.label "흐리게 표시">
+<!ENTITY options-style2.label "표시 하지 않음">
+<!ENTITY options-style5.label "볼드 체">
+<!ENTITY options-style6.label "오렌지">
+<!ENTITY options-stylecustom.label "커스텀">
+<!ENTITY options-showmax1.label "더 이상 보기 않기">
+<!ENTITY options-showmax2.label "글">
+<!ENTITY options-icons.caption "아이콘">
+<!ENTITY options-showfavicons.label "라이브 북마크 아이콘 대신 Favicon 표시">
+<!ENTITY options-tooltips.caption "툴 팁">
+<!ENTITY options-showpreviews.label "라이브 북마크 미리보기를 표시">
+<!ENTITY options-history-onpreview.label "라이브 북마크 미리보기 후:">
+<!ENTITY options-menuspane.label "메뉴">
+<!ENTITY options-clicks.caption "라이브 북마크 클릭">
+<!ENTITY options-leftmenu.label "왼쪽 클릭:">
+<!ENTITY options-middlemenu.label "가운데 클릭:">
+<!ENTITY options-accelmenu.label "Ctrl/Cmd 클릭:">
+<!ENTITY options-feedsmenu.caption "라이브 북마크 메뉴 설정">
+<!ENTITY options-keepopen.label "글을 가운데 클릭후 메뉴 열기 유지">
+<!ENTITY options-keepopenexceptlast.label "마지막 읽지 않은 글을 가운데 클릭 후 닫기">
+<!ENTITY options-placemenu.label "일반적인 명령의 위치:">
+<!ENTITY options-place-top.label "위">
+<!ENTITY options-place-bottom.label "아래">
+<!ENTITY options-showopen.label "'주소 열기' 표시하기">
+<!ENTITY options-showfeed.label "'피드 열기' 표시하기">
+<!ENTITY options-showtabs.label "'새 탭에 안 읽은 글 표시' 표시하기">
+<!ENTITY options-showread.label "'모두 읽은 것으로 표시' 표시하기">
+<!ENTITY options-history-onpopup.label "라이브 북마크 메뉴를 본 후:">
+<!ENTITY options-monitorspane.label "감시">
+<!ENTITY options-monitor-select.label "감시중인 라이브 북마크 에서 새로운 글이 나타났을 때:">
+<!ENTITY options-monitor-action-alert.label "나에게 알림">
+<!ENTITY options-monitor-action-autoload.label "탭에 새로운 글을 자동 표시">
+<!ENTITY options-monitor-action-livetag.label "새로운 글에 태그 붙이기 (Smart Bookmarks)">
+<!ENTITY options-monitor-customize.label "각각의 감시 설정마다 동작을 설정할 수 있습니다.">
+<!ENTITY options-monitor-tab-feeds.label "감시">
+<!ENTITY options-monitor-tab-alert.label "알림">
+<!ENTITY options-monitor-tab-autoload.label "자동 표시">
+<!ENTITY options-monitor-tab-livetag.label "태그">
+<!ENTITY options-monitored-all.label "모든 라이브 북마크를 감시">
+<!ENTITY options-monitored-select.label "감시하기를 원하는 라이브 북마크를 선택:">
+<!ENTITY options-monitored-count.label "총:">
+<!ENTITY options-monitored-selectall.label "모두 선택">
+<!ENTITY options-monitored-selectnone.label "모두 선택 안함">
+<!ENTITY options-alert-1item.label "새 글이 하나 있는 알림을 클릭 했을 때:">
+<!ENTITY options-alert-nitem.label "많은 새 글이 있는 알림을 클릭 했을 때:">
+<!ENTITY options-alert-repeat.label "알림 반복하기:">
+<!ENTITY options-alert-repeat-always.label "매 회 라이브 북마크 갱신 후">
+<!ENTITY options-alert-repeat-session.label "파이어 폭스 세션 마다 한번">
+<!ENTITY options-alert-repeat-never.label "알림 반복하지 않기">
+<!ENTITY options-autoload-1item.label "자동으로 확인한 글이 1개 있을 때:">
+<!ENTITY options-autoload-nitem.label "자동으로 확인한 글이 여러 개 있을 때:">
+<!ENTITY options-autoload-alert.label "글을 자동으로 불러온 후 나에게 알리기">
+<!ENTITY options-livetag-label.label "Tag as:">
+<!ENTITY options-livetag-createfolder.label "폴더 만들기">
+<!ENTITY options-livetag-changenote.label "알림: 태그를 바꿀 경우 새로운 스마트 북마크 폴더를 만들어야 합니다.">
+<!ENTITY options-livetag-alert.label "글을 태그한 후 나에게 알리기">
+<!ENTITY options-livetag-onread.label "글을 읽은 후 태그를 제거">
+<!ENTITY options-settings-button.label "설정">
+<!ENTITY options-settings-restore.label "설정 초기화">
+<!ENTITY options-settings-import.label "설정 가져오기...">
+<!ENTITY options-settings-export.label "설정 내보내기...">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "About">
+<!ENTITY about-createdby.label "제작자:">
+<!ENTITY about-visithome.label "홈페이지 방문하기">
+<!ENTITY about-visitfaq.label "FAQ 방문하기">
+<!ENTITY about-donate.label "기부">
+<!ENTITY about-contributors.label "공헌자:">
+<!ENTITY about-translators.label "번역자:">
+<!ENTITY about-babelzilla.label "BabelZilla에 특별한 감사를 표합니다!">
+<!ENTITY about-icons.label "Tango Desktop Project의 이 아이콘들은 크레에이티브커먼즈 저작자표시-동일조건변경허락 라이센스 하에서 사용이 허가되었습니다.">

@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://mozapps/skin/extensions/about.css" type="text/css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://liveclick/locale/liveclick.dtd">
+
+<dialog id="genericAbout"
+	buttons="accept"
+	onload="init();"
+	title="&about-dialog.label; &extension.name;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- Core JavaScript -->
+	<script type="application/javascript" src="chrome://liveclick/content/about.js" />
+
+	<!-- Import strings -->
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="extension-strings" src="chrome://liveclick/locale/liveclick.properties" />
+	</stringbundleset>
+
+	<vbox id="clientBox" flex="1">
+		<hbox align="start">
+			<vbox flex="1">
+				<label id="extensionName" value="&extension.name;" />
+				<label id="extensionVersion" />
+				<description id="extensionDescription" />
+			</vbox>
+			<vbox id="logoBox">
+				<image src="chrome://liveclick/content/icons/icon64.png" style="padding: 5px;" />
+			</vbox>
+		</hbox>
+
+		<separator class="groove" />
+
+		<!-- Created By -->
+		<label id="extensionCreatorLabel" value="&about-createdby.label;" style="font-weight: bold;" />
+
+		<hbox align="start">
+			<label value="John T. Jasmin" flex="1" />
+			<vbox id="extensionHomepage" align="right" style="cursor: default;">
+				<label value="&about-visithome.label;"
+					class="text-link"
+					style="cursor: pointer;"
+					onclick="window.open('http://projects.protej.com/index.php/liveclick/home/');" />
+				<label value="&about-visitfaq.label;"
+					class="text-link"
+					style="cursor: pointer;"
+					onclick="window.open('http://projects.protej.com/index.php/liveclick/faq/');" />
+				<label value="&about-donate.label;"
+					class="text-link"
+					style="cursor: pointer;"
+					onclick="window.open('http://projects.protej.com/index.php/liveclick/donate/');" />
+			</vbox>
+		</hbox>
+
+		<separator class="groove" />
+
+		<label id="extensionContributors" value="&about-contributors.label;" style="font-weight: bold;" />
+
+		<!-- Localizers -->
+		<label value="&about-translators.label;" />
+		<listbox rows="4">
+			<listcols>
+				<listcol />
+				<splitter class="tree-splitter" />
+				<listcol flex="1" />
+			</listcols>
+			<listitem><!-- 0.2.5, 2007 June 8 -->
+				<label value="ca-AD" /><label value="Tonino" />
+			</listitem>
+			<listitem><!-- 0.2.0, 2006 Sept 19; 0.3.0.0 2008 July 5; 0.4.0.0 2011 February 28 -->
+				<label value="de-DE" /><label value="Starke, fraencko, Hilber" />
+			</listitem>
+			<listitem><!-- 0.1.5.3, 2006 June 17 -->
+				<label value="es-AR" /><label value="Guillermo" />
+			</listitem>
+			<listitem><!-- 0.1.5.3, 2006 June 24 -->
+				<label value="es-ES" /><label value="srxo1978" />
+			</listitem>
+			<listitem><!-- 0.1.5.3, 2006 June 21; 0.3.0.0 2008 May 20 -->
+				<label value="fr-FR" /><label value="Goofy, myahoo" />
+			</listitem>
+			<listitem><!-- 0.2.4, 2007 May 23 -->
+				<label value="he-IL" /><label value="tomer" />
+			</listitem>
+			<listitem><!-- 0.2.0, 2006 Sept 16 -->
+				<label value="hu-HU" /><label value="gLes" />
+			</listitem>
+			<listitem><!-- 0.1.5.3, 2006 June 12 -->
+				<label value="it-IT" /><label value="MatrixIsAllOver" />
+			</listitem>
+			<listitem><!-- 0.2.3, 2007 April 25 -->
+				<label value="ja-JP" /><label value="drry" />
+			</listitem>
+			<listitem><!-- 0.3.6.0, 2009 December 29 -->
+				<label value="ko-KR" /><label value="cknblue" />
+			</listitem>
+			<listitem><!-- 0.4.2.0, 2011 August 21 -->
+				<label value="lv-LV" /><label value="anonymous74100" />
+			</listitem>
+			<listitem><!-- 0.1.5.3, 2006 June 15 -->
+				<label value="nl-NL" /><label value="markh" />
+			</listitem>
+			<listitem><!-- 0.2.0, 2006 July 28 -->
+				<label value="pl-PL" /><label value="teo" />
+			</listitem>
+			<listitem><!-- 0.1.5.3, 2006 June 25 -->
+				<label value="pt-BR" /><label value="RodrigoBiker" />
+			</listitem>
+			<listitem><!-- 0.1.5.3, 2006 July 1; 0.2.0, 2007 January 10 -->
+				<label value="ru-RU" /><label value="TLemur, izt" />
+			</listitem>
+			<listitem><!-- 0.3.5.1, 2009 November 3 -->
+				<label value="sv-SE" /><label value="Raan" />
+			</listitem>
+			<listitem><!-- 0.1.6.0, 2006 July 12 -->
+				<label value="zh-CN" /><label value="rickcart" />
+			</listitem>
+			<listitem><!-- 0.2.5, 2007 Aug 12 -->
+				<label value="zh-TW" /><label value="josesun" />
+			</listitem>
+		</listbox>
+
+		<!-- External Links (BabelZilla, Tango Desktop) -->
+		<hbox align="start">
+			<vbox flex="1">
+				<label value="&about-babelzilla.label;" flex="1" />
+				<description>
+					&about-icons.label;
+				</description>
+			</vbox>
+			<vbox align="right">
+				<label value="BabelZilla.org"
+					class="text-link"
+					style="cursor: pointer;"
+					onclick="window.open('http://www.babelzilla.org/');" />
+				<label value="Tango Desktop"
+					class="text-link"
+					style="cursor: pointer;"
+					onclick="window.open('http://tango.freedesktop.org/');" />
+			</vbox>
+		</hbox>
+
+	</vbox>
+
+</dialog>

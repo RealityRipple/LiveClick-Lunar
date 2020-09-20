@@ -1,0 +1,26 @@
+ /* ============================= */
+/* === Toolbar Button styles === */
+#liveclick-tbb
+{
+	list-style-image: url("chrome://liveclick/content/icons/tbb_16.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px);
+}
+
+#liveclick-tbb[suspend]
+{
+	list-style-image: url("chrome://liveclick/content/icons/tbb_16.png");
+	-moz-image-region: rect(0px, 32px, 16px, 16px);
+}
+
+#liveclick-tbb[throbbing]
+{
+	list-style-image: url("chrome://liveclick/content/icons/tbb-throb_16.png");
+	-moz-image-region: rect(0px, 16px, 16px, 0px);
+}
+
+#liveclick-tbb[cui-areatype="menu-panel"],
+toolbarpaletteitem[place="palette"] > #liveclick-tbb
+{
+	list-style-image: url("chrome://liveclick/content/icons/icon.png");
+	-moz-image-region: rect(0px, 32px, 32px, 0px);
+}

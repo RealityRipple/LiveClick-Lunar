@@ -1,0 +1,166 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "Nav pārlūka noklusējums">
+<!ENTITY command-open.label "Atvērt atrašanās vietu">
+<!ENTITY command-opentab.label "Atvērt atrašanās vietu jaunā cilnē">
+<!ENTITY command-feed.label "Atvērt barotni">
+<!ENTITY command-feedtab.label "Atvērt barotni jaunā cilnē">
+<!ENTITY command-opennew.label "Atvērt jaunāko vienumu">
+<!ENTITY command-group.label "Atvērt visus vienumus cilnēs">
+<!ENTITY command-groupunread.label "Atvērt nelasītos vienumus cilnēs">
+<!ENTITY command-groupnew.label "Atvērt jaunos vienumus cilnēs">
+<!ENTITY command-reload.label "Pārlādēt dzīvo grāmatzīmi">
+<!ENTITY command-markitemread.label "Atzīmēt vienumu kā izlasītu">
+<!ENTITY command-markitemseen.label "Ja jauns, atzīmēt vienumu kā nelasītu">
+<!ENTITY command-markitemsread.label "Atzīmēt visus vienumus kā izlasītus">
+<!ENTITY command-resetnewcount.label "Atiestatīt jauno skaitu">
+<!ENTITY command-markfeedsread.label "Atzīmēt visas dzīvās grāmatzīmes kā izlasītas">
+<!ENTITY command-clearhistory.label "Notīrīt dzīvo grāmatzīmju vēsturi">
+<!ENTITY command-monitordefault.label "Izmanto noklusējuma novērotāju">
+<!ENTITY command-monitoralert.label "Paziņot man">
+<!ENTITY command-monitorautoload.label "Automātiski ielādēt cilnēs">
+<!ENTITY command-monitortag.label "Piešķirt jauniem vienumiem birku">
+<!ENTITY command-nothing.label "Nedarīt neko">
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "Atvērt atrašanās vietu">
+<!ENTITY pcm-feed.label "Atvērt barotni">
+<!ENTITY pcm-groupunread.label "Atvērt nelasītos vienumus cilnēs">
+<!ENTITY pcm-groupnew.label "Atvērt jaunos vienumus cilnēs">
+<!ENTITY pcm-markfeedread.label "Atzīmēt visus vienumus kā izlasītus">
+<!ENTITY pcm-markfeedunread.label "Atzīmēt visus vienumus kā nelasītus">
+<!ENTITY pcm-resetnewcount.label "Atiestatīt jauno skaitu">
+<!ENTITY pcm-togglemonitor.label "Novērot dzīvās grāmatzīmes">
+<!ENTITY pcm-markitemsread.label "Atzīmēt kā izlasītu">
+<!ENTITY pcm-markitemsunread.label "Atzīmēt kā nelasītu">
+<!ENTITY pcm-reloadfolder.label "Pārlādēt dzīvās grāmatzīmes">
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "Pierakstīties uz šo lapu...">
+<!ENTITY lbt-link.label "Pielikt šai lapai dzīvo grāmatzīmi">
+<!-- LiveClick toolbar button -->
+<!ENTITY tbb-checknow.label "Meklēt jaunus vienumus tagad">
+<!ENTITY tbb-checking.label "Meklē">
+<!-- Bookmarks Menu -->
+<!ENTITY bmmenu-submenu.label "Dzīvās grāmatzīmes">
+<!ENTITY bmmenu-checknow.label "Meklēt jaunus vienumus tagad">
+<!ENTITY bmmenu-checknow.accesskey "L">
+<!ENTITY bmmenu-stop.label "Pārtraukt meklēšanu">
+<!ENTITY bmmenu-suspend.label "Apturēt automātisko meklēšanu">
+<!ENTITY bmmenu-resetnewcount.label "Atiestatīt jauno skaitu">
+<!ENTITY bmmenu-markread.label "Atzīmēt visas dzīvās grāmatzīmes kā izlasītas">
+<!ENTITY bmmenu-clear.label "Notīrīt dzīvo grāmatzīmju vēsturi">
+<!ENTITY bmmenu-options.label "LiveClick Opcijas...">
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmprops-monitorcheckbox.label "Novērot šo dzīvo grāmatzīmi, gaidot jaunus vienumus">
+<!ENTITY bmprops-expander-down.label "Pielāgot šo dzīvo grāmatzīmi">
+<!ENTITY bmprops-check.label "Meklēt jaunus vienumus:">
+<!ENTITY bmprops-check-every6h.label "Ik pēc 6 stundām">
+<!ENTITY bmprops-check-every4h.label "Ik pēc 4 stundām">
+<!ENTITY bmprops-check-every2h.label "Ik pēc 2 stundām">
+<!ENTITY bmprops-check-every60m.label "Ik pēc 60 minūtēm">
+<!ENTITY bmprops-check-every30m.label "Ik pēc 30 minūtēm">
+<!ENTITY bmprops-check-every15m.label "Ik pēc 15 minūtēm">
+<!ENTITY bmprops-check-every10m.label "Ik pēc 10 minūtēm">
+<!ENTITY bmprops-check-custom.label "Pielāgots...">
+<!ENTITY bmprops-check-timeunit.label "(minūtes)">
+<!ENTITY bmprops-monitor.label "Kad jauni vienumi ir atrasti:">
+<!-- Bookmarks Tooltips -->
+<!ENTITY lit-loading.label "Ielādē priekšskatījumu...">
+<!-- LiveClick Options dialog -->
+<!ENTITY options-title "LiveClick Opcijas">
+<!ENTITY options-note-restart.label "Piezīme: Jums var būt nepieciešams restartēt, pirms izmaiņas stājas spēkā.">
+<!ENTITY options-generalpane.label "Vispārīgi">
+<!ENTITY options-update.caption "Dzīvot grāmatzīmju atjaunināšana">
+<!ENTITY options-checkonstart.label "Meklēt jaunus vienumus pēc Firefox palaišanas">
+<!ENTITY options-check1.label "Meklēt jaunus vienumus ik pēc">
+<!ENTITY options-check2.label "minūtēm">
+<!ENTITY options-checkdefault.label "Piezīme: Noklusējuma intervāls ir 60 minūtes.">
+<!ENTITY options-history.caption "Dzīvo grāmatzīmju vēsture">
+<!ENTITY options-history-onvisit.label "Pēc dzīvās grāmatzīmes atrašanās vietas apmeklēšanas:">
+<!ENTITY options-history-onexit.label "Izejot no Firefox:">
+<!ENTITY options-history-clearprivate.label "Notīrīt, kad notīra pārlūkošanas vēsturi">
+<!ENTITY options-history-clearnow.label "Notīrīt tagad">
+<!ENTITY options-appearancepane.label "Izskats">
+<!ENTITY options-reading.caption "Lasīšana">
+<!ENTITY options-showcount.label "Rādīt skaitu:">
+<!ENTITY options-countnew.label "Jaunie vienumi">
+<!ENTITY options-countunread.label "Nelasītie vienumi">
+<!ENTITY options-countnone.label "Nekādu skatu">
+<!ENTITY options-stylefolders.label "Mapes">
+<!ENTITY options-stylelivemarks.label "Dzīvās grāmatzīmes">
+<!ENTITY options-styleitems.label "Vienumi">
+<!ENTITY options-stylenew-select.label "Jauns:">
+<!ENTITY options-stylefresh-select.label "Svaigs:">
+<!ENTITY options-styleunread-select.label "Nelasīts:">
+<!ENTITY options-styleread-select.label "Lasīts:">
+<!ENTITY options-style0.label "Normāls">
+<!ENTITY options-style1.label "Izbalējis">
+<!ENTITY options-style2.label "Nav attēlots">
+<!ENTITY options-style5.label "Trekniem burtiem">
+<!ENTITY options-style6.label "Oranžs">
+<!ENTITY options-stylecustom.label "Pielāgots">
+<!ENTITY options-showmax1.label "Parādīt ne vairāk kā">
+<!ENTITY options-showmax2.label "vienumus">
+<!ENTITY options-icons.caption "Ikonas">
+<!ENTITY options-showfavicons.label "Rādīt favikonas nevis dzīvo grāmatzīmju ikonu">
+<!ENTITY options-tooltips.caption "Rīku padomi">
+<!ENTITY options-showpreviews.label "Rādīt priekšskatījumu dzīvo grāmatzīmju rīku padomos">
+<!ENTITY options-history-onpreview.label "Pēc dzīvās grāmatzīmes vienuma priekšskatīšanas:">
+<!ENTITY options-menuspane.label "Izvēlnes">
+<!ENTITY options-clicks.caption "Klikšķināšana uz dzīvajām grāmatzīmēm">
+<!ENTITY options-leftmenu.label "Kreisais klikšķis:">
+<!ENTITY options-middlemenu.label "Vidējais klikšķis:">
+<!ENTITY options-accelmenu.label "Ctrl/Cmd klikšķis:">
+<!ENTITY options-feedsmenu.caption "Dzīvo grāmatzīmju izvēlnes opcijas">
+<!ENTITY options-keepopen.label "Pēc vidējā klikšķa uz vienuma, atstāt izvēlni vaļā">
+<!ENTITY options-keepopenexceptlast.label "Aizvērt pēc vidējā klikšķa uz pēdējā nelasītā vienuma">
+<!ENTITY options-placemenu.label "Biežo komandu pozīcija:">
+<!ENTITY options-place-top.label "Augšā">
+<!ENTITY options-place-bottom.label "Apakšā">
+<!ENTITY options-showopen.label "Rādīt &apos;Atvērt atrašanās vietu&apos;">
+<!ENTITY options-showfeed.label "Rādīt &apos;Atvērt barotni&apos;">
+<!ENTITY options-showtabs.label "Rādīt &apos;Atvērt nelasītos vienumus cilnēs&apos;">
+<!ENTITY options-showread.label "Rādīt &apos;Atzīmēt visus vienumus kā izlasītus&apos;">
+<!ENTITY options-history-onpopup.label "Pēc dzīvo grāmatzīmju izvēlnes skatīšanas:">
+<!ENTITY options-monitorspane.label "Novērošana">
+<!ENTITY options-monitor-select.label "Kad novērotai dzīvajai grāmatzīmei ir jauni vienumi:">
+<!ENTITY options-monitor-action-alert.label "Brīdināt mani">
+<!ENTITY options-monitor-action-autoload.label "Automātiski ielādēt jaunos vienumus cilnēs">
+<!ENTITY options-monitor-action-livetag.label "Piešķirt jaunajiem vienumiem birkas (gudrās grāmatzīmes)">
+<!ENTITY options-monitor-customize.label "Jūs varat pielāgot katra novērotāja uzvedību zemāk.">
+<!ENTITY options-monitor-tab-feeds.label "Novērots">
+<!ENTITY options-monitor-tab-alert.label "Brīdināt">
+<!ENTITY options-monitor-tab-autoload.label "Automātiski ielādēt">
+<!ENTITY options-monitor-tab-livetag.label "Piešķirt birku">
+<!ENTITY options-monitored-all.label "Novērot visas dzīvās grāmatzīmes">
+<!ENTITY options-monitored-select.label "Izvēlēties dzīvās grāmatzīmes, ko vēlaties novērot:">
+<!ENTITY options-monitored-count.label "Kopā:">
+<!ENTITY options-monitored-selectall.label "Izvēlēties visas">
+<!ENTITY options-monitored-selectnone.label "Izvēlēties nevienu">
+<!ENTITY options-alert-1item.label "Klikšķinot uz brīdinājuma ar vienu jaunu vienumu:">
+<!ENTITY options-alert-nitem.label "Klikšķinot uz brīdinājuma ar vairākiem jauniem vienumiem:">
+<!ENTITY options-alert-repeat.label "Atkārtot brīdinājuma">
+<!ENTITY options-alert-repeat-always.label "Katru reizi, kad dzīvā grāmatzīme tiek pārbaudīta">
+<!ENTITY options-alert-repeat-session.label "Vienu reizi Firefox sesijas laikā">
+<!ENTITY options-alert-repeat-never.label "Nekad atkārtot brīdinājumiem">
+<!ENTITY options-autoload-1item.label "Automātiski ielādējot vienu jaunu vienumu:">
+<!ENTITY options-autoload-nitem.label "Automātiski ielādējot vairākus jaunus vienumus:">
+<!ENTITY options-autoload-alert.label "Brīdināt mani pēc vienu automātiskās ielādes">
+<!ENTITY options-livetag-label.label "Piešķirt birku:">
+<!ENTITY options-livetag-createfolder.label "Izveidot mapi">
+<!ENTITY options-livetag-changenote.label "Piezīme: Mainot birkas, jums ir arī jāizveido jauna gudro grāmatzīmju mape.">
+<!ENTITY options-livetag-alert.label "Brīdināt mani liekot vienumiem birkas">
+<!ENTITY options-livetag-onread.label "Noņemt birku pēc vienuma izlasīšanas">
+<!ENTITY options-settings-button.label "Iestatījumi">
+<!ENTITY options-settings-restore.label "Atjaunot noklusējumu">
+<!ENTITY options-settings-import.label "Importēt iestatījumus">
+<!ENTITY options-settings-export.label "Eksportēt iestatījumus">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "Par:">
+<!ENTITY about-createdby.label "Izveidoja:">
+<!ENTITY about-visithome.label "Apmeklējiet mājas lapu">
+<!ENTITY about-visitfaq.label "Apmeklējiet BUJ">
+<!ENTITY about-donate.label "Ziedojiet">
+<!ENTITY about-contributors.label "Atbalstītāji:">
+<!ENTITY about-translators.label "Tulkotāji:">
+<!ENTITY about-babelzilla.label "Īpaša pateicība BabelZilla!">
+<!ENTITY about-icons.label "Ikonas no Tango Desktop Project, ko izmanto ar atļauju saskaņā ar Creative Commons Attribution Share-Alike licenci.">

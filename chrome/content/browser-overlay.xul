@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://liveclick/content/browser.css"?>
+<?xml-stylesheet href="chrome://liveclick/skin/feedstyles.css"?>
+<?xul-overlay href="chrome://liveclick/content/context-overlay.xul"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://liveclick/locale/liveclick.dtd">
+
+<overlay id="liveclick-overlay"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<!-- Import strings -->
+	<stringbundleset id="stringbundleset">
+		<stringbundle id="liveclick-strings" src="chrome://liveclick/locale/liveclick.properties" />
+	</stringbundleset>
+
+	<!-- Apply overlay JavaScript -->
+	<script type="application/javascript" src="chrome://liveclick/content/browser-overlay.js" />
+	<script type="application/javascript" src="chrome://liveclick/content/monitors.js" />
+	<script type="application/javascript" src="chrome://liveclick/content/tooltips.js" />
+	<script type="application/javascript" src="chrome://liveclick/content/uiutils.js" />
+
+	<!-- Add livemark, folder states to browser broadcasters -->
+	<broadcasterset id="mainBroadcasterSet">
+		<broadcaster id="liveclick-states" />
+	</broadcasterset>
+
+	<!-- Override Bookmarks Menu events -->
+	<menupopup id="bookmarksMenuPopup"
+		onclick="LiveClickChrome.Browser.bookmarkClick(event, this.parentNode._placesView);" />
+
+	<!-- Override Bookmarks Menu Button events -->
+	<menupopup id="BMB_bookmarksPopup"
+		onclick="LiveClickChrome.Browser.bookmarkClick(event, this.parentNode._placesView);" />
+
+	<!-- Override Bookmarks Toolbar events -->
+	<hbox id="PlacesToolbar"
+		onclick="LiveClickChrome.Browser.bookmarkClick(event, this._placesView);" />
+
+	<!-- Add Live Bookmark Item Tooltip to window -->
+	<window id="main-window">
+		<tooltip id="liveclick-lit" align="start" noautohide="true"
+				onpopupshowing="return LiveClickChrome.Tooltips.showBookmark(document.tooltipNode);"
+				onpopuphidden="LiveClickChrome.Tooltips.hideBookmark();">
+			<vbox>
+				<description id="liveclick-lit-title" class="tooltip-label"></description>
+			</vbox>
+			<vbox id="liveclick-lit-expanded">
+				<separator class="thin" />
+				<hbox align="start">
+					<image id="liveclick-lit-favicon" />
+					<vbox>
+						<description id="liveclick-lit-preview"></description>
+					</vbox>
+				</hbox>
+			</vbox>
+		</tooltip>
+	</window>
+
+	<popupset id="mainPopupSet">
+		<!-- LiveClick Main Menu -->
+		<menupopup id="liveclick-mainmenu">
+			<menuitem label="&bmmenu-checknow.label;"
+				command="LiveClick:CheckAll"
+				key="key_LCCheckAllShift" />
+			<menuitem label="&bmmenu-stop.label;"
+				command="LiveClick:StopCheck"
+				collapsed="true" />
+			<menuitem label="&bmmenu-suspend.label;"
+				command="LiveClick:ToggleSuspend"
+				type="checkbox" />
+			<menuseparator/>
+			<menuitem label="&bmmenu-resetnewcount.label;"
+				command="LiveClick:MarkAllSeen" />
+			<menuitem label="&bmmenu-markread.label;"
+				command="LiveClick:MarkAllRead" />
+			<menuitem label="&bmmenu-clear.label;"
+				command="LiveClick:ClearHistory" />
+			<menuseparator/>
+			<menuitem label="&bmmenu-options.label;"
+				command="LiveClick:OpenOptions" />
+		</menupopup>
+		<!-- Live Bookmark Item context menu -->
+		<menupopup id="liveclick-items-menu" />
+	</popupset>
+
+	<!-- Add LiveClick toolbar button -->
+	<toolbarpalette id="BrowserToolbarPalette">
+		<toolbarbutton id="liveclick-tbb" label="LiveClick"
+			type="menu-button" command="LiveClick:CheckAll"
+			tooltiptext="&tbb-checknow.label;"
+			textdefault="&tbb-checknow.label;"
+			textalt="&tbb-checking.label;"
+			class="toolbarbutton-1 chromeclass-toolbar-additional">
+			<menupopup id="liveclick-tbb-menu"
+				onpopupshowing="LiveClickChrome.MainMenu.popup(event);" />
+		</toolbarbutton>
+	</toolbarpalette>
+
+	<!-- Add Live Bookmarks submenu to Bookmarks Menu -->
+	<menupopup id="bookmarksMenuPopup">
+		<menu id="liveclick-bookmarks-menu"
+			label="&bmmenu-submenu.label;"
+			insertafter="subscribeToPageMenupopup">
+			<menupopup onpopupshowing="LiveClickChrome.MainMenu.popup(event);" />
+		</menu>
+	</menupopup>
+
+	<!-- Add Live Bookmarks submenu to Bookmarks Menu Button -->
+	<menupopup id="BMB_bookmarksPopup">
+		<menu id="liveclick-bookmarks-menu-button"
+			label="&bmmenu-submenu.label;"
+			insertafter="BMB_subscribeToPageMenupopup">
+			<menupopup onpopupshowing="LiveClickChrome.MainMenu.popup(event);" />
+		</menu>
+	</menupopup>
+
+	<!-- Add Live Bookmarks submenu to App Bookmarks Menu -->
+	<menupopup id="appmenu_bookmarksPopup">
+		<menu id="liveclick-app-bookmarks-menu"
+			label="&bmmenu-submenu.label;"
+			insertafter="appmenu_subscribeToPageMenu">
+			<menupopup onpopupshowing="LiveClickChrome.MainMenu.popup(event);" />
+		</menu>
+	</menupopup>
+
+	<!-- Overlay LiveClick commands to commands set -->
+	<commandset id="mainCommandSet">
+		<command id="LiveClick:CheckAll" oncommand="LiveClickPlaces.checkAll();" />
+		<command id="LiveClick:StopCheck" oncommand="LiveClickPlaces.stopCheck();" />
+		<command id="LiveClick:ToggleSuspend" oncommand="LiveClick.toggleSuspend();" />
+		<command id="LiveClick:MarkAllSeen" oncommand="LiveClickPlaces.markAll('seen');" />
+		<command id="LiveClick:MarkAllRead" oncommand="LiveClickPlaces.markAll('read');" />
+		<command id="LiveClick:ClearHistory" oncommand="LiveClickPlaces.clearHistory(true);" />
+		<command id="LiveClick:OpenOptions" oncommand="LiveClickChrome.Utils.openOptions();" />
+	</commandset>
+
+	<!-- Overlay LiveClick shortcuts to key set -->
+	<keyset id="mainKeyset">
+		<key id="key_LCCheckAllShift" command="LiveClick:CheckAll"
+			modifiers="accel,shift" key="&bmmenu-checknow.accesskey;" />
+		<key id="key_LCCheckAllAlt" command="LiveClick:CheckAll"
+			modifiers="accel,alt" key="&bmmenu-checknow.accesskey;" />
+	</keyset>
+
+</overlay>

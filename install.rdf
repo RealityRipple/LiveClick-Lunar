@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+	<Description about="urn:mozilla:install-manifest">
+		<em:id>{d166ee2a-36bb-4f33-aff7-e85f912df509}</em:id>
+		<em:version>1.0.1</em:version>
+
+		<!-- Metadata -->
+		<em:creator>John T. Jasmin</em:creator>
+		<em:homepageURL>http://projects.protej.com/liveclick/</em:homepageURL>
+
+		<!-- Front End Integration Hooks -->
+		<em:aboutURL>chrome://liveclick/content/about.xul</em:aboutURL>
+		<em:optionsURL>chrome://liveclick/content/options.xul</em:optionsURL>
+		<em:icon64URL>chrome://liveclick/content/icons/icon64.png</em:icon64URL>
+
+		<!-- Target Application -->
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+				<em:minVersion>25.0</em:minVersion>
+				<em:maxVersion>37.0a1</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		<em:type>2</em:type>
+
+		<!-- Default Locale (en-US) -->
+		<em:name>LiveClick</em:name>
+		<em:description>Adds feed reading and notifications to Live Bookmarks.</em:description>
+
+	</Description>
+
+</RDF>

@@ -1,0 +1,128 @@
+ /* =============================== */
+/* === Default livemark styles === */
+.bookmark-item[container][livemark] .bookmark-item
+{
+	list-style-image: url("chrome://liveclick/skin/item-normal.png");
+}
+
+treechildren::-moz-tree-image(title, livemarkItem)
+{
+	list-style-image: url("chrome://liveclick/skin/item-normal.png");
+}
+
+ /* ======================== */
+/* === Feed item styles === */
+
+/* Normal */
+.bookmark-item[liveclick="0"]
+{
+}
+
+/* Faded out */
+.bookmark-item[liveclick="1"] > .menu-iconic-text,
+.bookmark-item[liveclick="1"] > .menu-iconic-left
+{
+	opacity: 0.4;
+}
+/* Opacity not supported on trees, so use GrayText instead */
+treechildren::-moz-tree-cell-text(liveclick_1)
+{
+	color: GrayText !important;
+}
+
+/* Not displayed */
+.bookmark-item[liveclick="2"]
+{
+	display: none !important;
+}
+/* Visibility not supported on trees, so use GrayText instead */
+treechildren::-moz-tree-cell-text(liveclick_2)
+{
+	color: GrayText !important;
+}
+
+/* Boldface */
+.bookmark-item[liveclick="5"]
+{
+	font-weight: bold;
+}
+treechildren::-moz-tree-cell-text(liveclick_5)
+{
+	font-weight: bold;
+}
+
+/* Orange */
+.bookmark-item[liveclick="6"]
+{
+	color: #E65907 !important;
+	list-style-image: url("chrome://liveclick/skin/item-orange.png") !important;
+}
+/* Hover de-style necessary for all but aero */
+.bookmark-item[liveclick="6"]:hover
+{
+	color: -moz-menuhovertext !important;
+}
+treechildren::-moz-tree-cell-text(liveclick_6)
+{
+	color: #E65907 !important;
+}
+treechildren::-moz-tree-cell-text(liveclick_6, focus, selected)
+{
+	color: white !important;
+}
+treechildren::-moz-tree-image(liveclick_6)
+{
+	list-style-image: url("chrome://liveclick/skin/item-orange.png") !important;
+}
+
+ /* ======================= */
+/* === Livemark styles === */
+
+/* Normal */
+.bookmark-item[liveclickfeed="0"]
+{
+}
+
+/* Faded out */
+.bookmark-item[liveclickfeed="1"] > .menu-iconic-text,
+.bookmark-item[liveclickfeed="1"] > .menu-iconic-left,
+.bookmark-item[liveclickfeed="1"] > .menu-right,
+.bookmark-item[liveclickfeed="1"] > .toolbarbutton-text,
+.bookmark-item[liveclickfeed="1"] > .toolbarbutton-icon
+{
+	opacity: 0.4;
+}
+/* Opacity not supported on trees, so use GrayText instead */
+treechildren::-moz-tree-cell-text(liveclickfeed_1)
+{
+	color: GrayText !important;
+}
+
+/* Boldface */
+.bookmark-item[liveclickfeed="5"]
+{
+	font-weight: bold;
+}
+treechildren::-moz-tree-cell-text(liveclickfeed_5)
+{
+	font-weight: bold;
+}
+
+/* Orange */
+.bookmark-item[liveclickfeed="6"]
+{
+	color: #E65907 !important;
+}
+menupopup > .bookmark-item[liveclickfeed="6"]:hover,
+menupopup > .bookmark-item[liveclickfeed="6"][_moz-menuactive="true"]
+{
+	color: -moz-menuhovertext !important;
+}
+treechildren::-moz-tree-cell-text(liveclickfeed_6)
+{
+	color: #E65907 !important;
+}
+treechildren::-moz-tree-cell-text(liveclickfeed_6, focus, selected)
+{
+	color: white !important;
+}

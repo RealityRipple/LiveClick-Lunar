@@ -1,0 +1,166 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "瀏覽器預設動作">
+<!ENTITY command-open.label "開啟位址">
+<!ENTITY command-opentab.label "用新分頁開啟位址">
+<!ENTITY command-feed.label "開啟消息來源">
+<!ENTITY command-feedtab.label "用新分頁開啟消息來源">
+<!ENTITY command-opennew.label "開啟最新文章">
+<!ENTITY command-group.label "用分頁開啟文章">
+<!ENTITY command-groupunread.label "用分頁開啟未讀文章">
+<!ENTITY command-groupnew.label "用分頁開啟新文章">
+<!ENTITY command-reload.label "重新載入即時書籤">
+<!ENTITY command-markitemread.label "標記文章為已讀">
+<!ENTITY command-markitemseen.label "標記新文章為未讀">
+<!ENTITY command-markitemsread.label "標記所有文章為已讀">
+<!ENTITY command-resetnewcount.label "重設新計數">
+<!ENTITY command-markfeedsread.label "標記所有即時書籤為已讀">
+<!ENTITY command-clearhistory.label "清除即時書籤記錄">
+<!ENTITY command-monitordefault.label "使用預設監視器">
+<!ENTITY command-monitoralert.label "警告我">
+<!ENTITY command-monitorautoload.label "於新分頁自動載入">
+<!ENTITY command-monitortag.label "標記新文章">
+<!ENTITY command-nothing.label "不動作">
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "開啟位址">
+<!ENTITY pcm-feed.label "開啟消息來源">
+<!ENTITY pcm-groupunread.label "於新分頁開啟未讀文章">
+<!ENTITY pcm-groupnew.label "於新分頁開啟新文章">
+<!ENTITY pcm-markfeedread.label "標記所有文章為已讀">
+<!ENTITY pcm-markfeedunread.label "標記所有文章為未讀">
+<!ENTITY pcm-resetnewcount.label "重設新計數">
+<!ENTITY pcm-togglemonitor.label "監視即時書籤">
+<!ENTITY pcm-markitemsread.label "標記為已讀">
+<!ENTITY pcm-markitemsunread.label "標記為未讀">
+<!ENTITY pcm-reloadfolder.label "重新載入即時書籤">
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "將本頁加入即時書籤">
+<!ENTITY lbt-link.label "將此來源加入即時書籤">
+<!-- LiveClick toolbar button -->
+<!ENTITY tbb-checknow.label "立刻檢查新文章">
+<!ENTITY tbb-checking.label "檢查中...">
+<!-- Bookmarks Menu -->
+<!ENTITY bmmenu-submenu.label "即時書籤">
+<!ENTITY bmmenu-checknow.label "立刻檢查新文章">
+<!ENTITY bmmenu-checknow.accesskey "L">
+<!ENTITY bmmenu-stop.label "停止檢查">
+<!ENTITY bmmenu-suspend.label "暫停自動檢查">
+<!ENTITY bmmenu-resetnewcount.label "重設新計數">
+<!ENTITY bmmenu-markread.label "標記所有即時書籤為已讀">
+<!ENTITY bmmenu-clear.label "清除即時書籤記錄">
+<!ENTITY bmmenu-options.label "LiveClick 選項...">
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmprops-monitorcheckbox.label "監視此即時書籤有無新項目">
+<!ENTITY bmprops-expander-down.label "自訂此即時書籤">
+<!ENTITY bmprops-check.label "檢查新文章:">
+<!ENTITY bmprops-check-every6h.label "每 6 小時">
+<!ENTITY bmprops-check-every4h.label "每 4 小時">
+<!ENTITY bmprops-check-every2h.label "每 2 小時">
+<!ENTITY bmprops-check-every60m.label "每 60 分">
+<!ENTITY bmprops-check-every30m.label "每 30 分">
+<!ENTITY bmprops-check-every15m.label "每 15 分">
+<!ENTITY bmprops-check-every10m.label "每 10 分">
+<!ENTITY bmprops-check-custom.label "自訂...">
+<!ENTITY bmprops-check-timeunit.label "(分)">
+<!ENTITY bmprops-monitor.label "發現新文章時:">
+<!-- Bookmarks Tooltips -->
+<!ENTITY lit-loading.label "預覽載入中...">
+<!-- LiveClick Options dialog -->
+<!ENTITY options-title "LiveClick 選項">
+<!ENTITY options-note-restart.label "備註：你需要重新啟動瀏覽器變更才會生效。">
+<!ENTITY options-generalpane.label "一般">
+<!ENTITY options-update.caption "更新即時書籤">
+<!ENTITY options-checkonstart.label "Firefox 啟動時檢查新文章">
+<!ENTITY options-check1.label "檢查新文章頻率: 每">
+<!ENTITY options-check2.label "分">
+<!ENTITY options-checkdefault.label "提示: 預設為每 60 分檢查一次。">
+<!ENTITY options-history.caption "歷史記錄">
+<!ENTITY options-history-onvisit.label "開啟即時書籤位址後:">
+<!ENTITY options-history-onexit.label "離開 Firefox 時:">
+<!ENTITY options-history-clearprivate.label "清除歷史記錄時一併清除">
+<!ENTITY options-history-clearnow.label "立刻清除">
+<!ENTITY options-appearancepane.label "外觀">
+<!ENTITY options-reading.caption "閱讀">
+<!ENTITY options-showcount.label "選擇要顯示的計數:">
+<!ENTITY options-countnew.label "新文章">
+<!ENTITY options-countunread.label "未讀文章">
+<!ENTITY options-countnone.label "不要計數">
+<!ENTITY options-stylefolders.label "資料夾">
+<!ENTITY options-stylelivemarks.label "即時書籤">
+<!ENTITY options-styleitems.label "文章">
+<!ENTITY options-stylenew-select.label "新文章:">
+<!ENTITY options-stylefresh-select.label "新進文章:">
+<!ENTITY options-styleunread-select.label "未讀文章:">
+<!ENTITY options-styleread-select.label "讀取文章:">
+<!ENTITY options-style0.label "正常">
+<!ENTITY options-style1.label "淡出">
+<!ENTITY options-style2.label "不顯示">
+<!ENTITY options-style5.label "粗體">
+<!ENTITY options-style6.label "橙色">
+<!ENTITY options-stylecustom.label "自訂">
+<!ENTITY options-showmax1.label "最多顯示">
+<!ENTITY options-showmax2.label "篇文章">
+<!ENTITY options-icons.caption "圖示">
+<!ENTITY options-showfavicons.label "用網站圖示取代即時書籤圖示">
+<!ENTITY options-tooltips.caption "工具提示">
+<!ENTITY options-showpreviews.label "顯示即時書籤項目的預覽提示">
+<!ENTITY options-history-onpreview.label "預覽即時書籤項目後:">
+<!ENTITY options-menuspane.label "選單">
+<!ENTITY options-clicks.caption "點選書籤時的動作">
+<!ENTITY options-leftmenu.label "左鍵:">
+<!ENTITY options-middlemenu.label "中鍵:">
+<!ENTITY options-accelmenu.label "Ctrl/Cmd 鍵:">
+<!ENTITY options-feedsmenu.caption "來源選單選項">
+<!ENTITY options-keepopen.label "中鍵點選文章後不關閉選單">
+<!ENTITY options-keepopenexceptlast.label "中鍵點選最後一篇未讀文章後關閉選單">
+<!ENTITY options-placemenu.label "選單項目位置:">
+<!ENTITY options-place-top.label "上方">
+<!ENTITY options-place-bottom.label "下方">
+<!ENTITY options-showopen.label "顯示「開啟來源網址」">
+<!ENTITY options-showfeed.label "顯示「檢視消息來源」">
+<!ENTITY options-showtabs.label "顯示「用分頁開啟未讀文章」">
+<!ENTITY options-showread.label "顯示「標記所有文章為已讀」">
+<!ENTITY options-history-onpopup.label "檢視即時書籤選單後:">
+<!ENTITY options-monitorspane.label "監視">
+<!ENTITY options-monitor-select.label "當已監視來源有新文章時:">
+<!ENTITY options-monitor-action-alert.label "提示我">
+<!ENTITY options-monitor-action-autoload.label "於分頁自動載入新文章">
+<!ENTITY options-monitor-action-livetag.label "將新文章加上標籤 (智慧書籤夾)">
+<!ENTITY options-monitor-customize.label "你可以自訂下列每個監視項目的行為。">
+<!ENTITY options-monitor-tab-feeds.label "已監視來源">
+<!ENTITY options-monitor-tab-alert.label "提示">
+<!ENTITY options-monitor-tab-autoload.label "自動載入">
+<!ENTITY options-monitor-tab-livetag.label "標籤">
+<!ENTITY options-monitored-all.label "監視所有即時書籤">
+<!ENTITY options-monitored-select.label "請選擇你想監視的即時書籤:">
+<!ENTITY options-monitored-count.label "總數:">
+<!ENTITY options-monitored-selectall.label "全選">
+<!ENTITY options-monitored-selectnone.label "取消全選">
+<!ENTITY options-alert-1item.label "點選 1 篇新文章的提示時:">
+<!ENTITY options-alert-nitem.label "點選多篇新文章的提示時:">
+<!ENTITY options-alert-repeat.label "重複提示:">
+<!ENTITY options-alert-repeat-always.label "每次檢查即時書籤時">
+<!ENTITY options-alert-repeat-session.label "每次打開 Firefox 時">
+<!ENTITY options-alert-repeat-never.label "不要重複提示">
+<!ENTITY options-autoload-1item.label "自動載入 1 篇新文章時:">
+<!ENTITY options-autoload-nitem.label "自動載入多篇新文章時:">
+<!ENTITY options-autoload-alert.label "自動讀取文章時提示我">
+<!ENTITY options-livetag-label.label "加上標籤:">
+<!ENTITY options-livetag-createfolder.label "建立新資料夾">
+<!ENTITY options-livetag-changenote.label "備註: 若你變更了標籤，必須同時建立相對的智慧書籤夾。">
+<!ENTITY options-livetag-alert.label "將文章加上標籤時提示我">
+<!ENTITY options-livetag-onread.label "讀取文章後移除標籤">
+<!ENTITY options-settings-button.label "設定">
+<!ENTITY options-settings-restore.label "回復預設值">
+<!ENTITY options-settings-import.label "匯入設定">
+<!ENTITY options-settings-export.label "匯出設定">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "關於">
+<!ENTITY about-createdby.label "作者:">
+<!ENTITY about-visithome.label "拜訪首頁">
+<!ENTITY about-visitfaq.label "檢視 FAQ">
+<!ENTITY about-donate.label "贊助">
+<!ENTITY about-contributors.label "貢獻者:">
+<!ENTITY about-translators.label "翻譯者:">
+<!ENTITY about-babelzilla.label "特別感謝 BabelZilla！">
+<!ENTITY about-icons.label "圖示取自 Tango Desktop Project，採 創用 CC 姓名標示─相同方式分享 方式授權。">

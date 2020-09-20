@@ -1,0 +1,166 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "Utiliser le navigateur par défaut">
+<!ENTITY command-open.label "Ouvrir l'adresse">
+<!ENTITY command-opentab.label "Ouvrir l'adresse dans un nouvel onglet">
+<!ENTITY command-feed.label "Ouvrir le flux">
+<!ENTITY command-feedtab.label "Ouvrir le flux dans un nouvel onglet">
+<!ENTITY command-opennew.label "Ouvrir l'élément le plus récent">
+<!ENTITY command-group.label "Ouvrir tous les éléments dans des onglets">
+<!ENTITY command-groupunread.label "Ouvrir tous les éléments non lus dans des onglets">
+<!ENTITY command-groupnew.label "Ouvrir les nouveaux éléments dans des onglets">
+<!ENTITY command-reload.label "Actualiser les marque-pages dynamiques">
+<!ENTITY command-markitemread.label "Marquer l'élément comme lu">
+<!ENTITY command-markitemseen.label "Marquer l'élément comme non lu s'il est récent">
+<!ENTITY command-markitemsread.label "Tout marquer comme étant lu">
+<!ENTITY command-resetnewcount.label "Réinitialiser le nouveau compte">
+<!ENTITY command-markfeedsread.label "Marquer tous les marque-pages dynamiques comme lus">
+<!ENTITY command-clearhistory.label "Vider l'historique des marque-pages dynamiques">
+<!ENTITY command-monitordefault.label "Utiliser la surveillance par défaut">
+<!ENTITY command-monitoralert.label "Me le signaler">
+<!ENTITY command-monitorautoload.label "Charger automatiquement dans des onglets">
+<!ENTITY command-monitortag.label "Étiqueter les nouveaux éléments">
+<!ENTITY command-nothing.label "Ne rien faire">
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "Ouvrir l'adresse">
+<!ENTITY pcm-feed.label "Ouvrir le flux">
+<!ENTITY pcm-groupunread.label "Ouvrir les éléments non lus dans des onglets">
+<!ENTITY pcm-groupnew.label "Ouvrir les nouveaux éléments dans des onglets">
+<!ENTITY pcm-markfeedread.label "Marquer tous les éléments comme lus">
+<!ENTITY pcm-markfeedunread.label "Marquer tous les éléments comme non lus">
+<!ENTITY pcm-resetnewcount.label "Réinitialiser le nouveau compte">
+<!ENTITY pcm-togglemonitor.label "Surveiller le marque-page dynamique">
+<!ENTITY pcm-markitemsread.label "Marque comme lu">
+<!ENTITY pcm-markitemsunread.label "Marque comme non lu">
+<!ENTITY pcm-reloadfolder.label "Actualiser les marque-pages dynamiques">
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "Mettre cette page en marque-page dynamique">
+<!ENTITY lbt-link.label "Mettre ce fil en marque-page dynamique">
+<!-- LiveClick toolbar button -->
+<!ENTITY tbb-checknow.label "Vérifier les nouveaux éléments maintenant">
+<!ENTITY tbb-checking.label "Vérification…">
+<!-- Bookmarks Menu -->
+<!ENTITY bmmenu-submenu.label "Marque-pages dynamiques">
+<!ENTITY bmmenu-checknow.label "Vérifier les nouveaux éléments dès maintenant">
+<!ENTITY bmmenu-checknow.accesskey "L">
+<!ENTITY bmmenu-stop.label "Arrêter la vérification">
+<!ENTITY bmmenu-suspend.label "Suspendre la vérification automatique">
+<!ENTITY bmmenu-resetnewcount.label "Réinitialiser le nouveau compte">
+<!ENTITY bmmenu-markread.label "Marquer tous les marque-pages dynamiques comme lus">
+<!ENTITY bmmenu-clear.label "Vider l'historique des marque-pages dynamiques">
+<!ENTITY bmmenu-options.label "Options de LiveClick…">
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmprops-monitorcheckbox.label "Surveiller les nouveaux éléments pour ce marque-page dynamique">
+<!ENTITY bmprops-expander-down.label "Personnaliser ce marque-page dynamique">
+<!ENTITY bmprops-check.label "Vérifier les nouveaux éléments :">
+<!ENTITY bmprops-check-every6h.label "toutes les 6 heures">
+<!ENTITY bmprops-check-every4h.label "toutes les 4 heures">
+<!ENTITY bmprops-check-every2h.label "toutes les 2 heures">
+<!ENTITY bmprops-check-every60m.label "toutes les 60 minutes">
+<!ENTITY bmprops-check-every30m.label "toutes les 30 minutes">
+<!ENTITY bmprops-check-every15m.label "toutes les 15 minutes">
+<!ENTITY bmprops-check-every10m.label "toutes les 10 minutes">
+<!ENTITY bmprops-check-custom.label "Personnaliser…">
+<!ENTITY bmprops-check-timeunit.label "(minutes)">
+<!ENTITY bmprops-monitor.label "Quand de nouveaux éléments sont trouvés :">
+<!-- Bookmarks Tooltips -->
+<!ENTITY lit-loading.label "Chargement de l'aperçu…">
+<!-- LiveClick Options dialog -->
+<!ENTITY options-title "Options de LiveClick">
+<!ENTITY options-note-restart.label "Note : il vous faudra peut-être redémarrer pour que les modifications prennent effet.">
+<!ENTITY options-generalpane.label "Générales">
+<!ENTITY options-update.caption "Mise à jour des marque-pages dynamiques">
+<!ENTITY options-checkonstart.label "Vérifiez les nouveaux éléments lors du démarrage de Firefox">
+<!ENTITY options-check1.label "Vérifier les nouveaux éléments toutes les">
+<!ENTITY options-check2.label "minute(s).">
+<!ENTITY options-checkdefault.label "Remarque : l'intervalle par défaut est de 60 minutes.">
+<!ENTITY options-history.caption "Historique">
+<!ENTITY options-history-onvisit.label "Après avoir visité une URL d'un marque-page dynamique :">
+<!ENTITY options-history-onexit.label "En quittant Firefox :">
+<!ENTITY options-history-clearprivate.label "Vider lorsque l'historique de navigation est supprimé">
+<!ENTITY options-history-clearnow.label "Vider maintenant">
+<!ENTITY options-appearancepane.label "Apparence">
+<!ENTITY options-reading.caption "Lecture">
+<!ENTITY options-showcount.label "Afficher le nombre de :">
+<!ENTITY options-countnew.label "Nouveaux éléments">
+<!ENTITY options-countunread.label "Éléments non lus">
+<!ENTITY options-countnone.label "Ne rien afficher">
+<!ENTITY options-stylefolders.label "Dossiers">
+<!ENTITY options-stylelivemarks.label "Marque-pages dynamiques">
+<!ENTITY options-styleitems.label "Éléments">
+<!ENTITY options-stylenew-select.label "Nouveau :">
+<!ENTITY options-stylefresh-select.label "Récent :">
+<!ENTITY options-styleunread-select.label "Non lu :">
+<!ENTITY options-styleread-select.label "Lu :">
+<!ENTITY options-style0.label "Normal">
+<!ENTITY options-style1.label "Dégradé">
+<!ENTITY options-style2.label "Non affiché">
+<!ENTITY options-style5.label "Gras">
+<!ENTITY options-style6.label "Orange">
+<!ENTITY options-stylecustom.label "Style personnalisé (voir la F.A.Q.)">
+<!ENTITY options-showmax1.label "Ne pas afficher plus de">
+<!ENTITY options-showmax2.label "éléments">
+<!ENTITY options-icons.caption "Icônes">
+<!ENTITY options-showfavicons.label "Afficher des favicônes et non l'icône des marque-pages dynamiques">
+<!ENTITY options-tooltips.caption "Infobulles">
+<!ENTITY options-showpreviews.label "Afficher les aperçus pour les éléments des marque-pages dynamiques">
+<!ENTITY options-history-onpreview.label "Après avoir apercu un marque-page dynamique :">
+<!ENTITY options-menuspane.label "Menus">
+<!ENTITY options-clicks.caption "Clic sur les marque-pages dynamiques">
+<!ENTITY options-leftmenu.label "Clic gauche :">
+<!ENTITY options-middlemenu.label "Clic milieu (molette) :">
+<!ENTITY options-accelmenu.label "Touche Ctrl/Accel">
+<!ENTITY options-feedsmenu.caption "Options du menu des marque-pages dynamiques">
+<!ENTITY options-keepopen.label "Conserver ouvert le menu après un clic central sur un de ses éléments">
+<!ENTITY options-keepopenexceptlast.label "Fermer après un clic central sur le dernier élément non lu">
+<!ENTITY options-placemenu.label "Placer les entrées du menu :">
+<!ENTITY options-place-top.label "En haut">
+<!ENTITY options-place-bottom.label "En bas">
+<!ENTITY options-showopen.label "Afficher « Ouvrir l'adresse »">
+<!ENTITY options-showfeed.label "Afficher « Voir le marque-page dynamique »">
+<!ENTITY options-showtabs.label "Afficher « Ouvrir les éléments non lus dans des onglets »">
+<!ENTITY options-showread.label "Afficher « Marquer tous les éléments comme lus »">
+<!ENTITY options-history-onpopup.label "Après avoir vu un menu de marque-page dynamique :">
+<!ENTITY options-monitorspane.label "Surveillance des marque-pages dynamiques">
+<!ENTITY options-monitor-select.label "Quand un fil surveillé contient de nouveaux éléments :">
+<!ENTITY options-monitor-action-alert.label "Utiliser les règles générales d'alerte">
+<!ENTITY options-monitor-action-autoload.label "Utiliser les règles générales de chargement automatique">
+<!ENTITY options-monitor-action-livetag.label "Étiqueter les nouveaux éléments (marque-pages intelligents)">
+<!ENTITY options-monitor-customize.label "Ci-dessous, vous pouvez personnaliser chaque comportement de surveillance.">
+<!ENTITY options-monitor-tab-feeds.label "Marque-pages dynamiques surveillés">
+<!ENTITY options-monitor-tab-alert.label "Alerte">
+<!ENTITY options-monitor-tab-autoload.label "Auto chargement">
+<!ENTITY options-monitor-tab-livetag.label "Étiquette">
+<!ENTITY options-monitored-all.label "Surveiller tous les marque-pages dynamiques">
+<!ENTITY options-monitored-select.label "Sélectionnez les marque-pages dynamiques que vous voulez surveiller :">
+<!ENTITY options-monitored-count.label "Total :">
+<!ENTITY options-monitored-selectall.label "Tout sélectionner">
+<!ENTITY options-monitored-selectnone.label "Ne rien sélectionner">
+<!ENTITY options-alert-1item.label "Quand on clique sur une alerte pour un nouvel élément :">
+<!ENTITY options-alert-nitem.label "Quand on clique sur une alerte pour plusieurs nouveaux éléments :">
+<!ENTITY options-alert-repeat.label "Répéter les alertes :">
+<!ENTITY options-alert-repeat-always.label "À chaque fois que le marque-page dynamique est vérifié">
+<!ENTITY options-alert-repeat-session.label "Une fois par session de Firefox">
+<!ENTITY options-alert-repeat-never.label "Ne jamais répéter les alertes">
+<!ENTITY options-autoload-1item.label "Au chargement automatique d'un nouvel élément :">
+<!ENTITY options-autoload-nitem.label "Au chargement automatique de plusieurs nouveaux éléments :">
+<!ENTITY options-autoload-alert.label "Me prévenir après le chargement automatique d'éléments">
+<!ENTITY options-livetag-label.label "Marquer comme :">
+<!ENTITY options-livetag-createfolder.label "Créer un dossier">
+<!ENTITY options-livetag-changenote.label "À noter : si vous modifiez l'étiquetage, il vous faut aussi créer un nouveau dossier de marque-pages intelligents.">
+<!ENTITY options-livetag-alert.label "M'alerter après l'étiquetage d'éléments">
+<!ENTITY options-livetag-onread.label "Enlever l'étiquette après la lecture de l'élément">
+<!ENTITY options-settings-button.label "Paramètres">
+<!ENTITY options-settings-restore.label "Rétablir les paramètres par défaut">
+<!ENTITY options-settings-import.label "Importer des paramètres">
+<!ENTITY options-settings-export.label "Exporter des paramètres">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "À propos">
+<!ENTITY about-createdby.label "Créée par :">
+<!ENTITY about-visithome.label "Site Web">
+<!ENTITY about-visitfaq.label "Voir la F.A.Q.">
+<!ENTITY about-donate.label "Faire un don">
+<!ENTITY about-contributors.label "Contributeurs :">
+<!ENTITY about-translators.label "Traducteurs :">
+<!ENTITY about-babelzilla.label "Remerciements particuliers à BabelZilla !">
+<!ENTITY about-icons.label "Les icônes du Tango Desktop Project sont utilisées de façon autorisée suivant les termes de la licence Creative Commons.">

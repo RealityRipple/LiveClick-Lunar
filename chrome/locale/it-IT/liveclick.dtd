@@ -1,0 +1,166 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "Effettua l&apos;azione predefinita del browser">
+<!ENTITY command-open.label "Apri l&apos;indirizzo web">
+<!ENTITY command-opentab.label "Apri l&apos;indirizzo web in una nuova scheda">
+<!ENTITY command-feed.label "Visualizza il feed">
+<!ENTITY command-feedtab.label "Visualizza il feed in una nuova scheda">
+<!ENTITY command-opennew.label "Apri i nuovi elementi">
+<!ENTITY command-group.label "Apri tutti gli elementi in schede">
+<!ENTITY command-groupunread.label "Apri gli elementi non letti in schede">
+<!ENTITY command-groupnew.label "Apri i nuovi elementi in schede">
+<!ENTITY command-reload.label "Ricarica i segnalibri Live">
+<!ENTITY command-markitemread.label "Segna l&apos;elemento come letto">
+<!ENTITY command-markitemseen.label "Segna l&apos;elemento come non letto se nuovo">
+<!ENTITY command-markitemsread.label "Segna tutti gli elementi come letti">
+<!ENTITY command-resetnewcount.label "Ripristina il conteggio">
+<!ENTITY command-markfeedsread.label "Segna tutti i segnalibri Live come letti">
+<!ENTITY command-clearhistory.label "Elimina la cronologia dei segnalibri Live">
+<!ENTITY command-monitordefault.label "Utilizza il monitoraggio predefinito">
+<!ENTITY command-monitoralert.label "Visualizza un pop-up di notifica">
+<!ENTITY command-monitorautoload.label "Carica automaticamente in schede">
+<!ENTITY command-monitortag.label "Etichetta i nuovi elementi">
+<!ENTITY command-nothing.label "Non fare nulla">
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "Apri l&apos;indirizzo web">
+<!ENTITY pcm-feed.label "Apri il feed">
+<!ENTITY pcm-groupunread.label "Apri gli elementi non letti in schede">
+<!ENTITY pcm-groupnew.label "Apri i nuovi elementi in schede">
+<!ENTITY pcm-markfeedread.label "Segna tutti come letti">
+<!ENTITY pcm-markfeedunread.label "Segna tutti come non letti">
+<!ENTITY pcm-resetnewcount.label "Ripristina il conteggio">
+<!ENTITY pcm-togglemonitor.label "Monitora questo feed">
+<!ENTITY pcm-markitemsread.label "Segna come letto">
+<!ENTITY pcm-markitemsunread.label "Segna come non letto">
+<!ENTITY pcm-reloadfolder.label "Ricarica i segnalibri Live">
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "Aggiungi la pagina nei segnalibri Live">
+<!ENTITY lbt-link.label "Aggiungi il link del feed nei segnalibri Live">
+<!-- LiveClick toolbar button -->
+<!ENTITY tbb-checknow.label "Controlla la presenza di nuovi elementi ora">
+<!ENTITY tbb-checking.label "Controllo in corso…">
+<!-- Bookmarks Menu -->
+<!ENTITY bmmenu-submenu.label "Segnalibri Live di LiveClick">
+<!ENTITY bmmenu-checknow.label "Controlla la presenza di nuovi elementi ora">
+<!ENTITY bmmenu-checknow.accesskey "C">
+<!ENTITY bmmenu-stop.label "Interrompi il controllo">
+<!ENTITY bmmenu-suspend.label "Sospendi il controllo automatico">
+<!ENTITY bmmenu-resetnewcount.label "Ripristina il conteggio">
+<!ENTITY bmmenu-markread.label "Segna tutti i segnalibri Live come letti">
+<!ENTITY bmmenu-clear.label "Elimina la cronologia dei segnalibri Live">
+<!ENTITY bmmenu-options.label "Impostazioni di LiveClick…">
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmprops-monitorcheckbox.label "Monitora questo segnalibro Live">
+<!ENTITY bmprops-expander-down.label "Personalizza il monitoraggio del segnalibro Live per controllare la presenza di nuovi elementi">
+<!ENTITY bmprops-check.label "Periodo di tempo prima del controllo:">
+<!ENTITY bmprops-check-every6h.label "6 ore">
+<!ENTITY bmprops-check-every4h.label "4 ore">
+<!ENTITY bmprops-check-every2h.label "2 ore">
+<!ENTITY bmprops-check-every60m.label "60 minuti">
+<!ENTITY bmprops-check-every30m.label "30 minuti">
+<!ENTITY bmprops-check-every15m.label "15 minuti">
+<!ENTITY bmprops-check-every10m.label "10 minuti">
+<!ENTITY bmprops-check-custom.label "personalizzato">
+<!ENTITY bmprops-check-timeunit.label "minuti">
+<!ENTITY bmprops-monitor.label "Quando vi sono nuovi elementi:">
+<!-- Bookmarks Tooltips -->
+<!ENTITY lit-loading.label "Caricamento dell&apos;anteprima in corso…">
+<!-- LiveClick Options dialog -->
+<!ENTITY options-title "Impostazioni di LiveClick">
+<!ENTITY options-note-restart.label "Nota: riavviare il browser per rendere effettive le modifiche">
+<!ENTITY options-generalpane.label "Generali">
+<!ENTITY options-update.caption "Aggiornamento dei segnalibri Live">
+<!ENTITY options-checkonstart.label "Controlla la presenza di nuovi elementi all&apos;avvio del browser">
+<!ENTITY options-check1.label "Minuti prima del successivo controllo di nuovi elementi di feed:">
+<!ENTITY options-check2.label " ">
+<!ENTITY options-checkdefault.label "Nota: il controllo predefinito avviene ogni 60 minuti">
+<!ENTITY options-history.caption "Cronologia">
+<!ENTITY options-history-onvisit.label "Dopo aver visitato un segnalibro Live:">
+<!ENTITY options-history-onexit.label "Quando si chiude il browser:">
+<!ENTITY options-history-clearprivate.label "Elimina la cronologia quando si elimina quella del browser">
+<!ENTITY options-history-clearnow.label "Elimina ora">
+<!ENTITY options-appearancepane.label "Aspetto">
+<!ENTITY options-reading.caption "Lettura dei feed">
+<!ENTITY options-showcount.label "Elementi di cui mostrare il conteggio:">
+<!ENTITY options-countnew.label "nuovi">
+<!ENTITY options-countunread.label "non letti">
+<!ENTITY options-countnone.label "nessuno">
+<!ENTITY options-stylefolders.label "Stile delle cartelle">
+<!ENTITY options-stylelivemarks.label "Stile dei segnalibri Live">
+<!ENTITY options-styleitems.label "Stile degli elementi">
+<!ENTITY options-stylenew-select.label "Nuovi:">
+<!ENTITY options-stylefresh-select.label "Aggiornati:">
+<!ENTITY options-styleunread-select.label "Non letti:">
+<!ENTITY options-styleread-select.label "Letti:">
+<!ENTITY options-style0.label "normale">
+<!ENTITY options-style1.label "in dissolvenza">
+<!ENTITY options-style2.label "non visualizzato">
+<!ENTITY options-style5.label "in grassetto">
+<!ENTITY options-style6.label "in arancione">
+<!ENTITY options-stylecustom.label "personalizzato">
+<!ENTITY options-showmax1.label "Numero massimo di elementi da visualizzare:">
+<!ENTITY options-showmax2.label " ">
+<!ENTITY options-icons.caption "Favicon">
+<!ENTITY options-showfavicons.label "Visualizza le favicon invece del simbolo dei segnalibri Live">
+<!ENTITY options-tooltips.caption "Anteprima di segnalibri Live">
+<!ENTITY options-showpreviews.label "Visualizza l&apos;anteprima dei segnalibri Live">
+<!ENTITY options-history-onpreview.label "Dopo l&apos;anteprima di un segnalibro Live:">
+<!ENTITY options-menuspane.label "Menu">
+<!ENTITY options-clicks.caption "Azione da associare al clic del mouse su segnalibri Live">
+<!ENTITY options-leftmenu.label "Con tasto sinistro:">
+<!ENTITY options-middlemenu.label "Con tasto centrale:">
+<!ENTITY options-accelmenu.label "Con Ctrl/Cmd + clic:">
+<!ENTITY options-feedsmenu.caption "Opzioni del menu dei feed">
+<!ENTITY options-keepopen.label "Mantieni il menu aperto dopo il clic con tasto centrale sugli elementi">
+<!ENTITY options-keepopenexceptlast.label "Chiudi il menu dopo il clic con tasto centrale sull&apos;ultimo elemento non letto">
+<!ENTITY options-placemenu.label "Posiziona gli elementi di menu:">
+<!ENTITY options-place-top.label "in cima">
+<!ENTITY options-place-bottom.label "in fondo">
+<!ENTITY options-showopen.label "Mostra &apos;Apri l&apos;indirizzo web&apos;">
+<!ENTITY options-showfeed.label "Mostra &apos;Visualizza il feed&apos;">
+<!ENTITY options-showtabs.label "Mostra &apos;Apri gli elementi non letti in schede&apos;">
+<!ENTITY options-showread.label "Mostra &apos;Segna tutti gli elementi come letti&apos;">
+<!ENTITY options-history-onpopup.label "Dopo l&apos;apertura del menu contestuale:">
+<!ENTITY options-monitorspane.label "Monitoraggio">
+<!ENTITY options-monitor-select.label "Azione da effettuare quando un feed monitorato contiene nuovi elementi">
+<!ENTITY options-monitor-action-alert.label "Visualizza un pop-up di notifica">
+<!ENTITY options-monitor-action-autoload.label "Carica automaticamente i nuovi elementi in schede">
+<!ENTITY options-monitor-action-livetag.label "Aggiungi le etichette per i nuovi elementi (segnalibri Smart)">
+<!ENTITY options-monitor-customize.label "È possibile personalizzare il comportamento dei link monitorati tramite le opzioni qui sotto">
+<!ENTITY options-monitor-tab-feeds.label "Feed monitorati">
+<!ENTITY options-monitor-tab-alert.label "Pop-up di notifica">
+<!ENTITY options-monitor-tab-autoload.label "Caricamento automatico">
+<!ENTITY options-monitor-tab-livetag.label "Etichette">
+<!ENTITY options-monitored-all.label "Monitora tutti i segnalibri Live">
+<!ENTITY options-monitored-select.label "Selezionare i feed da monitorare nel riquadro qui sotto:">
+<!ENTITY options-monitored-count.label "Totale:">
+<!ENTITY options-monitored-selectall.label "Tutti">
+<!ENTITY options-monitored-selectnone.label "Nessuno">
+<!ENTITY options-alert-1item.label "Azione da effettuare quando si fa clic sul pop-up di notifica di un nuovo elemento">
+<!ENTITY options-alert-nitem.label "Azione da effettuare quando si fa clic sul pop-up di notifica di molteplici nuovi elementi">
+<!ENTITY options-alert-repeat.label "Visualizza un pop-up di notifica:">
+<!ENTITY options-alert-repeat-always.label "ad ogni controllo di un segnalibro Live">
+<!ENTITY options-alert-repeat-session.label "ad ogni sessione di Firefox">
+<!ENTITY options-alert-repeat-never.label "mai">
+<!ENTITY options-autoload-1item.label "Azione da effettuare quando si carica automaticamente un nuovo elemento">
+<!ENTITY options-autoload-nitem.label "Azione da effettuare quando si caricano automaticamente molteplici nuovi elementi">
+<!ENTITY options-autoload-alert.label "Visualizza un pop-up di notifica dopo il caricamento automatico">
+<!ENTITY options-livetag-label.label "Etichetta come:">
+<!ENTITY options-livetag-createfolder.label "Crea cartella…">
+<!ENTITY options-livetag-changenote.label "Se si modificano le etichette è necessario creare una nuova cartella di segnalibri Smart">
+<!ENTITY options-livetag-alert.label "Visualizza un pop-up di notifica dopo aver aggiunto un&apos;etichetta">
+<!ENTITY options-livetag-onread.label "Elimina l&apos;etichetta dopo aver letto l&apos;elemento">
+<!ENTITY options-settings-button.label "Impostazioni ">
+<!ENTITY options-settings-restore.label "Ripristina predefinite">
+<!ENTITY options-settings-import.label "Importale da file XML">
+<!ENTITY options-settings-export.label "Esportale in file XML">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "Informazioni su LiveClick">
+<!ENTITY about-createdby.label "Autore">
+<!ENTITY about-visithome.label "Visita il sito web">
+<!ENTITY about-visitfaq.label "Visita la pagina delle FAQ">
+<!ENTITY about-donate.label "Effettua una donazione">
+<!ENTITY about-contributors.label "Collaboratori">
+<!ENTITY about-translators.label "Traduttori:">
+<!ENTITY about-babelzilla.label "Uno speciale ringraziamento a BabelZilla!">
+<!ENTITY about-icons.label "Icone provenienti da Tango Desktop Project, usate con i dovuti permessi sotto la licenza Creative Commons Attribution Share-Alike">

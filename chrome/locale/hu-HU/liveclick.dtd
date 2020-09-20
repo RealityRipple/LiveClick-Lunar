@@ -1,0 +1,166 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "Böngésző alapértelmezés">
+<!ENTITY command-open.label "Hely megnyitása">
+<!ENTITY command-opentab.label "Hely megnyitása új lapon">
+<!ENTITY command-feed.label "Csatorna megnyitása">
+<!ENTITY command-feedtab.label "Csatorna megnyitása új lapon">
+<!ENTITY command-opennew.label "Legújabb elem megnyitása">
+<!ENTITY command-group.label "Az összes elem megnyitása külön lapokon">
+<!ENTITY command-groupunread.label "Olvasatlan elemek megnyitása külön lapokon">
+<!ENTITY command-groupnew.label "Új elemek megnyitása külön lapokon">
+<!ENTITY command-reload.label "Élő könyvjelző újratöltése">
+<!ENTITY command-markitemread.label "Megjelölés olvasottként">
+<!ENTITY command-markitemseen.label "Megjelölés olvasatlanként, ha friss">
+<!ENTITY command-markitemsread.label "Az összes elem megjelölése olvasottként">
+<!ENTITY command-resetnewcount.label "Új elem számlálók nullázása">
+<!ENTITY command-markfeedsread.label "Az összes élő könyvjelző megjelölése olvasottként">
+<!ENTITY command-clearhistory.label "Élő könyvjelző előzmények törlése">
+<!ENTITY command-monitordefault.label "Alapértelmezett figyelő">
+<!ENTITY command-monitoralert.label "Értesítsen">
+<!ENTITY command-monitorautoload.label "Automatikus betöltés füleken">
+<!ENTITY command-monitortag.label "Új elemek címkézése">
+<!ENTITY command-nothing.label "Ne csináljon semmit">
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "Hely megnyitása">
+<!ENTITY pcm-feed.label "Csatorna megnyitása">
+<!ENTITY pcm-groupunread.label "Olvasatlan elemek megnyitása füleken">
+<!ENTITY pcm-groupnew.label "Új elemek megnyitása füleken">
+<!ENTITY pcm-markfeedread.label "Az összes elem megjelölése olvasottként">
+<!ENTITY pcm-markfeedunread.label "Az összes elem megjelölése olvasatlanként">
+<!ENTITY pcm-resetnewcount.label "Új elem számlálók nullázása">
+<!ENTITY pcm-togglemonitor.label "Élő könyvjelző figyelése">
+<!ENTITY pcm-markitemsread.label "Megjelölés olvasottként">
+<!ENTITY pcm-markitemsunread.label "Megjelölés olvasatlanként">
+<!ENTITY pcm-reloadfolder.label "Élő könyvjelzők újratöltése">
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "Feliratkozás élő könyvjelzőre">
+<!ENTITY lbt-link.label "Feliratkozás élő könyvjelzőre">
+<!-- LiveClick toolbar button -->
+<!ENTITY tbb-checknow.label "Új elemek keresése most">
+<!ENTITY tbb-checking.label "Ellenőrzés...">
+<!-- Bookmarks Menu -->
+<!ENTITY bmmenu-submenu.label "Élő könyvjelzők">
+<!ENTITY bmmenu-checknow.label "Az összes élő könyvjelző frissítése most">
+<!ENTITY bmmenu-checknow.accesskey "F">
+<!ENTITY bmmenu-stop.label "Ellenőrzés leállítás">
+<!ENTITY bmmenu-suspend.label "Automatikus ellenőrzés felfüggesztése">
+<!ENTITY bmmenu-resetnewcount.label "Új elem számlálók nullázása">
+<!ENTITY bmmenu-markread.label "Az összes élő könyvjelző megjelölése olvasottként">
+<!ENTITY bmmenu-clear.label "Élő könyvjelzők előzményeinek törlése">
+<!ENTITY bmmenu-options.label "LiveClick beállítások...">
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmprops-monitorcheckbox.label "Új elemek figyelése ebben az élő könyvjelzőben">
+<!ENTITY bmprops-expander-down.label "Élő könyvjelző testreszabása">
+<!ENTITY bmprops-check.label "Új elemek keresése:">
+<!ENTITY bmprops-check-every6h.label "6 óránként">
+<!ENTITY bmprops-check-every4h.label "4 óránként">
+<!ENTITY bmprops-check-every2h.label "2 óránként">
+<!ENTITY bmprops-check-every60m.label "Óránként">
+<!ENTITY bmprops-check-every30m.label "Félóránként">
+<!ENTITY bmprops-check-every15m.label "Negyedóránként">
+<!ENTITY bmprops-check-every10m.label "10 percenként">
+<!ENTITY bmprops-check-custom.label "Egyéni...">
+<!ENTITY bmprops-check-timeunit.label "(perc)">
+<!ENTITY bmprops-monitor.label "Ha új elemeket talál:">
+<!-- Bookmarks Tooltips -->
+<!ENTITY lit-loading.label "Előnézet betöltése...">
+<!-- LiveClick Options dialog -->
+<!ENTITY options-title "LiveClick beállítások">
+<!ENTITY options-note-restart.label "Megjegyzés: A változások érvénybelépéséhez lehet, hogy újraindítás szükséges.">
+<!ENTITY options-generalpane.label "Általános">
+<!ENTITY options-update.caption "Élő könyvjelzők frissítése">
+<!ENTITY options-checkonstart.label "Új elemek keresése a Firefox indulásakor">
+<!ENTITY options-check1.label "Élő könyvjelzők frissítése">
+<!ENTITY options-check2.label "percenként.">
+<!ENTITY options-checkdefault.label "Megjegyzés: az alapértelmezett érték 60 perc.">
+<!ENTITY options-history.caption "Előzmények">
+<!ENTITY options-history-onvisit.label "Egy élő könyvjelző helyének meglátogatásakor:">
+<!ENTITY options-history-onexit.label "Firefoxból való kilépéskor:">
+<!ENTITY options-history-clearprivate.label "Törlés a böngésző gyorsítótárának ürítésekor">
+<!ENTITY options-history-clearnow.label "Törlés most">
+<!ENTITY options-appearancepane.label "Megjelenés">
+<!ENTITY options-reading.caption "Olvasás">
+<!ENTITY options-showcount.label "Számlálók megjelenítése:">
+<!ENTITY options-countnew.label "Új elemek">
+<!ENTITY options-countunread.label "Olvasatlan elemek">
+<!ENTITY options-countnone.label "Nincs számláló">
+<!ENTITY options-stylefolders.label "Mappák">
+<!ENTITY options-stylelivemarks.label "Élő könyvjelzők">
+<!ENTITY options-styleitems.label "Elemek">
+<!ENTITY options-stylenew-select.label "Új:">
+<!ENTITY options-stylefresh-select.label "Friss:">
+<!ENTITY options-styleunread-select.label "Olvasatlan:">
+<!ENTITY options-styleread-select.label "Olvasott:">
+<!ENTITY options-style0.label "Normál">
+<!ENTITY options-style1.label "Halvány">
+<!ENTITY options-style2.label "Rejtett">
+<!ENTITY options-style5.label "Félkövér">
+<!ENTITY options-style6.label "Narancssárga">
+<!ENTITY options-stylecustom.label "Egyéni">
+<!ENTITY options-showmax1.label "Ne jelenjen meg több mint">
+<!ENTITY options-showmax2.label "elem">
+<!ENTITY options-icons.caption "Ikonok">
+<!ENTITY options-showfavicons.label "Faviconok megjelenítése az élő könyvjelző ikon helyett">
+<!ENTITY options-tooltips.caption "Buborékok">
+<!ENTITY options-showpreviews.label "Előnézet megjelenítése az élő könyvjelző elemekhez">
+<!ENTITY options-history-onpreview.label "Az előnézet megtekintése után:">
+<!ENTITY options-menuspane.label "Menük">
+<!ENTITY options-clicks.caption "Élő könyvjelzőre való kattintáskor">
+<!ENTITY options-leftmenu.label "Bal gombbal:">
+<!ENTITY options-middlemenu.label "Középső gombbal:">
+<!ENTITY options-accelmenu.label "Ctrl/Cmd lenyomásával:">
+<!ENTITY options-feedsmenu.caption "Menüpontok megjelenítése">
+<!ENTITY options-keepopen.label "A könyvjelző maradjon nyitva, ha a középső egérgombbal nyitok meg egy elemet">
+<!ENTITY options-keepopenexceptlast.label "Könyvjelző bezárása, ha nincs több olvasatlan elem">
+<!ENTITY options-placemenu.label "Menüpontok elhelyezése:">
+<!ENTITY options-place-top.label "felül">
+<!ENTITY options-place-bottom.label "alul">
+<!ENTITY options-showopen.label "Hely megnyitása">
+<!ENTITY options-showfeed.label "Csatorna megtekintése">
+<!ENTITY options-showtabs.label "Olvasatlan elemek megnyitása külön lapokon">
+<!ENTITY options-showread.label "Mindegyik megjelölése olvasottként">
+<!ENTITY options-history-onpopup.label "Élő könyvjelző menüjének megtekintésekor:">
+<!ENTITY options-monitorspane.label "Figyelés">
+<!ENTITY options-monitor-select.label "Amikor egy figyelt csatornába új elem érkezik:">
+<!ENTITY options-monitor-action-alert.label "Értesítsen">
+<!ENTITY options-monitor-action-autoload.label "Új elemek automatikus betöltése új fülekben">
+<!ENTITY options-monitor-action-livetag.label "Új elemek címkézése (Intelligens könyvjelzők)">
+<!ENTITY options-monitor-customize.label "Itt testreszabhatja a könyvjelzők figyelését.">
+<!ENTITY options-monitor-tab-feeds.label "Figyelt csatornák">
+<!ENTITY options-monitor-tab-alert.label "Értesítés">
+<!ENTITY options-monitor-tab-autoload.label "Automatikus betöltés">
+<!ENTITY options-monitor-tab-livetag.label "Címkézés">
+<!ENTITY options-monitored-all.label "Az összes élő könyvjelző figyelése">
+<!ENTITY options-monitored-select.label "Válassza ki a figyelendő élő könyvjelzőket:">
+<!ENTITY options-monitored-count.label "Összesen:">
+<!ENTITY options-monitored-selectall.label "Mindet">
+<!ENTITY options-monitored-selectnone.label "Egyiket sem">
+<!ENTITY options-alert-1item.label "Amikor rákattintok egy értesítésre egy új elemmel:">
+<!ENTITY options-alert-nitem.label "Amikor rákattintok egy értesítésre több új elemmel:">
+<!ENTITY options-alert-repeat.label "Értesítések ismétlése:">
+<!ENTITY options-alert-repeat-always.label "Az élő könyvjelzők minden betöltésekor">
+<!ENTITY options-alert-repeat-session.label "Munkamenetenként egyszer">
+<!ENTITY options-alert-repeat-never.label "Sose ismétlődjenek">
+<!ENTITY options-autoload-1item.label "Egy új elem automatikus betöltésekor:">
+<!ENTITY options-autoload-nitem.label "Több új elem automatikus betöltésekor:">
+<!ENTITY options-autoload-alert.label "Értesítsen az elemek automatikus betöltése után">
+<!ENTITY options-livetag-label.label "Címkézés mint:">
+<!ENTITY options-livetag-createfolder.label "Mappa létrehozása">
+<!ENTITY options-livetag-changenote.label "Megjegyzés: ha megváltoztatod a címkéket, akkor új intelligens könyvjelző mappát kell létrehoznod.">
+<!ENTITY options-livetag-alert.label "Értesítsen az elemek címkézése után">
+<!ENTITY options-livetag-onread.label "Címke eltávolítása az olvasott elemekről">
+<!ENTITY options-settings-button.label "Beállítások">
+<!ENTITY options-settings-restore.label "Alapértelmezett">
+<!ENTITY options-settings-import.label "Beállítások importálása">
+<!ENTITY options-settings-export.label "Beállítások exportálása">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "Névjegy">
+<!ENTITY about-createdby.label "Készítette:">
+<!ENTITY about-visithome.label "Honlap meglátogatása">
+<!ENTITY about-visitfaq.label "GYIK megtekintése">
+<!ENTITY about-donate.label "Támogatás">
+<!ENTITY about-contributors.label "Közreműködtek:">
+<!ENTITY about-translators.label "Fordították:">
+<!ENTITY about-babelzilla.label "Külön köszönet a BabelZilla-nak!">
+<!ENTITY about-icons.label "Az ikonok a Tango Desktop Projectből származnak, a Creative Commons Attribution Share-Alike licenszében megadott jogok alapján.">

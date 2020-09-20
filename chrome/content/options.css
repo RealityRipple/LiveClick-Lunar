@@ -1,0 +1,15 @@
+/* Show default livemark icon at no larger than 16x16 pixels */
+#imgLivemarkIcon
+{
+	list-style-image: url(chrome://browser/skin/livemark-folder.png);
+	-moz-image-region: rect(0px,16px,16px,0px);
+}
+
+/* Prevent livemark favicons from being larger than 16x16 pixels */
+/*	Can't use region with checkbox listitem, so we must resize for now */
+.listitem-iconic image
+{
+	max-height: 16px !important;
+	max-width: 16px !important;
+	margin-left: 3px;
+}

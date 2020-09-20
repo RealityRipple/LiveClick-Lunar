@@ -1,0 +1,213 @@
+<!-- Common -->
+<!ENTITY extension.name "LiveClick">
+
+<!ENTITY command-default.label "Do browser default">
+<!ENTITY command-open.label "Open location">
+<!ENTITY command-opentab.label "Open location in new tab">
+<!ENTITY command-feed.label "Open feed">
+<!ENTITY command-feedtab.label "Open feed in new tab">
+<!ENTITY command-opennew.label "Open newest item">
+<!ENTITY command-group.label "Open all items in tabs">
+<!ENTITY command-groupunread.label "Open unread items in tabs">
+<!ENTITY command-groupnew.label "Open new items in tabs">
+<!ENTITY command-reload.label "Reload live bookmark">
+<!ENTITY command-markitemread.label "Mark item as read">
+<!ENTITY command-markitemseen.label "Mark item as unread if new">
+<!ENTITY command-markitemsread.label "Mark all items as read">
+<!ENTITY command-resetnewcount.label "Reset new count">
+<!ENTITY command-markfeedsread.label "Mark all live bookmarks as read">
+<!ENTITY command-clearhistory.label "Clear live bookmarks history">
+<!ENTITY command-monitordefault.label "Use default monitor">
+<!ENTITY command-monitoralert.label "Alert me">
+<!ENTITY command-monitorautoload.label "Autoload in tabs">
+<!ENTITY command-monitortag.label "Tag new items">
+<!ENTITY command-nothing.label "Do nothing">
+
+
+<!-- Places context menu items -->
+<!ENTITY pcm-open.label "Open Location">
+<!ENTITY pcm-feed.label "Open Feed">
+<!ENTITY pcm-groupunread.label "Open Unread Items in Tabs">
+<!ENTITY pcm-groupnew.label "Open New Items in Tabs">
+<!ENTITY pcm-markfeedread.label "Mark All Items as Read">
+<!ENTITY pcm-markfeedunread.label "Mark All Items as Unread">
+<!ENTITY pcm-resetnewcount.label "Reset New Count">
+<!ENTITY pcm-togglemonitor.label "Monitor Live Bookmark">
+
+<!ENTITY pcm-markitemsread.label "Mark as Read">
+<!ENTITY pcm-markitemsunread.label "Mark as Unread">
+
+<!ENTITY pcm-reloadfolder.label "Reload Live Bookmarks">
+
+
+<!-- Content Area context menu items -->
+<!ENTITY lbt-page.label "Live Bookmark This Page...">
+<!ENTITY lbt-link.label "Live Bookmark This Feed Link...">
+
+
+<!-- LiveClick toolbar button -->
+<!ENTITY tbb-checknow.label "Check for new items now">
+<!ENTITY tbb-checking.label "Checking...">
+
+
+<!-- Bookmarks Menu -->
+<!ENTITY bmmenu-submenu.label "Live Bookmarks">
+<!ENTITY bmmenu-checknow.label "Check for New Items Now">
+<!ENTITY bmmenu-checknow.accesskey "L">
+<!ENTITY bmmenu-stop.label "Stop Checking">
+<!ENTITY bmmenu-suspend.label "Suspend Automatic Checking">
+<!ENTITY bmmenu-resetnewcount.label "Reset New Count">
+<!ENTITY bmmenu-markread.label "Mark All Live Bookmarks as Read">
+<!ENTITY bmmenu-clear.label "Clear Live Bookmarks History">
+<!ENTITY bmmenu-options.label "LiveClick Options...">
+
+
+<!-- Bookmarks Properties dialog -->
+<!ENTITY bmprops-monitorcheckbox.label "Monitor this live bookmark for new items">
+<!ENTITY bmprops-expander-down.label "Customize this live bookmark">
+<!ENTITY bmprops-check.label "Check for new items:">
+<!ENTITY bmprops-check-every6h.label "Every 6 hours">
+<!ENTITY bmprops-check-every4h.label "Every 4 hours">
+<!ENTITY bmprops-check-every2h.label "Every 2 hours">
+<!ENTITY bmprops-check-every60m.label "Every 60 minutes">
+<!ENTITY bmprops-check-every30m.label "Every 30 minutes">
+<!ENTITY bmprops-check-every15m.label "Every 15 minutes">
+<!ENTITY bmprops-check-every10m.label "Every 10 minutes">
+<!ENTITY bmprops-check-custom.label "Custom...">
+<!ENTITY bmprops-check-timeunit.label "(minutes)">
+<!ENTITY bmprops-monitor.label "When new items are found:">
+
+
+<!-- Bookmarks Tooltips -->
+<!ENTITY lit-loading.label "Preview loading...">
+
+
+<!-- LiveClick Options dialog -->
+<!ENTITY options-title "LiveClick Options">
+
+<!ENTITY options-note-restart.label "Note: You may need to restart before changes take effect.">
+
+<!ENTITY options-generalpane.label "General">
+
+<!ENTITY options-update.caption "Updating Live Bookmarks">
+<!ENTITY options-checkonstart.label "Check for new items on Firefox startup">
+<!ENTITY options-check1.label "Check for new items every">
+<!ENTITY options-check2.label "minutes">
+<!ENTITY options-checkdefault.label "Note: The default interval is 60 minutes.">
+
+<!ENTITY options-history.caption "Live Bookmarks History">
+
+<!ENTITY options-history-onvisit.label "After visiting a live bookmark's location:">
+<!ENTITY options-history-onexit.label "When exiting Firefox:">
+
+<!ENTITY options-history-clearprivate.label "Clear when clearing browsing history">
+<!ENTITY options-history-clearnow.label "Clear now">
+
+<!ENTITY options-appearancepane.label "Appearance">
+
+<!ENTITY options-reading.caption "Reading">
+
+<!ENTITY options-showcount.label "Display count of:">
+<!ENTITY options-countnew.label "New items">
+<!ENTITY options-countunread.label "Unread items">
+<!ENTITY options-countnone.label "No count">
+
+<!ENTITY options-stylefolders.label "Folders">
+<!ENTITY options-stylelivemarks.label "Livemarks">
+<!ENTITY options-styleitems.label "Items">
+
+<!ENTITY options-stylenew-select.label "New:">
+<!ENTITY options-stylefresh-select.label "Fresh:">
+<!ENTITY options-styleunread-select.label "Unread:">
+<!ENTITY options-styleread-select.label "Read:">
+
+<!ENTITY options-style0.label "Normal">
+<!ENTITY options-style1.label "Faded out">
+<!ENTITY options-style2.label "Not displayed">
+<!ENTITY options-style5.label "Boldface">
+<!ENTITY options-style6.label "Orange">
+<!ENTITY options-stylecustom.label "Custom">
+
+<!ENTITY options-showmax1.label "Show no more than">
+<!ENTITY options-showmax2.label "items">
+
+<!ENTITY options-icons.caption "Icons">
+<!ENTITY options-showfavicons.label "Display favicons instead of livemark icon">
+
+<!ENTITY options-tooltips.caption "Tooltips">
+<!ENTITY options-showpreviews.label "Display preview in live bookmark item tooltips">
+<!ENTITY options-history-onpreview.label "After previewing a live bookmark item:">
+
+<!ENTITY options-menuspane.label "Menus">
+
+<!ENTITY options-clicks.caption "Clicking Livemarks">
+<!ENTITY options-leftmenu.label "Left click:">
+<!ENTITY options-middlemenu.label "Middle click:">
+<!ENTITY options-accelmenu.label "Ctrl/Cmd click:">
+
+<!ENTITY options-feedsmenu.caption "Livemark Menu Options">
+<!ENTITY options-keepopen.label "Keep menu open after middle clicking items">
+<!ENTITY options-keepopenexceptlast.label "Close after middle clicking last unread item">
+
+<!ENTITY options-placemenu.label "Common commands position:">
+<!ENTITY options-place-top.label "Top">
+<!ENTITY options-place-bottom.label "Bottom">
+<!ENTITY options-showopen.label "Show &apos;Open Location&apos;">
+<!ENTITY options-showfeed.label "Show &apos;Open Feed&apos;">
+<!ENTITY options-showtabs.label "Show &apos;Open Unread Items in Tabs&apos;">
+<!ENTITY options-showread.label "Show &apos;Mark All Items as Read&apos;">
+
+<!ENTITY options-history-onpopup.label "After viewing a livemark menu:">
+
+<!ENTITY options-monitorspane.label "Monitors">
+
+<!ENTITY options-monitor-select.label "When a monitored live bookmark has new items:">
+<!ENTITY options-monitor-action-alert.label "Alert me">
+<!ENTITY options-monitor-action-autoload.label "Autoload new items in tabs">
+<!ENTITY options-monitor-action-livetag.label "Tag new items (Smart Bookmarks)">
+<!ENTITY options-monitor-customize.label "You can customize each monitor's behavior below.">
+
+<!ENTITY options-monitor-tab-feeds.label "Monitored">
+<!ENTITY options-monitor-tab-alert.label "Alert">
+<!ENTITY options-monitor-tab-autoload.label "Autoload">
+<!ENTITY options-monitor-tab-livetag.label "Tag">
+
+<!ENTITY options-monitored-all.label "Monitor all live bookmarks">
+<!ENTITY options-monitored-select.label "Select the live bookmarks you want to monitor:">
+<!ENTITY options-monitored-count.label "Total:">
+<!ENTITY options-monitored-selectall.label "Select All">
+<!ENTITY options-monitored-selectnone.label "Select None">
+
+<!ENTITY options-alert-1item.label "When clicking alert with 1 new item:">
+<!ENTITY options-alert-nitem.label "When clicking alert with multiple new items:">
+<!ENTITY options-alert-repeat.label "Repeat alerts:">
+<!ENTITY options-alert-repeat-always.label "Every time live bookmark is checked">
+<!ENTITY options-alert-repeat-session.label "Once per Firefox session">
+<!ENTITY options-alert-repeat-never.label "Never repeat alerts">
+
+<!ENTITY options-autoload-1item.label "When autoloading 1 new item:">
+<!ENTITY options-autoload-nitem.label "When autoloading multiple new items:">
+<!ENTITY options-autoload-alert.label "Alert me after autoloading items">
+
+<!ENTITY options-livetag-label.label "Tag as:">
+<!ENTITY options-livetag-createfolder.label "Create Folder">
+<!ENTITY options-livetag-changenote.label "Note: If you change tags, you must also create a new smart bookmarks folder.">
+<!ENTITY options-livetag-alert.label "Alert me after tagging items">
+<!ENTITY options-livetag-onread.label "Remove tag after reading item">
+
+<!ENTITY options-settings-button.label "Settings">
+<!ENTITY options-settings-restore.label "Restore defaults">
+<!ENTITY options-settings-import.label "Import settings...">
+<!ENTITY options-settings-export.label "Export settings...">
+
+
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "About">
+<!ENTITY about-createdby.label "Created By:">
+<!ENTITY about-visithome.label "Visit Home Page">
+<!ENTITY about-visitfaq.label "Visit FAQ">
+<!ENTITY about-donate.label "Donate">
+<!ENTITY about-contributors.label "Contributors:">
+<!ENTITY about-translators.label "Translators:">
+<!ENTITY about-babelzilla.label "Special thanks to BabelZilla!">
+<!ENTITY about-icons.label "Icons from the Tango Desktop Project, used with permission under the Creative Commons Attribution Share-Alike license.">

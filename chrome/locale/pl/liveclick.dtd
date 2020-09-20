@@ -1,0 +1,166 @@
+<!--  Common  -->
+<!ENTITY extension.name "LiveClick">
+<!ENTITY command-default.label "Ustaw jako domyślną przeglądarkę">
+<!ENTITY command-open.label "Otwórz lokalizację">
+<!ENTITY command-opentab.label "Otwórz lokalizację w nowej karcie">
+<!ENTITY command-feed.label "Otwórz kanał">
+<!ENTITY command-feedtab.label "Otwórz kanał w nowej karcie">
+<!ENTITY command-opennew.label "Otwórz najnowszy element">
+<!ENTITY command-group.label "Otwórz wszystkie elementy w kartach">
+<!ENTITY command-groupunread.label "Otwórz nieprzeczytane elementy w kartach">
+<!ENTITY command-groupnew.label "Otwórz nowe elementy w kartach">
+<!ENTITY command-reload.label "Odśwież dynamiczną zakładkę">
+<!ENTITY command-markitemread.label "Oznacz element jako przeczytany">
+<!ENTITY command-markitemseen.label "Oznacz element jako nieprzeczytany, jeśli został zaktualizowany">
+<!ENTITY command-markitemsread.label "Oznacz wszystkie elementy jako przeczytane">
+<!ENTITY command-resetnewcount.label "Resetuj licznik nowych">
+<!ENTITY command-markfeedsread.label "Oznacz wszystkie dynamiczne zakładki jako przeczytane">
+<!ENTITY command-clearhistory.label "Wyczyść historię dynamicznych zakładek">
+<!ENTITY command-monitordefault.label "Używaj domyślnego monitora">
+<!ENTITY command-monitoralert.label "Powiadom mnie">
+<!ENTITY command-monitorautoload.label "Automatycznie wczytuj w kartach">
+<!ENTITY command-monitortag.label "Oznacz etykietą nowe elementy">
+<!ENTITY command-nothing.label "Brak reakcji">
+<!--  Places context menu items  -->
+<!ENTITY pcm-open.label "Otwórz lokalizację">
+<!ENTITY pcm-feed.label "Otwórz kanał">
+<!ENTITY pcm-groupunread.label "Otwórz nieprzeczytane elementy w kartach">
+<!ENTITY pcm-groupnew.label "Otwórz nowe elementy w kartach">
+<!ENTITY pcm-markfeedread.label "Oznacz wszystkie jako przeczytane">
+<!ENTITY pcm-markfeedunread.label "Oznacz wszystkie jako nieprzeczytane">
+<!ENTITY pcm-resetnewcount.label "Resetuj licznik nowych">
+<!ENTITY pcm-togglemonitor.label "Monitoruj dynamiczne zakładki">
+<!ENTITY pcm-markitemsread.label "Oznacz jako przeczytane">
+<!ENTITY pcm-markitemsunread.label "Oznacz jako nieprzeczytane">
+<!ENTITY pcm-reloadfolder.label "Odśwież dynamiczne zakładki">
+<!--  Content Area context menu items  -->
+<!ENTITY lbt-page.label "Subskrybuj tę stronę">
+<!ENTITY lbt-link.label "Subskrybuj ten kanał">
+<!--  Bookmarks Menu  -->
+<!ENTITY tbb-checknow.label "Sprawdź czy są nowe elementy">
+<!ENTITY tbb-checking.label "Sprawdzanie…">
+<!--  Bookmarks Properties dialog  -->
+<!ENTITY bmmenu-submenu.label "Dynamiczne zakładki">
+<!ENTITY bmmenu-checknow.label "Sprawdź czy są nowe elementy">
+<!ENTITY bmmenu-checknow.accesskey "N">
+<!ENTITY bmmenu-stop.label "Zatrzymaj sprawdzanie">
+<!ENTITY bmmenu-suspend.label "Zawieś automatyczne sprawdzanie">
+<!ENTITY bmmenu-resetnewcount.label "Resetuj licznik nowych">
+<!ENTITY bmmenu-markread.label "Oznacz wszystkie dynamiczne zakładki jako przeczytane">
+<!ENTITY bmmenu-clear.label "Wyczyść historię dynamicznych zakładek">
+<!ENTITY bmmenu-options.label "Ustawienia LiveClick…">
+<!--  Bookmarks Tooltips  -->
+<!ENTITY bmprops-monitorcheckbox.label "Monitoruj tę dynamiczną zakładkę">
+<!ENTITY bmprops-expander-down.label "Dostosuj tę dynamiczną zakładkę">
+<!ENTITY bmprops-check.label "Sprawdzaj czy są nowe elementy:">
+<!ENTITY bmprops-check-every6h.label "Co 6 godz.">
+<!ENTITY bmprops-check-every4h.label "Co 4 godz.">
+<!ENTITY bmprops-check-every2h.label "Co 2 godz.">
+<!ENTITY bmprops-check-every60m.label "Co 60 min.">
+<!ENTITY bmprops-check-every30m.label "Co 30 min.">
+<!ENTITY bmprops-check-every15m.label "Co 15 min.">
+<!ENTITY bmprops-check-every10m.label "Co 10 min.">
+<!ENTITY bmprops-check-custom.label "Dostosuj…">
+<!ENTITY bmprops-check-timeunit.label "(minuty)">
+<!ENTITY bmprops-monitor.label "Gdy nowe elementy zostaną znalezione:">
+<!--  LiveClick Options dialog  -->
+<!ENTITY lit-loading.label "Wczytywanie podglądu…">
+<!--  Generic About dialog  -->
+<!ENTITY options-title "LiveClick - ustawienia">
+<!ENTITY options-note-restart.label "Informacja: Aby zmiany zostały zastosowane, może wystąpić konieczność ponownego uruchomienia">
+<!ENTITY options-generalpane.label "Ogólne">
+<!ENTITY options-update.caption "Aktualizowanie dynamicznych zakładek">
+<!ENTITY options-checkonstart.label "Sprawdzaj czy są nowe elementy podczas uruchamiania Firefoksa">
+<!ENTITY options-check1.label "Sprawdzaj kanały co">
+<!ENTITY options-check2.label "min.">
+<!ENTITY options-checkdefault.label "Domyślny interwał – 60 minut">
+<!ENTITY options-history.caption "Historia">
+<!ENTITY options-history-onvisit.label "Po odwiedzeniu lokalizacji dynamicznej zakładki:">
+<!ENTITY options-history-onexit.label "Podczas zamykania Firefoksa:">
+<!ENTITY options-history-clearprivate.label "Czyść podczas czyszczenia historii">
+<!ENTITY options-history-clearnow.label "Wyczyść teraz">
+<!ENTITY options-appearancepane.label "Wygląd">
+<!ENTITY options-reading.caption "Czytanie">
+<!ENTITY options-showcount.label "Wyświetlaj liczbę:">
+<!ENTITY options-countnew.label "Nowych elementów">
+<!ENTITY options-countunread.label "Nieprzeczytanych elementów">
+<!ENTITY options-countnone.label "Nie wyświetlaj">
+<!ENTITY options-stylefolders.label "Foldery">
+<!ENTITY options-stylelivemarks.label "Dynamiczne zakładki">
+<!ENTITY options-styleitems.label "Elementy">
+<!ENTITY options-stylenew-select.label "Nowe:">
+<!ENTITY options-stylefresh-select.label "Najnowsze:">
+<!ENTITY options-styleunread-select.label "Nieprzeczytane:">
+<!ENTITY options-styleread-select.label "Przeczytane:">
+<!ENTITY options-style0.label "Normalne">
+<!ENTITY options-style1.label "Zanikające">
+<!ENTITY options-style2.label "Nie wyświetlone">
+<!ENTITY options-style5.label "Pogrubione">
+<!ENTITY options-style6.label "Pomarańczowe">
+<!ENTITY options-stylecustom.label "Dostosuj">
+<!ENTITY options-showmax1.label "Wyświetlaj nie więcej niż">
+<!ENTITY options-showmax2.label "elementów">
+<!ENTITY options-icons.caption "Ikony">
+<!ENTITY options-showfavicons.label "Wyświetlaj favicony zamiast ikony kanałów RSS">
+<!ENTITY options-tooltips.caption "Podpowiedzi">
+<!ENTITY options-showpreviews.label "Wyświetlaj podglądy elementów dynamicznych zakładek">
+<!ENTITY options-history-onpreview.label "Po wyświetleniu podglądu elementu dynamicznej zakładki:">
+<!ENTITY options-menuspane.label "Menu">
+<!ENTITY options-clicks.caption "Kliknięcie dynamicznej zakładki:">
+<!ENTITY options-leftmenu.label "Lewy przycisk myszy">
+<!ENTITY options-middlemenu.label "Środkowy przycisk myszy">
+<!ENTITY options-accelmenu.label "Ctrl/Cmd + l.p.m.">
+<!ENTITY options-feedsmenu.caption "Wyświetlaj w menu kanału element:">
+<!ENTITY options-keepopen.label "Po kliknięciu na elemencie ś.p.m. utrzymuj menu otwarte">
+<!ENTITY options-keepopenexceptlast.label "Zamknij po kliknięciu ś.p.m. ostatniego nieprzeczytanego elementu">
+<!ENTITY options-placemenu.label "Położenie elementów wspólnych">
+<!ENTITY options-place-top.label "na górze">
+<!ENTITY options-place-bottom.label "na dole">
+<!ENTITY options-showopen.label "Otwórz witrynę kanału">
+<!ENTITY options-showfeed.label "Otwórz podgląd kanału">
+<!ENTITY options-showtabs.label "Otwórz nieprzeczytane w kartach">
+<!ENTITY options-showread.label "Oznacz wszystkie kanały jako przeczytane">
+<!ENTITY options-history-onpopup.label "Po wyświetleniu menu dynamicznej zakładki:">
+<!ENTITY options-monitorspane.label "Monitorowanie">
+<!ENTITY options-monitor-select.label "Gdy monitorowany kanał zawiera nowe wiadomości:">
+<!ENTITY options-monitor-action-alert.label "Powiadom mnie">
+<!ENTITY options-monitor-action-autoload.label "Automatycznie otwórz nowe elementy w kartach">
+<!ENTITY options-monitor-action-livetag.label "Oznacz nowe elementy (Inteligentne zakładki)">
+<!ENTITY options-monitor-customize.label "Poniżej można skonfigurować sposób monitorowania">
+<!ENTITY options-monitor-tab-feeds.label "Monitorowane kanały">
+<!ENTITY options-monitor-tab-alert.label "Powiadamianie">
+<!ENTITY options-monitor-tab-autoload.label "Odczyt automatyczny">
+<!ENTITY options-monitor-tab-livetag.label "Etykieta">
+<!ENTITY options-monitored-all.label "Monitoruj wszystkie dynamiczne zakładki">
+<!ENTITY options-monitored-select.label "Wybierz dynamiczne zakładki do monitorowania:">
+<!ENTITY options-monitored-count.label "Łącznie:">
+<!ENTITY options-monitored-selectall.label "Zaznacz wszystkie">
+<!ENTITY options-monitored-selectnone.label "Odznacz wszystkie">
+<!ENTITY options-alert-1item.label "Po kliknięciu powiadomienia z jedną nową wiadomością:">
+<!ENTITY options-alert-nitem.label "Po kliknięciu powiadomienia z wieloma nowymi wiadomościami:">
+<!ENTITY options-alert-repeat.label "Powtarzaj powiadomienia:">
+<!ENTITY options-alert-repeat-always.label "Po każdym sprawdzeniu dynamicznej zakładki">
+<!ENTITY options-alert-repeat-session.label "Raz w ciągu sesji">
+<!ENTITY options-alert-repeat-never.label "Nigdy nie powtarzaj">
+<!ENTITY options-autoload-1item.label "Gdy jest jedna nowa wiadomość:">
+<!ENTITY options-autoload-nitem.label "Gdy jest wiele nowych wiadomości:">
+<!ENTITY options-autoload-alert.label "Wyświetlaj powiadomienie po pobraniu elementów">
+<!ENTITY options-livetag-label.label "Oznacz jako:">
+<!ENTITY options-livetag-createfolder.label "Utwórz folder">
+<!ENTITY options-livetag-changenote.label "Informacja: Jeśli oznaczenie zostanie zmienione, należy utworzyć nowy folder inteligentnych zakładek">
+<!ENTITY options-livetag-alert.label "Powiadamiaj po zmianie oznaczenia elementu">
+<!ENTITY options-livetag-onread.label "Usuwaj oznaczenie po przeczytaniu elementu">
+<!ENTITY options-settings-button.label "Ustawienia">
+<!ENTITY options-settings-restore.label "Przywróć domyślne">
+<!ENTITY options-settings-import.label "Importuj ustawienia">
+<!ENTITY options-settings-export.label "Eksportuj ustawienia">
+<!-- Generic About dialog -->
+<!ENTITY about-dialog.label "LiveClick - informacje">
+<!ENTITY about-createdby.label "Autor:">
+<!ENTITY about-visithome.label "Strona domowa">
+<!ENTITY about-visitfaq.label "FAQ">
+<!ENTITY about-donate.label "Dotacje">
+<!ENTITY about-contributors.label "Współtwórcy:">
+<!ENTITY about-translators.label "Tłumaczenia:">
+<!ENTITY about-babelzilla.label "Specjalne podziękowania dla zespołu BabelZilla!">
+<!ENTITY about-icons.label "Ikony wykonane przez Tango Desktop Project, użyte zgodnie z licencją Creative Commons Attribution Share-Alike.">
