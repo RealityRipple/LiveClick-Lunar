@@ -1,631 +1,584 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://liveclick/content/options.css"?>
-
 <!DOCTYPE overlay SYSTEM "chrome://liveclick/locale/liveclick.dtd">
-
 <prefwindow id="liveclick-prefs"
-	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	type="prefwindow" windowtype="LiveClick:PrefWindow"
-	title="&options-title;"
-	buttons="cancel,accept,extra2"
-	buttonlabelextra2="&options-settings-button.label;"
-	ondialogaccept="acceptDialog();"
-	ondialogcancel="closeDialog();"
-	onload="init();">
-
-	<prefpane id="liveclick-options-general"
-		label="&options-generalpane.label;"
-		image="chrome://liveclick/skin/ops-config.png">
-
-		<preferences>
-			<preference id="checkOnStart" name="extensions.liveclick.checkOnStart" type="bool" />
-			<preference id="checkAutomatic" name="extensions.liveclick.checkAutomatic" type="bool" />
-			<preference id="defaultInterval" name="extensions.liveclick.defaultInterval" type="int" />
-
-			<preference id="locationVisit" name="extensions.liveclick.locationVisit" type="int" />
-			<preference id="browserExit" name="extensions.liveclick.browserExit" type="int" />
-			<preference id="browserClear" name="extensions.liveclick.browserClear" type="bool" />
-
-			<!-- List hidden preferences here for import/export purposes -->
-			<preference id="checkOnDemand" name="extensions.liveclick.checkOnDemand" type="bool" />
-			<preference id="checkWhenIdle" name="extensions.liveclick.checkWhenIdle" type="bool" />
-			<preference id="alertForeground" name="extensions.liveclick.alertForeground" type="bool" />
-			<preference id="debug" name="extensions.liveclick.debug" type="bool" />
-			<preference id="debugLog" name="extensions.liveclick.debugLog" type="bool" />
-		</preferences>
-
-		<groupbox>
-			<caption label="&options-update.caption;" />
-			<checkbox label="&options-checkonstart.label;" flex="1" preference="checkOnStart" />
-			<hbox align="center">
-				<checkbox id="cbAutomatic" label="&options-check1.label;" preference="checkAutomatic"
-					onsyncfrompreference="return linkChildOnCheck( 'checkAutomatic', 'minutesBox' );" />
-				<textbox id="minutesBox" preference="defaultInterval"
-					type="number" min="1" size="2" maxlength="4"
-					onsyncfrompreference="return setMinutes();"
-					onsynctopreference="return setSeconds();" />
-				<label value="&options-check2.label;" />
-			</hbox>
-			<separator class="thin" />
-			<label value="&options-checkdefault.label;" class="indent" />
-		</groupbox>
-
-		<groupbox>
-			<caption label="&options-history.caption;" />
-			<grid>
-				<columns>
-					<column style="width: 37ex;" />
-					<column style="width: 23ex;" />
-				</columns>
-				<rows>
-					<row align="center">
-						<label>&options-history-onvisit.label;</label>
-						<menulist preference="locationVisit" sizetopopup="none">
-							<menupopup>
-								<menuitem value="1" label="&command-resetnewcount.label;" />
-								<menuitem value="2" label="&command-markitemsread.label;" />
-								<menuitem value="0" label="&command-nothing.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-					<row align="center">
-						<label>&options-history-onexit.label;</label>
-						<menulist preference="browserExit" sizetopopup="none">
-							<menupopup>
-								<menuitem value="1" label="&command-resetnewcount.label;" />
-								<menuitem value="2" label="&command-markfeedsread.label;" />
-								<menuitem value="3" label="&command-clearhistory.label;" />
-								<menuitem value="0" label="&command-nothing.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-				</rows>
-			</grid>
-			<separator class="thin" />
-			<hbox align="center">
-				<checkbox label="&options-history-clearprivate.label;" flex="1" preference="browserClear" />
-				<button label="&options-history-clearnow.label;" oncommand="LiveClickPlaces.clearHistory(true); this.disabled='true';" />
-			</hbox>
-		</groupbox>
-
-		<separator style="height: 4ex;" />
-
-	</prefpane>
-
-	<prefpane id="liveclick-options-appearance"
-		label="&options-appearancepane.label;"
-		image="chrome://liveclick/skin/ops-reading.png">
-
-		<preferences>
-			<preference id="showCount" name="extensions.liveclick.showCount" type="int" />
-
-			<preference id="styleNewAsFresh" name="extensions.liveclick.styleNewAsFresh" type="bool" />
-			<preference id="styleFolderNew" name="extensions.liveclick.styleFolderNew" type="int" />
-			<preference id="styleFolderFresh" name="extensions.liveclick.styleFolderFresh" type="int" />
-			<preference id="styleFolderUnread" name="extensions.liveclick.styleFolderUnread" type="int" />
-			<preference id="styleFolderRead" name="extensions.liveclick.styleFolderRead" type="int" />
-			<preference id="styleFeedNew" name="extensions.liveclick.styleFeedNew" type="int" />
-			<preference id="styleFeedFresh" name="extensions.liveclick.styleFeedFresh" type="int" />
-			<preference id="styleFeedUnread" name="extensions.liveclick.styleFeedUnread" type="int" />
-			<preference id="styleFeedRead" name="extensions.liveclick.styleFeedRead" type="int" />
-			<preference id="styleItemNew" name="extensions.liveclick.styleItemNew" type="int" />
-			<preference id="styleItemFresh" name="extensions.liveclick.styleItemFresh" type="int" />
-			<preference id="styleItemUnread" name="extensions.liveclick.styleItemUnread" type="int" />
-			<preference id="styleItemRead" name="extensions.liveclick.styleItemRead" type="int" />
-
-			<preference id="maxFeedItems" name="extensions.liveclick.maxFeedItems" type="int" />
-
-			<preference id="showFavIcons" name="extensions.liveclick.showFavIcons" type="bool" />
-
-			<preference id="showItemTooltips" name="extensions.liveclick.showItemTooltips" type="bool" />
-			<preference id="itemPreview" name="extensions.liveclick.itemPreview" type="int" />
-		</preferences>
-
-		<groupbox>
-			<caption label="&options-reading.caption;" />
-			<hbox align="center">
-				<label>&options-showcount.label;</label>
-				<menulist preference="showCount" sizetopopup="none">
-					<menupopup>
-						<menuitem value="1" label="&options-countnew.label;" />
-						<menuitem value="2" label="&options-countunread.label;" />
-						<menuitem value="0" label="&options-countnone.label;" />
-					</menupopup>
-				</menulist>
-			</hbox>
-			<separator class="thin" />
-			<grid>
-				<columns>
-					<column />
-					<column style="max-width: 22ex;" />
-					<column style="max-width: 22ex;" />
-				</columns>
-				<rows>
-					<row align="center">
-						<spacer />
-						<label value="&options-stylefolders.label;" />
-						<label value="&options-stylelivemarks.label;" />
-						<label value="&options-styleitems.label;" />
-					</row>
-					<row align="center">
-						<label value="&options-stylenew-select.label;" />
-						<menulist preference="styleFolderNew" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-						<menulist preference="styleFeedNew" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-						<menulist preference="styleItemNew" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="2" label="&options-style2.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-					<row id="styleFreshRow" align="center" collapsed="true">
-						<label value="&options-stylefresh-select.label;" />
-						<menulist preference="styleFolderFresh" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-						<menulist preference="styleFeedFresh" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-						<menulist preference="styleItemFresh" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="2" label="&options-style2.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-					<row align="center">
-						<label value="&options-styleunread-select.label;" />
-						<menulist preference="styleFolderUnread" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-						<menulist preference="styleFeedUnread" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-						<menulist preference="styleItemUnread" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="2" label="&options-style2.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-					<row align="center">
-						<label value="&options-styleread-select.label;" />
-						<menulist preference="styleFolderRead" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-						<menulist preference="styleFeedRead" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-						<menulist preference="styleItemRead" sizetopopup="none">
-							<menupopup>
-								<menuitem value="0" label="&options-style0.label;" />
-								<menuitem value="1" label="&options-style1.label;" />
-								<menuitem value="2" label="&options-style2.label;" />
-								<menuitem value="5" label="&options-style5.label;" />
-								<menuitem value="6" label="&options-style6.label;" />
-								<menuitem value="-1" label="&options-stylecustom.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-				</rows>
-			</grid>
-			<separator class="thin" />
-			<hbox align="center">
-				<checkbox id="cbShowMax" label="&options-showmax1.label;" oncommand="toggleMax();" />
-				<textbox id="tbMaxItems" preference="maxFeedItems" disabled="true"
-					value="20" type="number" min="1" size="1" maxlength="3"
-					onsyncfrompreference="return readMaxFeedItems();"
-					onsynctopreference="return setMaxFeedItems();" />
-				<label value="&options-showmax2.label;" />
-			</hbox>
-		</groupbox>
-
-		<groupbox>
-			<caption label="&options-icons.caption;" />
-			<hbox align="center">
-				<checkbox label="&options-showfavicons.label;" preference="showFavIcons" />
-				<image id="imgLivemarkIcon" />
-			</hbox>
-		</groupbox>
-
-		<groupbox>
-			<caption label="&options-tooltips.caption;" />
-			<checkbox label="&options-showpreviews.label;" preference="showItemTooltips" style="width: 60ex;"
-				onsyncfrompreference="return linkChildOnCheck( 'showItemTooltips', 'hbitemPreview' );" />
-			<hbox id="hbitemPreview" align="center" class="indent">
-				<label style="width: 35ex;">&options-history-onpreview.label;</label>
-				<menulist preference="itemPreview" sizetopopup="none" style="width: 20ex;">
-					<menupopup>
-						<menuitem value="1" label="&command-markitemseen.label;" />
-						<menuitem value="2" label="&command-markitemread.label;" />
-						<menuitem value="0" label="&command-nothing.label;" />
-					</menupopup>
-				</menulist>
-			</hbox>
-		</groupbox>
-
-		<separator style="height: 4ex;" />
-
-	</prefpane>
-
-	<prefpane id="liveclick-options-menus"
-		label="&options-menuspane.label;"
-		image="chrome://liveclick/skin/ops-menus.png">
-
-		<preferences>
-			<preference id="clickLeft" name="extensions.liveclick.clickLeft" type="int" />
-			<preference id="clickMiddle" name="extensions.liveclick.clickMiddle" type="int" />
-			<preference id="clickAccel" name="extensions.liveclick.clickAccel" type="int" />
-
-			<preference id="keepOpenOnMiddle" name="extensions.liveclick.keepOpenOnMiddle" type="bool" />
-			<preference id="keepOpenExceptLast" name="extensions.liveclick.keepOpenExceptLast" type="bool" />
-
-			<preference id="showAtTop" name="extensions.liveclick.showAtTop" type="int" />
-			<preference id="showPopupOpen" name="extensions.liveclick.showPopupOpen" type="bool" />
-			<preference id="showPopupFeed" name="extensions.liveclick.showPopupFeed" type="bool" />
-			<preference id="showPopupTabs" name="extensions.liveclick.showPopupTabs" type="bool" />
-			<preference id="showPopupRead" name="extensions.liveclick.showPopupRead" type="bool" />
-
-			<preference id="livemarkView" name="extensions.liveclick.livemarkView" type="int" />
-		</preferences>
-
-		<groupbox>
-			<caption label="&options-clicks.caption;" />
-			<grid>
-				<columns>
-					<column />
-					<column style="max-width: 40ex;" />
-				</columns>
-				<rows>
-					<row align="center">
-						<label value="&options-leftmenu.label;" />
-						<menulist preference="clickLeft" sizetopopup="none">
-							<menupopup>
-								<menuitem value="1" label="&command-open.label;" />
-								<menuitem value="2" label="&command-opentab.label;" />
-								<menuitem value="3" label="&command-feed.label;" />
-								<menuitem value="4" label="&command-feedtab.label;" />
-								<menuseparator/>
-								<menuitem value="5" label="&command-group.label;" />
-								<menuitem value="7" label="&command-groupunread.label;" />
-								<menuitem value="8" label="&command-groupnew.label;" />
-								<menuseparator/>
-								<menuitem value="6" label="&command-markitemsread.label;" />
-								<menuitem value="9" label="&command-reload.label;" />
-								<menuseparator/>
-								<menuitem value="-1" label="&command-default.label;" />
-								<menuitem value="0" label="&command-nothing.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-					<row align="center">
-						<label value="&options-middlemenu.label;" />
-						<menulist preference="clickMiddle" sizetopopup="none">
-							<menupopup>
-								<menuitem value="1" label="&command-open.label;" />
-								<menuitem value="2" label="&command-opentab.label;" />
-								<menuitem value="3" label="&command-feed.label;" />
-								<menuitem value="4" label="&command-feedtab.label;" />
-								<menuseparator/>
-								<menuitem value="5" label="&command-group.label;" />
-								<menuitem value="7" label="&command-groupunread.label;" />
-								<menuitem value="8" label="&command-groupnew.label;" />
-								<menuseparator/>
-								<menuitem value="6" label="&command-markitemsread.label;" />
-								<menuitem value="9" label="&command-reload.label;" />
-								<menuseparator/>
-								<menuitem value="-1" label="&command-default.label;" />
-								<menuitem value="0" label="&command-nothing.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-					<row align="center">
-						<label value="&options-accelmenu.label;" />
-						<menulist preference="clickAccel" sizetopopup="none">
-							<menupopup>
-								<menuitem value="1" label="&command-open.label;" />
-								<menuitem value="2" label="&command-opentab.label;" />
-								<menuitem value="3" label="&command-feed.label;" />
-								<menuitem value="4" label="&command-feedtab.label;" />
-								<menuseparator/>
-								<menuitem value="5" label="&command-group.label;" />
-								<menuitem value="7" label="&command-groupunread.label;" />
-								<menuitem value="8" label="&command-groupnew.label;" />
-								<menuseparator/>
-								<menuitem value="6" label="&command-markitemsread.label;" />
-								<menuitem value="9" label="&command-reload.label;" />
-								<menuseparator/>
-								<menuitem value="-1" label="&command-default.label;" />
-								<menuitem value="0" label="&command-nothing.label;" />
-							</menupopup>
-						</menulist>
-					</row>
-				</rows>
-			</grid>
-		</groupbox>
-
-		<groupbox>
-			<caption label="&options-feedsmenu.caption;" />
-			<hbox align="center">
-				<label value="&options-placemenu.label;" />
-				<menulist preference="showAtTop">
-					<menupopup>
-						<menuitem value="1" label="&options-place-top.label;" />
-						<menuitem value="0" label="&options-place-bottom.label;" />
-					</menupopup>
-				</menulist>
-			</hbox>
-			<checkbox label="&options-showopen.label;" preference="showPopupOpen" />
-			<checkbox label="&options-showfeed.label;" preference="showPopupFeed" />
-			<checkbox label="&options-showtabs.label;" preference="showPopupTabs" />
-			<checkbox label="&options-showread.label;" preference="showPopupRead" />
-			<separator class="thin"/>
-			<checkbox label="&options-keepopen.label;" preference="keepOpenOnMiddle" style="width: 60ex;"
-				onsyncfrompreference="return linkChildOnCheck( 'keepOpenOnMiddle', 'cbKeepOpenExceptLast');" />
-			<checkbox id="cbKeepOpenExceptLast" label="&options-keepopenexceptlast.label;"
-				preference="keepOpenExceptLast" class="indent" style="width: 50ex;" />
-			<separator class="thin" />
-			<hbox align="center">
-				<label>&options-history-onpopup.label;</label>
-				<menulist preference="livemarkView" sizetopopup="none" style="width: 23ex;">
-					<menupopup>
-						<menuitem value="1" label="&command-resetnewcount.label;" />
-						<menuitem value="2" label="&command-markitemsread.label;" />
-						<menuitem value="0" label="&command-nothing.label;" />
-					</menupopup>
-				</menulist>
-			</hbox>
-		</groupbox>
-
-		<separator style="height: 4ex;" />
-
-	</prefpane>
-
-	<prefpane id="liveclick-options-monitors"
-		label="&options-monitorspane.label;"
-		image="chrome://liveclick/skin/ops-monitors.png">
-
-		<preferences>
-			<preference id="monitorAction" name="extensions.liveclick.monitorAction" type="int" />
-			<preference id="monitorAll" name="extensions.liveclick.monitorAll" type="bool" />
-
-			<preference id="alert1Action" name="extensions.liveclick.alert1Action" type="int" />
-			<preference id="alert1Read" name="extensions.liveclick.alert1Read" type="bool" />
-			<preference id="alertNAction" name="extensions.liveclick.alertNAction" type="int" />
-			<preference id="alertNRead" name="extensions.liveclick.alertNRead" type="bool" />
-			<preference id="alertRepeat" name="extensions.liveclick.alertRepeat" type="int" />
-
-			<preference id="autoload1Action" name="extensions.liveclick.autoload1Action" type="int" />
-			<preference id="autoload1Read" name="extensions.liveclick.autoload1Read" type="bool" />
-			<preference id="autoloadNAction" name="extensions.liveclick.autoloadNAction" type="int" />
-			<preference id="autoloadNRead" name="extensions.liveclick.autoloadNRead" type="bool" />
-			<preference id="autoloadAlert" name="extensions.liveclick.autoloadAlert" type="bool" />
-
-			<preference id="liveTagLabel" name="extensions.liveclick.liveTagLabel" type="string" />
-			<preference id="liveTagAlert" name="extensions.liveclick.liveTagAlert" type="bool" />
-			<preference id="liveTagOnRead" name="extensions.liveclick.liveTagOnRead" type="bool" />
-		</preferences>
-
-		<label value="&options-monitor-select.label;" />
-		<hbox>
-			<menulist preference="monitorAction">
-				<menupopup>
-					<menuitem value="1" label="&options-monitor-action-alert.label;" />
-					<menuitem value="2" label="&options-monitor-action-autoload.label;" />
-					<menuitem value="3" label="&options-monitor-action-livetag.label;" />
-					<menuitem value="0" label="&command-nothing.label;" />
-				</menupopup>
-			</menulist>
-		</hbox>
-		<separator class="thin" />
-		<label value="&options-monitor-customize.label;" />
-
-		<separator class="groove" />
-
-		<tabbox flex="1">
-			<tabs>
-				<tab label="&options-monitor-tab-feeds.label;" />
-				<tab label="&options-monitor-tab-alert.label;" />
-				<tab label="&options-monitor-tab-autoload.label;" />
-				<tab label="&options-monitor-tab-livetag.label;" />
-			</tabs>
-
-			<tabpanels flex="1">
-				<!-- Monitored -->
-				<tabpanel orient="vertical">
-					<radiogroup id="monitorAll" preference="monitorAll" onsyncfrompreference="return readMonitorAll();">
-						<radio value="true" label="&options-monitored-all.label;" style="width: 55ex;" />
-						<radio value="false" label="&options-monitored-select.label;" style="width: 55ex;" />
-					</radiogroup>
-					<hbox class="indent" flex="1">
-						<listbox id="feedBox" flex="1">
-							<listcols>
-								<listcol flex="1" />
-							</listcols>
-						</listbox>
-						<hbox align="end">
-							<vbox>
-								<hbox><label id="countLabel" value="&options-monitored-count.label;" /><label id="countTotal" value="0 / 0" /></hbox>
-								<separator class="thin" />
-								<button id="selectFeedsAll" label="&options-monitored-selectall.label;" oncommand="selectFeeds(1);" />
-								<button id="selectFeedsNone" label="&options-monitored-selectnone.label;" oncommand="selectFeeds(0);" />
-							</vbox>
-						</hbox>
-					</hbox>
-				</tabpanel>
-
-				<!-- Alert Rules -->
-				<tabpanel orient="vertical">
-					<groupbox>
-						<caption label="&options-alert-1item.label;" />
-						<hbox>
-							<menulist preference="alert1Action" style="width: 35ex;">
-								<menupopup>
-									<menuitem value="1" label="&command-open.label;" />
-									<menuitem value="2" label="&command-feed.label;" />
-									<menuitem value="3" label="&command-opennew.label;" />
-									<menuitem value="0" label="&command-nothing.label;" />
-								</menupopup>
-							</menulist>
-						</hbox>
-						<checkbox label="&command-markitemsread.label;" preference="alert1Read" />
-					</groupbox>
-					<groupbox>
-						<caption label="&options-alert-nitem.label;" />
-						<hbox>
-							<menulist preference="alertNAction" style="width: 35ex;">
-								<menupopup>
-									<menuitem value="1" label="&command-open.label;" />
-									<menuitem value="2" label="&command-feed.label;" />
-									<menuitem value="3" label="&command-opennew.label;" />
-									<menuitem value="4" label="&command-groupnew.label;" />
-									<menuitem value="0" label="&command-nothing.label;" />
-								</menupopup>
-							</menulist>
-						</hbox>
-						<checkbox label="&command-markitemsread.label;" preference="alertNRead" />
-					</groupbox>
-					<hbox align="center">
-						<label value="&options-alert-repeat.label;" />
-						<menulist preference="alertRepeat" sizetopopup="none" style="width: 30ex;">
-							<menupopup>
-								<menuitem value="1" label="&options-alert-repeat-always.label;" />
-								<menuitem value="2" label="&options-alert-repeat-session.label;" />
-								<menuitem value="0" label="&options-alert-repeat-never.label;" />
-							</menupopup>
-						</menulist>
-					</hbox>
-				</tabpanel>
-
-				<!-- Autoload Rules -->
-				<tabpanel orient="vertical">
-					<groupbox>
-						<caption label="&options-autoload-1item.label;" />
-						<hbox>
-							<menulist preference="autoload1Action" style="width: 35ex;">
-								<menupopup>
-									<menuitem value="1" label="&command-open.label;" />
-									<menuitem value="2" label="&command-feed.label;" />
-									<menuitem value="3" label="&command-opennew.label;" />
-									<menuitem value="0" label="&command-nothing.label;" />
-								</menupopup>
-							</menulist>
-						</hbox>
-						<checkbox label="&command-markitemsread.label;" preference="autoload1Read" />
-					</groupbox>
-					<groupbox>
-						<caption label="&options-autoload-nitem.label;" />
-						<hbox>
-							<menulist preference="autoloadNAction" style="width: 35ex;">
-								<menupopup>
-									<menuitem value="1" label="&command-open.label;" />
-									<menuitem value="2" label="&command-feed.label;" />
-									<menuitem value="3" label="&command-opennew.label;" />
-									<menuitem value="4" label="&command-groupnew.label;" />
-									<menuitem value="0" label="&command-nothing.label;" />
-								</menupopup>
-							</menulist>
-						</hbox>
-						<checkbox label="&command-markitemsread.label;" preference="autoloadNRead" />
-					</groupbox>
-					<checkbox label="&options-autoload-alert.label;" preference="autoloadAlert" />
-				</tabpanel>
-
-				<!-- LiveTag Rules -->
-				<tabpanel orient="vertical">
-					<hbox align="center">
-						<label value="&options-livetag-label.label;" />
-						<textbox id="liveTagLabelBox" preference="liveTagLabel" flex="1" />
-						<button label="&options-livetag-createfolder.label;" oncommand="createSmartBookmark()" />
-					</hbox>
-					<label style="width: 60ex;">&options-livetag-changenote.label;</label>
-					<separator class="groove" />
-					<checkbox label="&options-livetag-alert.label;" preference="liveTagAlert" />
-					<checkbox label="&options-livetag-onread.label;" preference="liveTagOnRead" />
-				</tabpanel>
-			</tabpanels>
-		</tabbox>
-
-	</prefpane>
-
-	<stringbundleset id="stringbundleset">
-		<stringbundle id="liveclick-strings" src="chrome://liveclick/locale/liveclick.properties" />
-	</stringbundleset>
-
-	<!-- Apply overlay JavaScript -->
-	<script type="application/javascript" src="chrome://liveclick/content/options.js" />
-
-	<popupset>
-		<menupopup id="liveclick-settings" position="before_start">
-			<menuitem label="&options-settings-restore.label;" oncommand="settingsDefault();"/>
-			<menuitem label="&options-settings-import.label;" oncommand="settingsImport();"/>
-			<menuitem label="&options-settings-export.label;" oncommand="settingsExport();"/>
-		</menupopup>
-	</popupset>
-
+ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+ type="prefwindow" windowtype="LiveClick:PrefWindow"
+ title="&options-title;"
+ buttons="cancel,accept,extra2"
+ buttonlabelextra2="&options-settings-button.label;"
+ ondialogaccept="acceptDialog();"
+ ondialogcancel="closeDialog();"
+ onload="init();">
+ <prefpane id="liveclick-options-general"
+  label="&options-generalpane.label;"
+  image="chrome://liveclick/skin/ops-config.png">
+  <preferences>
+   <preference id="checkOnStart" name="extensions.liveclick.checkOnStart" type="bool" />
+   <preference id="checkAutomatic" name="extensions.liveclick.checkAutomatic" type="bool" />
+   <preference id="defaultInterval" name="extensions.liveclick.defaultInterval" type="int" />
+   <preference id="locationVisit" name="extensions.liveclick.locationVisit" type="int" />
+   <preference id="browserExit" name="extensions.liveclick.browserExit" type="int" />
+   <preference id="browserClear" name="extensions.liveclick.browserClear" type="bool" />
+   <!-- List hidden preferences here for import/export purposes -->
+   <preference id="checkOnDemand" name="extensions.liveclick.checkOnDemand" type="bool" />
+   <preference id="checkWhenIdle" name="extensions.liveclick.checkWhenIdle" type="bool" />
+   <preference id="alertForeground" name="extensions.liveclick.alertForeground" type="bool" />
+   <preference id="debug" name="extensions.liveclick.debug" type="bool" />
+   <preference id="debugLog" name="extensions.liveclick.debugLog" type="bool" />
+  </preferences>
+  <groupbox>
+   <caption label="&options-update.caption;" />
+   <checkbox label="&options-checkonstart.label;" flex="1" preference="checkOnStart" />
+   <hbox align="center">
+    <checkbox id="cbAutomatic" label="&options-check1.label;" preference="checkAutomatic"
+     onsyncfrompreference="return linkChildOnCheck( 'checkAutomatic', 'minutesBox' );" />
+    <textbox id="minutesBox" preference="defaultInterval"
+     type="number" min="1" size="2" maxlength="4"
+     onsyncfrompreference="return setMinutes();"
+     onsynctopreference="return setSeconds();" />
+    <label value="&options-check2.label;" />
+   </hbox>
+   <separator class="thin" />
+   <label value="&options-checkdefault.label;" class="indent" />
+  </groupbox>
+  <groupbox>
+   <caption label="&options-history.caption;" />
+   <grid>
+    <columns>
+     <column style="width: 37ex;" />
+     <column style="width: 23ex;" />
+    </columns>
+    <rows>
+     <row align="center">
+      <label>&options-history-onvisit.label;</label>
+      <menulist preference="locationVisit" sizetopopup="none">
+       <menupopup>
+        <menuitem value="1" label="&command-resetnewcount.label;" />
+        <menuitem value="2" label="&command-markitemsread.label;" />
+        <menuitem value="0" label="&command-nothing.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+     <row align="center">
+      <label>&options-history-onexit.label;</label>
+      <menulist preference="browserExit" sizetopopup="none">
+       <menupopup>
+        <menuitem value="1" label="&command-resetnewcount.label;" />
+        <menuitem value="2" label="&command-markfeedsread.label;" />
+        <menuitem value="3" label="&command-clearhistory.label;" />
+        <menuitem value="0" label="&command-nothing.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+    </rows>
+   </grid>
+   <separator class="thin" />
+   <hbox align="center">
+    <checkbox label="&options-history-clearprivate.label;" flex="1" preference="browserClear" />
+    <button label="&options-history-clearnow.label;" oncommand="LiveClickPlaces.clearHistory(true); this.disabled='true';" />
+   </hbox>
+  </groupbox>
+  <separator style="height: 4ex;" />
+ </prefpane>
+ <prefpane id="liveclick-options-appearance"
+  label="&options-appearancepane.label;"
+  image="chrome://liveclick/skin/ops-reading.png">
+  <preferences>
+   <preference id="showCount" name="extensions.liveclick.showCount" type="int" />
+   <preference id="styleNewAsFresh" name="extensions.liveclick.styleNewAsFresh" type="bool" />
+   <preference id="styleFolderNew" name="extensions.liveclick.styleFolderNew" type="int" />
+   <preference id="styleFolderFresh" name="extensions.liveclick.styleFolderFresh" type="int" />
+   <preference id="styleFolderUnread" name="extensions.liveclick.styleFolderUnread" type="int" />
+   <preference id="styleFolderRead" name="extensions.liveclick.styleFolderRead" type="int" />
+   <preference id="styleFeedNew" name="extensions.liveclick.styleFeedNew" type="int" />
+   <preference id="styleFeedFresh" name="extensions.liveclick.styleFeedFresh" type="int" />
+   <preference id="styleFeedUnread" name="extensions.liveclick.styleFeedUnread" type="int" />
+   <preference id="styleFeedRead" name="extensions.liveclick.styleFeedRead" type="int" />
+   <preference id="styleItemNew" name="extensions.liveclick.styleItemNew" type="int" />
+   <preference id="styleItemFresh" name="extensions.liveclick.styleItemFresh" type="int" />
+   <preference id="styleItemUnread" name="extensions.liveclick.styleItemUnread" type="int" />
+   <preference id="styleItemRead" name="extensions.liveclick.styleItemRead" type="int" />
+   <preference id="maxFeedItems" name="extensions.liveclick.maxFeedItems" type="int" />
+   <preference id="showFavIcons" name="extensions.liveclick.showFavIcons" type="bool" />
+   <preference id="showItemTooltips" name="extensions.liveclick.showItemTooltips" type="bool" />
+   <preference id="itemPreview" name="extensions.liveclick.itemPreview" type="int" />
+  </preferences>
+  <groupbox>
+   <caption label="&options-reading.caption;" />
+   <hbox align="center">
+    <label>&options-showcount.label;</label>
+    <menulist preference="showCount" sizetopopup="none">
+     <menupopup>
+      <menuitem value="1" label="&options-countnew.label;" />
+      <menuitem value="2" label="&options-countunread.label;" />
+      <menuitem value="0" label="&options-countnone.label;" />
+     </menupopup>
+    </menulist>
+   </hbox>
+   <separator class="thin" />
+   <grid>
+    <columns>
+     <column />
+     <column style="max-width: 22ex;" />
+     <column style="max-width: 22ex;" />
+    </columns>
+    <rows>
+     <row align="center">
+      <spacer />
+      <label value="&options-stylefolders.label;" />
+      <label value="&options-stylelivemarks.label;" />
+      <label value="&options-styleitems.label;" />
+     </row>
+     <row align="center">
+      <label value="&options-stylenew-select.label;" />
+      <menulist preference="styleFolderNew" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+      <menulist preference="styleFeedNew" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+      <menulist preference="styleItemNew" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="2" label="&options-style2.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+     <row id="styleFreshRow" align="center" collapsed="true">
+      <label value="&options-stylefresh-select.label;" />
+      <menulist preference="styleFolderFresh" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+      <menulist preference="styleFeedFresh" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+      <menulist preference="styleItemFresh" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="2" label="&options-style2.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+     <row align="center">
+      <label value="&options-styleunread-select.label;" />
+      <menulist preference="styleFolderUnread" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+      <menulist preference="styleFeedUnread" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+      <menulist preference="styleItemUnread" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="2" label="&options-style2.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+     <row align="center">
+      <label value="&options-styleread-select.label;" />
+      <menulist preference="styleFolderRead" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+      <menulist preference="styleFeedRead" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+      <menulist preference="styleItemRead" sizetopopup="none">
+       <menupopup>
+        <menuitem value="0" label="&options-style0.label;" />
+        <menuitem value="1" label="&options-style1.label;" />
+        <menuitem value="2" label="&options-style2.label;" />
+        <menuitem value="5" label="&options-style5.label;" />
+        <menuitem value="6" label="&options-style6.label;" />
+        <menuitem value="-1" label="&options-stylecustom.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+    </rows>
+   </grid>
+   <separator class="thin" />
+   <hbox align="center">
+    <checkbox id="cbShowMax" label="&options-showmax1.label;" oncommand="toggleMax();" />
+    <textbox id="tbMaxItems" preference="maxFeedItems" disabled="true"
+     value="20" type="number" min="1" size="1" maxlength="3"
+     onsyncfrompreference="return readMaxFeedItems();"
+     onsynctopreference="return setMaxFeedItems();" />
+    <label value="&options-showmax2.label;" />
+   </hbox>
+  </groupbox>
+  <groupbox>
+   <caption label="&options-icons.caption;" />
+   <hbox align="center">
+    <checkbox label="&options-showfavicons.label;" preference="showFavIcons" />
+    <image id="imgLivemarkIcon" />
+   </hbox>
+  </groupbox>
+  <groupbox>
+   <caption label="&options-tooltips.caption;" />
+   <checkbox label="&options-showpreviews.label;" preference="showItemTooltips" style="width: 60ex;"
+    onsyncfrompreference="return linkChildOnCheck( 'showItemTooltips', 'hbitemPreview' );" />
+   <hbox id="hbitemPreview" align="center" class="indent">
+    <label style="width: 35ex;">&options-history-onpreview.label;</label>
+    <menulist preference="itemPreview" sizetopopup="none" style="width: 20ex;">
+     <menupopup>
+      <menuitem value="1" label="&command-markitemseen.label;" />
+      <menuitem value="2" label="&command-markitemread.label;" />
+      <menuitem value="0" label="&command-nothing.label;" />
+     </menupopup>
+    </menulist>
+   </hbox>
+  </groupbox>
+  <separator style="height: 4ex;" />
+ </prefpane>
+ <prefpane id="liveclick-options-menus"
+  label="&options-menuspane.label;"
+  image="chrome://liveclick/skin/ops-menus.png">
+  <preferences>
+   <preference id="clickLeft" name="extensions.liveclick.clickLeft" type="int" />
+   <preference id="clickMiddle" name="extensions.liveclick.clickMiddle" type="int" />
+   <preference id="clickAccel" name="extensions.liveclick.clickAccel" type="int" />
+   <preference id="keepOpenOnMiddle" name="extensions.liveclick.keepOpenOnMiddle" type="bool" />
+   <preference id="keepOpenExceptLast" name="extensions.liveclick.keepOpenExceptLast" type="bool" />
+   <preference id="showAtTop" name="extensions.liveclick.showAtTop" type="int" />
+   <preference id="showPopupOpen" name="extensions.liveclick.showPopupOpen" type="bool" />
+   <preference id="showPopupFeed" name="extensions.liveclick.showPopupFeed" type="bool" />
+   <preference id="showPopupTabs" name="extensions.liveclick.showPopupTabs" type="bool" />
+   <preference id="showPopupRead" name="extensions.liveclick.showPopupRead" type="bool" />
+   <preference id="livemarkView" name="extensions.liveclick.livemarkView" type="int" />
+  </preferences>
+  <groupbox>
+   <caption label="&options-clicks.caption;" />
+   <grid>
+    <columns>
+     <column />
+     <column style="max-width: 40ex;" />
+    </columns>
+    <rows>
+     <row align="center">
+      <label value="&options-leftmenu.label;" />
+      <menulist preference="clickLeft" sizetopopup="none">
+       <menupopup>
+        <menuitem value="1" label="&command-open.label;" />
+        <menuitem value="2" label="&command-opentab.label;" />
+        <menuitem value="3" label="&command-feed.label;" />
+        <menuitem value="4" label="&command-feedtab.label;" />
+        <menuseparator/>
+        <menuitem value="5" label="&command-group.label;" />
+        <menuitem value="7" label="&command-groupunread.label;" />
+        <menuitem value="8" label="&command-groupnew.label;" />
+        <menuseparator/>
+        <menuitem value="6" label="&command-markitemsread.label;" />
+        <menuitem value="9" label="&command-reload.label;" />
+        <menuseparator/>
+        <menuitem value="-1" label="&command-default.label;" />
+        <menuitem value="0" label="&command-nothing.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+     <row align="center">
+      <label value="&options-middlemenu.label;" />
+      <menulist preference="clickMiddle" sizetopopup="none">
+       <menupopup>
+        <menuitem value="1" label="&command-open.label;" />
+        <menuitem value="2" label="&command-opentab.label;" />
+        <menuitem value="3" label="&command-feed.label;" />
+        <menuitem value="4" label="&command-feedtab.label;" />
+        <menuseparator/>
+        <menuitem value="5" label="&command-group.label;" />
+        <menuitem value="7" label="&command-groupunread.label;" />
+        <menuitem value="8" label="&command-groupnew.label;" />
+        <menuseparator/>
+        <menuitem value="6" label="&command-markitemsread.label;" />
+        <menuitem value="9" label="&command-reload.label;" />
+        <menuseparator/>
+        <menuitem value="-1" label="&command-default.label;" />
+        <menuitem value="0" label="&command-nothing.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+     <row align="center">
+      <label value="&options-accelmenu.label;" />
+      <menulist preference="clickAccel" sizetopopup="none">
+       <menupopup>
+        <menuitem value="1" label="&command-open.label;" />
+        <menuitem value="2" label="&command-opentab.label;" />
+        <menuitem value="3" label="&command-feed.label;" />
+        <menuitem value="4" label="&command-feedtab.label;" />
+        <menuseparator/>
+        <menuitem value="5" label="&command-group.label;" />
+        <menuitem value="7" label="&command-groupunread.label;" />
+        <menuitem value="8" label="&command-groupnew.label;" />
+        <menuseparator/>
+        <menuitem value="6" label="&command-markitemsread.label;" />
+        <menuitem value="9" label="&command-reload.label;" />
+        <menuseparator/>
+        <menuitem value="-1" label="&command-default.label;" />
+        <menuitem value="0" label="&command-nothing.label;" />
+       </menupopup>
+      </menulist>
+     </row>
+    </rows>
+   </grid>
+  </groupbox>
+  <groupbox>
+   <caption label="&options-feedsmenu.caption;" />
+   <hbox align="center">
+    <label value="&options-placemenu.label;" />
+    <menulist preference="showAtTop">
+     <menupopup>
+      <menuitem value="1" label="&options-place-top.label;" />
+      <menuitem value="0" label="&options-place-bottom.label;" />
+     </menupopup>
+    </menulist>
+   </hbox>
+   <checkbox label="&options-showopen.label;" preference="showPopupOpen" />
+   <checkbox label="&options-showfeed.label;" preference="showPopupFeed" />
+   <checkbox label="&options-showtabs.label;" preference="showPopupTabs" />
+   <checkbox label="&options-showread.label;" preference="showPopupRead" />
+   <separator class="thin"/>
+   <checkbox label="&options-keepopen.label;" preference="keepOpenOnMiddle" style="width: 60ex;"
+    onsyncfrompreference="return linkChildOnCheck( 'keepOpenOnMiddle', 'cbKeepOpenExceptLast');" />
+   <checkbox id="cbKeepOpenExceptLast" label="&options-keepopenexceptlast.label;"
+    preference="keepOpenExceptLast" class="indent" style="width: 50ex;" />
+   <separator class="thin" />
+   <hbox align="center">
+    <label>&options-history-onpopup.label;</label>
+    <menulist preference="livemarkView" sizetopopup="none" style="width: 23ex;">
+     <menupopup>
+      <menuitem value="1" label="&command-resetnewcount.label;" />
+      <menuitem value="2" label="&command-markitemsread.label;" />
+      <menuitem value="0" label="&command-nothing.label;" />
+     </menupopup>
+    </menulist>
+   </hbox>
+  </groupbox>
+  <separator style="height: 4ex;" />
+ </prefpane>
+ <prefpane id="liveclick-options-monitors"
+  label="&options-monitorspane.label;"
+  image="chrome://liveclick/skin/ops-monitors.png">
+  <preferences>
+   <preference id="monitorAction" name="extensions.liveclick.monitorAction" type="int" />
+   <preference id="monitorAll" name="extensions.liveclick.monitorAll" type="bool" />
+   <preference id="alert1Action" name="extensions.liveclick.alert1Action" type="int" />
+   <preference id="alert1Read" name="extensions.liveclick.alert1Read" type="bool" />
+   <preference id="alertNAction" name="extensions.liveclick.alertNAction" type="int" />
+   <preference id="alertNRead" name="extensions.liveclick.alertNRead" type="bool" />
+   <preference id="alertRepeat" name="extensions.liveclick.alertRepeat" type="int" />
+   <preference id="autoload1Action" name="extensions.liveclick.autoload1Action" type="int" />
+   <preference id="autoload1Read" name="extensions.liveclick.autoload1Read" type="bool" />
+   <preference id="autoloadNAction" name="extensions.liveclick.autoloadNAction" type="int" />
+   <preference id="autoloadNRead" name="extensions.liveclick.autoloadNRead" type="bool" />
+   <preference id="autoloadAlert" name="extensions.liveclick.autoloadAlert" type="bool" />
+   <preference id="liveTagLabel" name="extensions.liveclick.liveTagLabel" type="string" />
+   <preference id="liveTagAlert" name="extensions.liveclick.liveTagAlert" type="bool" />
+   <preference id="liveTagOnRead" name="extensions.liveclick.liveTagOnRead" type="bool" />
+  </preferences>
+  <label value="&options-monitor-select.label;" />
+  <hbox>
+   <menulist preference="monitorAction">
+    <menupopup>
+     <menuitem value="1" label="&options-monitor-action-alert.label;" />
+     <menuitem value="2" label="&options-monitor-action-autoload.label;" />
+     <menuitem value="3" label="&options-monitor-action-livetag.label;" />
+     <menuitem value="0" label="&command-nothing.label;" />
+    </menupopup>
+   </menulist>
+  </hbox>
+  <separator class="thin" />
+  <label value="&options-monitor-customize.label;" />
+  <separator class="groove" />
+  <tabbox flex="1">
+   <tabs>
+    <tab label="&options-monitor-tab-feeds.label;" />
+    <tab label="&options-monitor-tab-alert.label;" />
+    <tab label="&options-monitor-tab-autoload.label;" />
+    <tab label="&options-monitor-tab-livetag.label;" />
+   </tabs>
+   <tabpanels flex="1">
+    <!-- Monitored -->
+    <tabpanel orient="vertical">
+     <radiogroup id="monitorAll" preference="monitorAll" onsyncfrompreference="return readMonitorAll();">
+      <radio value="true" label="&options-monitored-all.label;" style="width: 55ex;" />
+      <radio value="false" label="&options-monitored-select.label;" style="width: 55ex;" />
+     </radiogroup>
+     <hbox class="indent" flex="1">
+      <listbox id="feedBox" flex="1">
+       <listcols>
+        <listcol flex="1" />
+       </listcols>
+      </listbox>
+      <hbox align="end">
+       <vbox>
+        <hbox><label id="countLabel" value="&options-monitored-count.label;" /><label id="countTotal" value="0 / 0" /></hbox>
+        <separator class="thin" />
+        <button id="selectFeedsAll" label="&options-monitored-selectall.label;" oncommand="selectFeeds(1);" />
+        <button id="selectFeedsNone" label="&options-monitored-selectnone.label;" oncommand="selectFeeds(0);" />
+       </vbox>
+      </hbox>
+     </hbox>
+    </tabpanel>
+    <!-- Alert Rules -->
+    <tabpanel orient="vertical">
+     <groupbox>
+      <caption label="&options-alert-1item.label;" />
+      <hbox>
+       <menulist preference="alert1Action" style="width: 35ex;">
+        <menupopup>
+         <menuitem value="1" label="&command-open.label;" />
+         <menuitem value="2" label="&command-feed.label;" />
+         <menuitem value="3" label="&command-opennew.label;" />
+         <menuitem value="0" label="&command-nothing.label;" />
+        </menupopup>
+       </menulist>
+      </hbox>
+      <checkbox label="&command-markitemsread.label;" preference="alert1Read" />
+     </groupbox>
+     <groupbox>
+      <caption label="&options-alert-nitem.label;" />
+      <hbox>
+       <menulist preference="alertNAction" style="width: 35ex;">
+        <menupopup>
+         <menuitem value="1" label="&command-open.label;" />
+         <menuitem value="2" label="&command-feed.label;" />
+         <menuitem value="3" label="&command-opennew.label;" />
+         <menuitem value="4" label="&command-groupnew.label;" />
+         <menuitem value="0" label="&command-nothing.label;" />
+        </menupopup>
+       </menulist>
+      </hbox>
+      <checkbox label="&command-markitemsread.label;" preference="alertNRead" />
+     </groupbox>
+     <hbox align="center">
+      <label value="&options-alert-repeat.label;" />
+      <menulist preference="alertRepeat" sizetopopup="none" style="width: 30ex;">
+       <menupopup>
+        <menuitem value="1" label="&options-alert-repeat-always.label;" />
+        <menuitem value="2" label="&options-alert-repeat-session.label;" />
+        <menuitem value="0" label="&options-alert-repeat-never.label;" />
+       </menupopup>
+      </menulist>
+     </hbox>
+    </tabpanel>
+    <!-- Autoload Rules -->
+    <tabpanel orient="vertical">
+     <groupbox>
+      <caption label="&options-autoload-1item.label;" />
+      <hbox>
+       <menulist preference="autoload1Action" style="width: 35ex;">
+        <menupopup>
+         <menuitem value="1" label="&command-open.label;" />
+         <menuitem value="2" label="&command-feed.label;" />
+         <menuitem value="3" label="&command-opennew.label;" />
+         <menuitem value="0" label="&command-nothing.label;" />
+        </menupopup>
+       </menulist>
+      </hbox>
+      <checkbox label="&command-markitemsread.label;" preference="autoload1Read" />
+     </groupbox>
+     <groupbox>
+      <caption label="&options-autoload-nitem.label;" />
+      <hbox>
+       <menulist preference="autoloadNAction" style="width: 35ex;">
+        <menupopup>
+         <menuitem value="1" label="&command-open.label;" />
+         <menuitem value="2" label="&command-feed.label;" />
+         <menuitem value="3" label="&command-opennew.label;" />
+         <menuitem value="4" label="&command-groupnew.label;" />
+         <menuitem value="0" label="&command-nothing.label;" />
+        </menupopup>
+       </menulist>
+      </hbox>
+      <checkbox label="&command-markitemsread.label;" preference="autoloadNRead" />
+     </groupbox>
+     <checkbox label="&options-autoload-alert.label;" preference="autoloadAlert" />
+    </tabpanel>
+    <!-- LiveTag Rules -->
+    <tabpanel orient="vertical">
+     <hbox align="center">
+      <label value="&options-livetag-label.label;" />
+      <textbox id="liveTagLabelBox" preference="liveTagLabel" flex="1" />
+      <button label="&options-livetag-createfolder.label;" oncommand="createSmartBookmark()" />
+     </hbox>
+     <label style="width: 60ex;">&options-livetag-changenote.label;</label>
+     <separator class="groove" />
+     <checkbox label="&options-livetag-alert.label;" preference="liveTagAlert" />
+     <checkbox label="&options-livetag-onread.label;" preference="liveTagOnRead" />
+    </tabpanel>
+   </tabpanels>
+  </tabbox>
+ </prefpane>
+ <stringbundleset id="stringbundleset">
+  <stringbundle id="liveclick-strings" src="chrome://liveclick/locale/liveclick.properties" />
+ </stringbundleset>
+ <!-- Apply overlay JavaScript -->
+ <script type="application/javascript" src="chrome://liveclick/content/options.js" />
+ <popupset>
+  <menupopup id="liveclick-settings" position="before_start">
+   <menuitem label="&options-settings-restore.label;" oncommand="settingsDefault();"/>
+   <menuitem label="&options-settings-import.label;" oncommand="settingsImport();"/>
+   <menuitem label="&options-settings-export.label;" oncommand="settingsExport();"/>
+  </menupopup>
+ </popupset>
 </prefwindow>

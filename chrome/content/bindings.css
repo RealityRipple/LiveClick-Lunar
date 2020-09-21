@@ -1,12 +1,11 @@
 /* Add counter to toolbar livemarks */
 .bookmark-item[livemark][class="bookmark-item"]
 {
-	-moz-binding: url("chrome://liveclick/content/bindings.xml#liveclick-livemark-toolbarbutton");
+ -moz-binding: url("chrome://liveclick/content/bindings.xml#liveclick-livemark-toolbarbutton");
 }
-
 /* Add counter to menu livemarks */
 .bookmark-item[livemark][class="menu-iconic bookmark-item"],
 .bookmark-item[livemark][class="menu-iconic bookmark-item subviewbutton"]
 {
-	-moz-binding: url("chrome://liveclick/content/bindings.xml#liveclick-livemark-menu");
+ -moz-binding: url("chrome://liveclick/content/bindings.xml#liveclick-livemark-menu");
 }

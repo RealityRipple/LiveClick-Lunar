@@ -1,101 +1,94 @@
 <?xml version="1.0"?>
-
 <!DOCTYPE overlay [
 <!ENTITY % editBookmarkOverlayDTD SYSTEM "chrome://browser/locale/places/editBookmarkOverlay.dtd"> %editBookmarkOverlayDTD;
 <!ENTITY % liveClickDTD SYSTEM "chrome://liveclick/locale/liveclick.dtd"> %liveClickDTD;
 ]>
-
 <overlay id="liveclick-properties-dialog-overlay"
-		xmlns:html="http://www.w3.org/1999/xhtml"
-		xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
-	<rows id="editBMPanel_rows">
-		<row id="customFeedLocationRow" insertbefore="editBMPanel_feedLocationRow" align="center" collapsed="true">
-			<label value="&editBookmarkOverlay.feedLocation.label;"
-				class="editBMPanel_rowLabel"
-				accesskey="&editBookmarkOverlay.feedLocation.accesskey;"
-				control="customFeedLocation"
-				observes="paneElementsBroadcaster" />
-			<textbox id="customFeedLocation"
-				class="uri-element"
-				observes="paneElementsBroadcaster" />
-		</row>
-		<row id="customSiteLocationRow" insertbefore="editBMPanel_feedLocationRow" align="center" collapsed="true">
-			<label value="&editBookmarkOverlay.siteLocation.label;"
-				class="editBMPanel_rowLabel"
-				accesskey="&editBookmarkOverlay.siteLocation.accesskey;"
-				control="customSiteLocation"
-				observes="paneElementsBroadcaster" />
-			<textbox id="customSiteLocation"
-				class="uri-element"
-				observes="paneElementsBroadcaster" />
-		</row>
-	</rows>
-
-	<vbox>
-		<vbox id="liveclickRow" collapsed="true">
-			<separator class="thin" />
-			<hbox>
-				<checkbox id="monitorCheckbox" flex="1"
-					label="&bmprops-monitorcheckbox.label;"
-					labelAll="&options-monitored-all.label;"
-					oncommand="LiveClickChrome.Props.checkMonitor('checkbox');" />
-				<button id="feedToggler" class="expander-down"
-					tooltiptext="&bmprops-expander-down.label;"
-					oncommand="LiveClickChrome.Props.toggleFeedSettings(true);" />
-			</hbox>
-			<vbox id="feedSettings" class="indent" collapsed="true">
-				<separator class="thin" />
-				<hbox align="center">
-					<label>&bmprops-check.label;</label>
-					<menulist id="customInterval" sizetopopup="none"
-						oncommand="LiveClickChrome.Props.onIntervalSelect();">
-						<menupopup>
-							<menuitem id="checkDefault" value="-1" />
-							<menuitem value="21600" label="&bmprops-check-every6h.label;" />
-							<menuitem value="14400" label="&bmprops-check-every4h.label;" />
-							<menuitem value="7200" label="&bmprops-check-every2h.label;" />
-							<menuitem value="3600" label="&bmprops-check-every60m.label;" />
-							<menuitem value="1800" label="&bmprops-check-every30m.label;" />
-							<menuitem value="900" label="&bmprops-check-every15m.label;" />
-							<menuitem value="600" label="&bmprops-check-every10m.label;" />
-							<menuitem id="checkCustom" value="0" label="&bmprops-check-custom.label;" />
-						</menupopup>
-					</menulist>
-					<textbox id="txtInterval" type="number" min="1" size="2" maxlength="4"
-						value="60" hidden="true" onblur="LiveClickChrome.Props.onIntervalBlur();" />
-					<label id="lblUnit" value="&bmprops-check-timeunit.label;" hidden="true" />
-				</hbox>
-				<hbox align="center">
-					<label>&bmprops-monitor.label;</label>
-					<menulist id="customMonitor" sizetopopup="none"
-						oncommand="LiveClickChrome.Props.checkMonitor('menu');">
-						<menupopup>
-							<menuitem value="-1" label="&command-monitordefault.label;" />
-							<menuitem value="1" label="&command-monitoralert.label;" />
-							<menuitem value="2" label="&command-monitorautoload.label;" />
-							<menuitem value="3" label="&command-monitortag.label;" />
-							<menuitem id="doNothing" value="0" label="&command-nothing.label;" />
-						</menupopup>
-					</menulist>
-				</hbox>
-				<hbox align="center">
-					<checkbox id="cbShowMax" label="&options-showmax1.label;" oncommand="LiveClickChrome.Props.checkMax();" />
-					<textbox id="customMax" type="number" min="1" size="1" maxlength="3"
-						value="20" disabled="true" />
-					<label value="&options-showmax2.label;" />
-				</hbox>
-			</vbox>
-			<separator class="thin" />
-		</vbox>
-	</vbox>
-
-	<!-- Apply overlay JavaScript -->
-	<script type="application/javascript" src="chrome://liveclick/content/properties-overlay.js" />
-
-	<!-- Import strings -->
-	<stringbundleset id="stringbundleset">
-		<stringbundle id="liveclick-strings" src="chrome://liveclick/locale/liveclick.properties" />
-	</stringbundleset>
-
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+ <rows id="editBMPanel_rows">
+  <row id="customFeedLocationRow" insertbefore="editBMPanel_feedLocationRow" align="center" collapsed="true">
+   <label value="&editBookmarkOverlay.feedLocation.label;"
+    class="editBMPanel_rowLabel"
+    accesskey="&editBookmarkOverlay.feedLocation.accesskey;"
+    control="customFeedLocation"
+    observes="paneElementsBroadcaster" />
+   <textbox id="customFeedLocation"
+    class="uri-element"
+    observes="paneElementsBroadcaster" />
+  </row>
+  <row id="customSiteLocationRow" insertbefore="editBMPanel_feedLocationRow" align="center" collapsed="true">
+   <label value="&editBookmarkOverlay.siteLocation.label;"
+    class="editBMPanel_rowLabel"
+    accesskey="&editBookmarkOverlay.siteLocation.accesskey;"
+    control="customSiteLocation"
+    observes="paneElementsBroadcaster" />
+   <textbox id="customSiteLocation"
+    class="uri-element"
+    observes="paneElementsBroadcaster" />
+  </row>
+ </rows>
+ <vbox>
+  <vbox id="liveclickRow" collapsed="true">
+   <separator class="thin" />
+   <hbox>
+    <checkbox id="monitorCheckbox" flex="1"
+     label="&bmprops-monitorcheckbox.label;"
+     labelAll="&options-monitored-all.label;"
+     oncommand="LiveClickChrome.Props.checkMonitor('checkbox');" />
+    <button id="feedToggler" class="expander-down"
+     tooltiptext="&bmprops-expander-down.label;"
+     oncommand="LiveClickChrome.Props.toggleFeedSettings(true);" />
+   </hbox>
+   <vbox id="feedSettings" class="indent" collapsed="true">
+    <separator class="thin" />
+    <hbox align="center">
+     <label>&bmprops-check.label;</label>
+     <menulist id="customInterval" sizetopopup="none"
+      oncommand="LiveClickChrome.Props.onIntervalSelect();">
+      <menupopup>
+       <menuitem id="checkDefault" value="-1" />
+       <menuitem value="21600" label="&bmprops-check-every6h.label;" />
+       <menuitem value="14400" label="&bmprops-check-every4h.label;" />
+       <menuitem value="7200" label="&bmprops-check-every2h.label;" />
+       <menuitem value="3600" label="&bmprops-check-every60m.label;" />
+       <menuitem value="1800" label="&bmprops-check-every30m.label;" />
+       <menuitem value="900" label="&bmprops-check-every15m.label;" />
+       <menuitem value="600" label="&bmprops-check-every10m.label;" />
+       <menuitem id="checkCustom" value="0" label="&bmprops-check-custom.label;" />
+      </menupopup>
+     </menulist>
+     <textbox id="txtInterval" type="number" min="1" size="2" maxlength="4"
+      value="60" hidden="true" onblur="LiveClickChrome.Props.onIntervalBlur();" />
+     <label id="lblUnit" value="&bmprops-check-timeunit.label;" hidden="true" />
+    </hbox>
+    <hbox align="center">
+     <label>&bmprops-monitor.label;</label>
+     <menulist id="customMonitor" sizetopopup="none"
+      oncommand="LiveClickChrome.Props.checkMonitor('menu');">
+      <menupopup>
+       <menuitem value="-1" label="&command-monitordefault.label;" />
+       <menuitem value="1" label="&command-monitoralert.label;" />
+       <menuitem value="2" label="&command-monitorautoload.label;" />
+       <menuitem value="3" label="&command-monitortag.label;" />
+       <menuitem id="doNothing" value="0" label="&command-nothing.label;" />
+      </menupopup>
+     </menulist>
+    </hbox>
+    <hbox align="center">
+     <checkbox id="cbShowMax" label="&options-showmax1.label;" oncommand="LiveClickChrome.Props.checkMax();" />
+     <textbox id="customMax" type="number" min="1" size="1" maxlength="3"
+      value="20" disabled="true" />
+     <label value="&options-showmax2.label;" />
+    </hbox>
+   </vbox>
+   <separator class="thin" />
+  </vbox>
+ </vbox>
+ <!-- Apply overlay JavaScript -->
+ <script type="application/javascript" src="chrome://liveclick/content/properties-overlay.js" />
+ <!-- Import strings -->
+ <stringbundleset id="stringbundleset">
+  <stringbundle id="liveclick-strings" src="chrome://liveclick/locale/liveclick.properties" />
+ </stringbundleset>
 </overlay>

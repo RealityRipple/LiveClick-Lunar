@@ -2,113 +2,102 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>LiveClick Lunar Status</title>
-	<link rel="icon" type="image/png" id="favicon" href="chrome://liveclick/skin/icon.png" />
-	<link rel="stylesheet" href="chrome://global/skin/in-content/common.css" type="text/css" />
-	<link rel="stylesheet" href="chrome://global/skin/aboutSupport.css" type="text/css" />
-	<script type="application/javascript;version=1.7" src="chrome://liveclick/content/status.js"></script>
+ <title>LiveClick Lunar Status</title>
+ <link rel="icon" type="image/png" id="favicon" href="chrome://liveclick/skin/icon.png" />
+ <link rel="stylesheet" href="chrome://global/skin/in-content/common.css" type="text/css" />
+ <link rel="stylesheet" href="chrome://global/skin/aboutSupport.css" type="text/css" />
+ <script type="application/javascript;version=1.7" src="chrome://liveclick/content/status.js"></script>
 </head>
-
 <body onload="init();">
-
-	<h1>LiveClick Lunar Status</h1>
-
-	<div class="page-subtitle">
-		This page contains technical information about the Firefox addon LiveClick.
-	</div>
-
-	<div>
-		<button onclick="copyToClipboard()">
-			Copy status to clipboard
-		</button>
-	</div>
-
-	<div id="contents">
-
-	<h2 class="major-section">General</h2>
-	<table>
-		<tbody>
-			<tr>
-				<th class="column">Extension</th>
-				<td id="extension"></td>
-			</tr>
-			<tr>
-				<th class="column">User Agent</th>
-				<td id="useragent"></td>
-			</tr>
-			<tr>
-				<th class="column">Browsing History</th>
-				<td id="history"></td>
-			</tr>
-		</tbody>
-	</table>
-
-	<h2 class="major-section">Live Bookmarks</h2>
-	<table>
-		<tbody>
-			<tr>
-				<th class="column">Active</th>
-				<td id="actives"></td>
-				<th class="column">Native</th>
-				<td id="natives"></td>
-			</tr>
-		</tbody>
-	</table>
-	<p><a href="#" onclick="LiveClickPlaces.initPlaces(); window.location.reload();">Re-initialize LiveClick Places</a></p>
-
-	<h2 class="major-section">Scheduler</h2>
-	<table>
-		<tbody>
-			<tr>
-				<th class="column">Check on start</th>
-				<td id="checkstart" colspan="2"></td>
-			</tr>
-			<tr>
-				<th class="column">Check automatically</th>
-				<td id="checkauto" colspan="2"></td>
-			</tr>
-			<tr>
-				<th class="column">Suspend checks</th>
-				<td id="checksuspend" colspan="2"></td>
-			</tr>
-			<tr>
-				<th class="column">Next check time</th>
-				<td id="nexttime" colspan="2"></td>
-			</tr>
-			<tr>
-				<th class="column">Next check count</th>
-				<td id="nextcount-count"></td>
-				<td id="nextcount-list"></td>
-			</tr>
-			<tr>
-				<th class="column">Now expired</th>
-				<td id="expirenow-count"></td>
-				<td id="expirenow-list"></td>
-			</tr>
-			<tr>
-				<th class="column">Never expiring</th>
-				<td id="expirenever-count"></td>
-				<td id="expirenever-list"></td>
-			</tr>
-			<tr>
-				<th class="column">Failed</th>
-				<td id="failed-count"></td>
-				<td id="failed-list"></td>
-			</tr>
-		</tbody>
-	</table>
-
-	<h2 class="major-section">LiveClick Lunar Preferences</h2>
-	<table class="prefs-table">
-		<thead>
-			<th class="name">Name</th>
-			<th class="value">Value</th>
-		</thead>
-		<tbody id="prefs-tbody">
-		</tbody>
-	</table>
-
-	</div>
-
+ <h1>LiveClick Lunar Status</h1>
+ <div class="page-subtitle">
+  This page contains technical information about the Firefox addon LiveClick.
+ </div>
+ <div>
+  <button onclick="copyToClipboard()">
+   Copy status to clipboard
+  </button>
+ </div>
+ <div id="contents">
+ <h2 class="major-section">General</h2>
+ <table>
+  <tbody>
+   <tr>
+    <th class="column">Extension</th>
+    <td id="extension"></td>
+   </tr>
+   <tr>
+    <th class="column">User Agent</th>
+    <td id="useragent"></td>
+   </tr>
+   <tr>
+    <th class="column">Browsing History</th>
+    <td id="history"></td>
+   </tr>
+  </tbody>
+ </table>
+ <h2 class="major-section">Live Bookmarks</h2>
+ <table>
+  <tbody>
+   <tr>
+    <th class="column">Active</th>
+    <td id="actives"></td>
+    <th class="column">Native</th>
+    <td id="natives"></td>
+   </tr>
+  </tbody>
+ </table>
+ <p><a href="#" onclick="LiveClickPlaces.initPlaces(); window.location.reload();">Re-initialize LiveClick Places</a></p>
+ <h2 class="major-section">Scheduler</h2>
+ <table>
+  <tbody>
+   <tr>
+    <th class="column">Check on start</th>
+    <td id="checkstart" colspan="2"></td>
+   </tr>
+   <tr>
+    <th class="column">Check automatically</th>
+    <td id="checkauto" colspan="2"></td>
+   </tr>
+   <tr>
+    <th class="column">Suspend checks</th>
+    <td id="checksuspend" colspan="2"></td>
+   </tr>
+   <tr>
+    <th class="column">Next check time</th>
+    <td id="nexttime" colspan="2"></td>
+   </tr>
+   <tr>
+    <th class="column">Next check count</th>
+    <td id="nextcount-count"></td>
+    <td id="nextcount-list"></td>
+   </tr>
+   <tr>
+    <th class="column">Now expired</th>
+    <td id="expirenow-count"></td>
+    <td id="expirenow-list"></td>
+   </tr>
+   <tr>
+    <th class="column">Never expiring</th>
+    <td id="expirenever-count"></td>
+    <td id="expirenever-list"></td>
+   </tr>
+   <tr>
+    <th class="column">Failed</th>
+    <td id="failed-count"></td>
+    <td id="failed-list"></td>
+   </tr>
+  </tbody>
+ </table>
+ <h2 class="major-section">LiveClick Lunar Preferences</h2>
+ <table class="prefs-table">
+  <thead>
+   <th class="name">Name</th>
+   <th class="value">Value</th>
+  </thead>
+  <tbody id="prefs-tbody">
+  </tbody>
+ </table>
+ </div>
 </body>
 </html>

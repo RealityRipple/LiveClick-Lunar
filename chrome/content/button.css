@@ -5,31 +5,28 @@
 #liveclick-app-bookmarks-menu,
 #liveclick-bookmarks-menu-button
 {
-	list-style-image: url("chrome://liveclick/skin/tbb_16.png");
-	-moz-image-region: rect(0px, 16px, 16px, 0px);
+ list-style-image: url("chrome://liveclick/skin/tbb_16.png");
+ -moz-image-region: rect(0px, 16px, 16px, 0px);
 }
-
 #liveclick-tbb[suspend],
 #liveclick-bookmarks-menu[suspend],
 #liveclick-app-bookmarks-menu[suspend],
 #liveclick-bookmarks-menu-button[suspend]
 {
-	list-style-image: url("chrome://liveclick/skin/tbb_16.png");
-	-moz-image-region: rect(0px, 32px, 16px, 16px);
+ list-style-image: url("chrome://liveclick/skin/tbb_16.png");
+ -moz-image-region: rect(0px, 32px, 16px, 16px);
 }
-
 #liveclick-tbb[throbbing],
 #liveclick-bookmarks-menu[throbbing],
 #liveclick-app-bookmarks-menu[throbbing],
 #liveclick-bookmarks-menu-button[throbbing]
 {
-	list-style-image: url("chrome://liveclick/skin/tbb-throb_16.png");
-	-moz-image-region: rect(0px, 16px, 16px, 0px);
+ list-style-image: url("chrome://liveclick/skin/tbb-throb_16.png");
+ -moz-image-region: rect(0px, 16px, 16px, 0px);
 }
-
 #liveclick-tbb[cui-areatype="menu-panel"],
 toolbarpaletteitem[place="palette"] > #liveclick-tbb
 {
-	list-style-image: url("chrome://liveclick/skin/icon.png");
-	-moz-image-region: rect(0px, 32px, 32px, 0px);
+ list-style-image: url("chrome://liveclick/skin/icon.png");
+ -moz-image-region: rect(0px, 32px, 32px, 0px);
 }
