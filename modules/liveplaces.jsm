@@ -532,7 +532,7 @@ Place.prototype =
  getExpires : function (aDefault)
  {
   let iInterval = LiveClickRemote.getFeedToken(this.id, "custom_interval");
-  if (!iInterval) iInterval = Math.max(aDefault, 1000);
+  if (!iInterval || iInterval == -1) iInterval = Math.max(aDefault, 1000);
   // expireTime stores as milliseconds
   return Date.now() + (iInterval * 1000);
  },
