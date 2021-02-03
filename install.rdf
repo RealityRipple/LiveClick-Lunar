@@ -3,13 +3,13 @@
  <Description about="urn:mozilla:install-manifest">
   <em:name>LiveClick Lunar</em:name>
   <em:id>{7A86970F-5198-5370-9FCB-0EE0150876F7}</em:id>
-  <em:version>2.2.1</em:version>
+  <em:version>2.2.2</em:version>
   <em:type>2</em:type>
   <em:targetApplication>
    <Description>
     <em:id>{8de7fcbb-c55c-4fbe-bfc5-fc555c87dbc4}</em:id>
     <em:minVersion>25.0a1pre</em:minVersion>
-    <em:maxVersion>28.*</em:maxVersion>
+    <em:maxVersion>29.*</em:maxVersion>
    </Description>
   </em:targetApplication>
   <em:description>Adds feed reading and notifications to Live Bookmarks.</em:description>
@@ -44,6 +44,5 @@
   <em:translator>[Swedish] Raan</em:translator>
   <em:translator>[Chinese (Simplified)] rickcart</em:translator>
   <em:translator>[Chinese (Traditional)] josesun</em:translator>
-  <em:strictCompatibility>true</em:strictCompatibility>
  </Description>
 </RDF>
