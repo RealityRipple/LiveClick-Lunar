@@ -42,7 +42,7 @@ LiveClickChrome.Browser =
    let element = oriInsertToPopup.apply(this, arguments);
    if (!PlacesUtils.nodeIsFolder(aNewChild)) return element;
    // Apply state observers to folder being inserted
-   // LiveClickChrome.Browser.folderBeforeInsert(element, aNewChild.itemId);
+   LiveClickChrome.Browser.folderBeforeInsert(element, aNewChild.itemId);
    // Replace native menu with LiveClick livemark, if applicable
    PlacesUtils.livemarks.getLivemark({ id: aNewChild.itemId })
     .then(
