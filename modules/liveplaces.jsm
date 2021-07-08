@@ -615,6 +615,8 @@ Place.prototype =
    let listener = new CheckListener(this);
    channel.notificationCallbacks = listener;
    channel.asyncOpen(listener, null);
+   this.job.livemarkId = this.id;
+   this.job.uri = this.feedURI;
    this.job.loadgroup = loadgroup;
    LiveClickPlaces.loading.push(this.id);
   }
@@ -682,6 +684,9 @@ function Job ()
 {
  this.loadgroup = null;
  this.processor = null;
+ this.livemarkId = null;
+ this.data = [];
+ this.uri = null;
 }
 Job.prototype =
 {
@@ -695,6 +700,20 @@ Job.prototype =
   if (this.processor)
   {
    delete this.processor;
+  }
+  if (this.data)
+  {
+   delete this.data;
+   this.data = [];
+  }
+  if (this.uri)
+  {
+   delete this.uri;
+   this.uri = null;
+  }
+  if (this.livemarkId)
+  {
+   delete this.livemarkId;
   }
  }
 }
@@ -711,11 +730,7 @@ CheckListener.prototype =
   try
   {
    // Parse feed data as it comes in
-   this._job.processor = Cc["@mozilla.org/feed-processor;1"]
-         .createInstance(Ci.nsIFeedProcessor);
-   this._job.processor.listener = this;
-   this._job.processor.parseAsync(null, channel.URI);
-   this._job.processor.onStartRequest(aRequest, aContext);
+   this._job.data = [];
   }
   catch (e)
   {
@@ -725,9 +740,10 @@ CheckListener.prototype =
  },
  onDataAvailable : function (aRequest, aContext, aInputStream, aSourceOffset, aCount)
  {
-  if (this._job.processor)
-   this._job.processor.onDataAvailable
-    (aRequest, aContext, aInputStream, aSourceOffset, aCount);
+  let binaryInputStream = Components.classes['@mozilla.org/binaryinputstream;1'].getService(Components.interfaces.nsIBinaryInputStream);
+  binaryInputStream.setInputStream(aInputStream);
+  let data = binaryInputStream.readBytes(aCount);
+  this._job.data.push(data);
  },
  onStopRequest : function (aRequest, aContext, aStatus)
  {
@@ -736,12 +752,32 @@ CheckListener.prototype =
    this._place.finishJob(false);
    return;
   }
-  try
+  if (this._job.uri === null)
   {
-   if (this._job.processor)
-    this._job.processor.onStopRequest(aRequest, aContext, aStatus);
+   this._place.finishJob(false);
+   return;
   }
-  catch (e) { }
+  if (this._job.data.length === 0)
+  {
+   logMessage(".. No data from " + this._job.uri.spec);
+   this._place.finishJob(false);
+   return;
+  }
+  let data = this._job.data.join("");
+  if (data.length > 0)
+  {
+   let maxItems = LiveClickPrefs.getValue("maxFeedItems");
+   maxItems = LiveClickPlaces.getPlace(this._job.livemarkId).getToken("custom_max", maxItems);
+   if (maxItems > 0)
+   {
+    let nthItem = nthIndexOf(data, "<item>", maxItems + 1);
+    if (nthItem > -1)
+     data = data.slice(0, nthItem) + "</channel></rss>";
+   }
+  }
+  this._job.processor = Components.classes["@mozilla.org/feed-processor;1"].createInstance(Components.interfaces.nsIFeedProcessor);
+  this._job.processor.listener = this;
+  this._job.processor.parseFromString(data, this._job.uri);
  },
  handleResult : function (aResult)
  {
@@ -918,6 +954,9 @@ CheckListener.prototype =
      );
     }
     delete job.processor;
+    delete job.livemarkId;
+    delete job.data;
+    delete job.uri;
     bAllItemsFound = true;
     if (iItemsFound == iItemsTested) readyToUpdate();
     function readyToUpdate ()
@@ -1164,4 +1203,16 @@ function logMessage (aMessage)
  Cc["@mozilla.org/observer-service;1"]
   .getService(Ci.nsIObserverService)
   .notifyObservers(null, "liveclick-logging", aMessage);
+}
+function nthIndexOf(str, subStr, count)
+{
+ let idx = -1;
+ while(count > 0)
+ {
+  idx = str.toLowerCase().indexOf(subStr.toLowerCase(), idx + 1);
+  if (idx === -1)
+   return -1;
+  count--;
+ }
+ return idx;
 }
