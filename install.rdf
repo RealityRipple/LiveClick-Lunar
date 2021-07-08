@@ -3,7 +3,7 @@
  <Description about="urn:mozilla:install-manifest">
   <em:name>LiveClick Lunar</em:name>
   <em:id>{7A86970F-5198-5370-9FCB-0EE0150876F7}</em:id>
-  <em:version>2.2.3</em:version>
+  <em:version>2.2.4</em:version>
   <em:type>2</em:type>
   <!-- Firefox -->
   <em:targetApplication>

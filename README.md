@@ -3,7 +3,7 @@
 The LiveClick Lunar extension adds feed reading and notifications to Live Bookmarks.
 
 #### Supports
- * Pale Moon [25.0a1pre - 28.*]
+ * Pale Moon [29.0.1 - 29.*]
  * Firefox [44.0 - 50.*]
 
 ## Building
