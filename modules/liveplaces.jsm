@@ -740,10 +740,18 @@ CheckListener.prototype =
  },
  onDataAvailable : function (aRequest, aContext, aInputStream, aSourceOffset, aCount)
  {
-  let binaryInputStream = Components.classes['@mozilla.org/binaryinputstream;1'].getService(Components.interfaces.nsIBinaryInputStream);
-  binaryInputStream.setInputStream(aInputStream);
-  let data = binaryInputStream.readBytes(aCount);
-  this._job.data.push(data);
+  try
+  {
+   let binaryInputStream = Components.classes['@mozilla.org/binaryinputstream;1'].getService(Components.interfaces.nsIBinaryInputStream);
+   binaryInputStream.setInputStream(aInputStream);
+   let data = binaryInputStream.readBytes(aCount);
+   this._job.data.push(data);
+  }
+  catch (e)
+  {
+   logMessage(e);
+   this._place.finishJob(false);
+  }
  },
  onStopRequest : function (aRequest, aContext, aStatus)
  {
