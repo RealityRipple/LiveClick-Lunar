@@ -747,37 +747,45 @@ CheckListener.prototype =
  },
  onStopRequest : function (aRequest, aContext, aStatus)
  {
-  if (!Components.isSuccessCode(aStatus))
+  try
   {
-   this._place.finishJob(false);
-   return;
-  }
-  if (this._job.uri === null)
-  {
-   this._place.finishJob(false);
-   return;
-  }
-  if (this._job.data.length === 0)
-  {
-   logMessage(".. No data from " + this._job.uri.spec);
-   this._place.finishJob(false);
-   return;
-  }
-  let data = this._job.data.join("");
-  if (data.length > 0)
-  {
-   let maxItems = LiveClickPrefs.getValue("maxFeedItems");
-   maxItems = LiveClickPlaces.getPlace(this._job.livemarkId).getToken("custom_max", maxItems);
-   if (maxItems > 0)
+   if (!Components.isSuccessCode(aStatus))
    {
-    let nthItem = nthIndexOf(data, "<item>", maxItems + 1);
-    if (nthItem > -1)
-     data = data.slice(0, nthItem) + "</channel></rss>";
+    this._place.finishJob(false);
+    return;
    }
+   if (this._job.uri === null)
+   {
+    this._place.finishJob(false);
+    return;
+   }
+   if (this._job.data.length === 0)
+   {
+    logMessage(".. No data from " + this._job.uri.spec);
+    this._place.finishJob(false);
+    return;
+   }
+   let data = this._job.data.join("");
+   if (data.length > 0)
+   {
+    let maxItems = LiveClickPrefs.getValue("maxFeedItems");
+    maxItems = LiveClickPlaces.getPlace(this._job.livemarkId).getToken("custom_max", maxItems);
+    if (maxItems > 0)
+    {
+     let nthItem = nthIndexOf(data, "<item>", maxItems + 1);
+     if (nthItem > -1)
+      data = data.slice(0, nthItem) + "</channel></rss>";
+    }
+   }
+   this._job.processor = Components.classes["@mozilla.org/feed-processor;1"].createInstance(Components.interfaces.nsIFeedProcessor);
+   this._job.processor.listener = this;
+   this._job.processor.parseFromString(data, this._job.uri);
   }
-  this._job.processor = Components.classes["@mozilla.org/feed-processor;1"].createInstance(Components.interfaces.nsIFeedProcessor);
-  this._job.processor.listener = this;
-  this._job.processor.parseFromString(data, this._job.uri);
+  catch (e)
+  {
+   logMessage(e);
+   this._place.finishJob(false);
+  }
  },
  handleResult : function (aResult)
  {
