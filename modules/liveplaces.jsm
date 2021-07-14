@@ -742,7 +742,10 @@ CheckListener.prototype =
  {
   try
   {
-   let data = NetUtil.readInputStreamToString(aInputStream, aCount, {charset: aRequest.contentCharset, replacement: '?'});
+   let charset = aRequest.contentCharset;
+   if (charset === undefined || charset === null || charset === '')
+    charset = 'UTF-8';
+   let data = NetUtil.readInputStreamToString(aInputStream, aCount, {charset: charset, replacement: '?'});
    this._job.data.push(data);
   }
   catch (e)
