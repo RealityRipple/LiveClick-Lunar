@@ -742,9 +742,7 @@ CheckListener.prototype =
  {
   try
   {
-   let binaryInputStream = Components.classes['@mozilla.org/binaryinputstream;1'].getService(Components.interfaces.nsIBinaryInputStream);
-   binaryInputStream.setInputStream(aInputStream);
-   let data = binaryInputStream.readBytes(aCount);
+   let data = NetUtil.readInputStreamToString(aInputStream, aCount, {charset: aRequest.contentCharset, replacement: '?'});
    this._job.data.push(data);
   }
   catch (e)
