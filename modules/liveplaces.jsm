@@ -595,29 +595,15 @@ Place.prototype =
   logMessage(". "+this.title);
   try
   {
-   /* http://mxr.mozilla.org/mozilla-central/source/toolkit/components/places/nsLivemarkService.js#529 */
-   let loadgroup = Cc["@mozilla.org/network/load-group;1"].createInstance(Ci.nsILoadGroup);
-   let secMan = Cc["@mozilla.org/scriptsecuritymanager;1"]
-    .getService(Ci.nsIScriptSecurityManager);
-   let feedPrincipal = secMan.createCodebasePrincipal(this.feedURI, {});
-   let channel = NetUtil.newChannel(
-    {
-     uri: this.feedURI,
-     loadingPrincipal: feedPrincipal,
-     securityFlags: Ci.nsILoadInfo.SEC_ALLOW_CROSS_ORIGIN_DATA_IS_NULL,
-     contentPolicyType: Ci.nsIContentPolicy.TYPE_INTERNAL_XMLHTTPREQUEST
-    }).QueryInterface(Ci.nsIHttpChannel);
-   channel.loadGroup = loadgroup;
-   channel.loadFlags |= Ci.nsIRequest.LOAD_BACKGROUND | Ci.nsIRequest.LOAD_BYPASS_CACHE;
-   channel.requestMethod = "GET";
-   channel.setRequestHeader("X-Moz", "livebookmarks", false);
-   // Stream the result to the feed parser with this listener
+   this.job.request = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(Components.interfaces.nsIXMLHttpRequest);
+   this.job.request.open("GET", this.feedURI.spec, true);
+   this.job.request.setRequestHeader("X-Moz", "livebookmarks", false);
    let listener = new CheckListener(this);
-   channel.notificationCallbacks = listener;
-   channel.asyncOpen(listener, null);
+   this.job.request.addEventListener("readystatechange", () => {listener.onReadyStateChange();}, false);
+   this.job.request.addEventListener("error", () => {listener.onError();}, false);
+   this.job.request.send();
    this.job.livemarkId = this.id;
    this.job.uri = this.feedURI;
-   this.job.loadgroup = loadgroup;
    LiveClickPlaces.loading.push(this.id);
   }
   catch (e)
@@ -682,29 +668,23 @@ Place.prototype =
 }
 function Job ()
 {
- this.loadgroup = null;
+ this.request = null;
  this.processor = null;
  this.livemarkId = null;
- this.data = [];
  this.uri = null;
 }
 Job.prototype =
 {
  cancel : function ()
  {
-  if (this.loadgroup)
+  if (this.request)
   {
-   this.loadgroup.cancel(Components.results.NS_BINDING_ABORTED);
-   delete this.loadgroup;
+   this.request.abort();
+   delete this.request;
   }
   if (this.processor)
   {
    delete this.processor;
-  }
-  if (this.data)
-  {
-   delete this.data;
-   this.data = [];
   }
   if (this.uri)
   {
@@ -724,41 +704,13 @@ function CheckListener (aPlace)
 }
 CheckListener.prototype =
 {
- onStartRequest : function (aRequest, aContext)
- {
-  let channel = aRequest.QueryInterface(Ci.nsIChannel);
-  try
-  {
-   // Parse feed data as it comes in
-   this._job.data = [];
-  }
-  catch (e)
-  {
-   Cu.reportError("Livemark Service: feed processor received an invalid channel for " + channel.URI.spec);
-   this._place.finishJob(false);
-  }
- },
- onDataAvailable : function (aRequest, aContext, aInputStream, aSourceOffset, aCount)
+ onReadyStateChange : function()
  {
   try
   {
-   let charset = aRequest.contentCharset;
-   if (charset === undefined || charset === null || charset === '')
-    charset = 'UTF-8';
-   let data = NetUtil.readInputStreamToString(aInputStream, aCount, {charset: charset, replacement: '?'});
-   this._job.data.push(data);
-  }
-  catch (e)
-  {
-   logMessage(e);
-   this._place.finishJob(false);
-  }
- },
- onStopRequest : function (aRequest, aContext, aStatus)
- {
-  try
-  {
-   if (!Components.isSuccessCode(aStatus))
+   if (this._job.request.readyState !== 4)
+    return;
+   if (this._job.request.status !== 200)
    {
     this._place.finishJob(false);
     return;
@@ -768,13 +720,13 @@ CheckListener.prototype =
     this._place.finishJob(false);
     return;
    }
-   if (this._job.data.length === 0)
+   let data = this._job.request.responseText;
+   if (data.length === 0)
    {
     logMessage(".. No data from " + this._job.uri.spec);
     this._place.finishJob(false);
     return;
    }
-   let data = this._job.data.join("");
    if (data.length > 0)
    {
     let find = "<item>";
@@ -802,6 +754,10 @@ CheckListener.prototype =
    logMessage(e);
    this._place.finishJob(false);
   }
+ },
+ onError : function()
+ {
+  this._place.finishJob(false);
  },
  handleResult : function (aResult)
  {
@@ -854,7 +810,6 @@ CheckListener.prototype =
    place.finishJob(false);
    throw Components.results.NS_ERROR_FAILURE;
   }
-  let loadgroup = Cc["@mozilla.org/network/load-group;1"].createInstance(Ci.nsILoadGroup);
   let secMan = Cc["@mozilla.org/scriptsecuritymanager;1"]
    .getService(Ci.nsIScriptSecurityManager);
   let feedPrincipal = secMan.createCodebasePrincipal(place.feedURI, {});
@@ -977,9 +932,9 @@ CheckListener.prototype =
       })
      );
     }
+    delete job.request;
     delete job.processor;
     delete job.livemarkId;
-    delete job.data;
     delete job.uri;
     bAllItemsFound = true;
     if (iItemsFound == iItemsTested) readyToUpdate();
@@ -1036,8 +991,6 @@ CheckListener.prototype =
  },
  QueryInterface : XPCOMUtils.generateQI([
   Ci.nsIFeedResultListener,
-  Ci.nsIStreamListener,
-  Ci.nsIRequestObserver,
   Ci.nsIInterfaceRequestor
  ])
 }
