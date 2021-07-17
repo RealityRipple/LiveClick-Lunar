@@ -777,13 +777,20 @@ CheckListener.prototype =
    let data = this._job.data.join("");
    if (data.length > 0)
    {
+    let find = "<item>";
+    let quickEnd = "</channel></rss>";
+    if (data.indexOf("<feed") !== -1 && data.indexOf("/Atom") !== -1 && data.indexOf("<entry>") !== -1)
+    {
+     find = "<entry>";
+     quickEnd = "</feed>";
+    }
     let maxItems = LiveClickPrefs.getValue("maxFeedItems");
     maxItems = LiveClickPlaces.getPlace(this._job.livemarkId).getToken("custom_max", maxItems);
     if (maxItems > 0)
     {
-     let nthItem = nthIndexOf(data, "<item>", maxItems + 1);
+     let nthItem = nthIndexOf(data, find, maxItems + 1);
      if (nthItem > -1)
-      data = data.slice(0, nthItem) + "</channel></rss>";
+      data = data.slice(0, nthItem) + quickEnd;
     }
    }
    this._job.processor = Components.classes["@mozilla.org/feed-processor;1"].createInstance(Components.interfaces.nsIFeedProcessor);
