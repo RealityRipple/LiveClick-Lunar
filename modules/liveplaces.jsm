@@ -731,7 +731,7 @@ CheckListener.prototype =
    {
     let find = "<item>";
     let quickEnd = "</channel></rss>";
-    if (data.indexOf("<feed") !== -1 && data.indexOf("/Atom") !== -1 && data.indexOf("<entry>") !== -1)
+    if (data.indexOf("<feed") !== -1 && data.indexOf("<entry>") !== -1)
     {
      find = "<entry>";
      quickEnd = "</feed>";
